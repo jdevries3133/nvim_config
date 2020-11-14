@@ -79,22 +79,32 @@ autocmd FileType make setlocal noexpandtab
 set exrc
 set secure
 call plug#begin()
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'gmarik/vundle'
-Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-sensible'
-" JavaScript
-Plug 'jelera/vim-javascript-syntax'
+                            " GENERAL TOOLING
+Plug 'gmarik/vundle'                            " Package Manager
+Plug 'tpope/vim-fugitive'                       " Git commands
+Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
+Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
+Plug 'tpope/vim-sensible'                       " a universal set of defaults that (hopefully) everyone can agree on.
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
+
+                            " JAVASCRIPT
+Plug 'jelera/vim-javascript-syntax'             " syntax highlighting
+                                                " prettier auto-formatter
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-" CSS and SCSS
-Plug 'cakebaker/scss-syntax.vim'
-" Asynchronous Lint Engine
-Plug 'dense-analysis/ale'
-Plug 'Vimjas/vim-python-pep8-indent'
+
+                            " CSS & SCSS
+Plug 'cakebaker/scss-syntax.vim'                " syntax highlighting
+
+                            " LINTING
+Plug 'dense-analysis/ale'                       " ale: Asynchronous Lint Engine
+
+                            " PYTHON
+Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
+Plug 'vim-python/python-syntax'                 " syntax highlighting
+let g:python_highlight_all = 1
+
 call plug#end()
 
 let g:prettier#autoformat = 1
