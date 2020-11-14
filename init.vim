@@ -10,6 +10,10 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-c> <C-w>c
 command Mtags !rm tags && ctags -R .
+" Move between buffers with <leader>n and <leader>N
+map <leader>n :bn<CR>
+map <leader>N :bp<CR>
+map <leader>t :tabn<CR>
 
 colorscheme Tomorrow-Night
 " Uncomment next 2 lines to cycle through all colorschemes with F8
@@ -81,7 +85,6 @@ Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
-Plug 'sentientmachine/Pretty-Vim-Python'
 " JavaScript
 Plug 'jelera/vim-javascript-syntax'
 Plug 'prettier/vim-prettier', {
