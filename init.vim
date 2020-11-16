@@ -1,61 +1,60 @@
+
 " My Essentials
 tnoremap jk <C-\><C-n>
 inoremap jk <Esc>
-"This unsets the "last search pattern" register by hitting return
+" Clear search highlight on press "enter"
 nnoremap <CR> :noh<CR><CR>
-" Ctrl + HJKL to move between windows
+
+" Ctrl + hjkl to move between windows
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-c> <C-w>c
+
+" ctags enables "ctrl + ]" to jump to function / class definition
 command Mtags !rm tags && ctags -R .
-" Move between buffers with <leader>n and <leader>N
+
+" Cycle through buffers with <leader>n and <leader>N
 map <leader>n :bn<CR>
 map <leader>N :bp<CR>
+
+" Cycle through tabs with <leader>t
 map <leader>t :tabn<CR>
 
-colorscheme Tomorrow-Night
-" Uncomment next 2 lines to cycle through all colorschemes with F8
-" source ./setcolors.vim
-" SetColors all
+" Input python docstring with <leader>d
+map <leader>d A<CR>"""<CR><CR>"""<Esc>kA<tab>
 
-" nvim python environments
-set pyxversion=3
-let g:python_host_prog = '/Users/JohnDeVries/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/Users/JohnDeVries/.pyenv/versions/neovim3/bin/python'
+colorscheme Tomorrow-Night
+colorscheme zenburn
+
+" General purpose vim settings
+syntax enable on
 set nowrap
+set ttyfast
 set showmode
 set showcmd
 set title
 set number
 set hidden
-" This is what files look like
-set ffs=unix,dos,mac
-" Update find path to search subdirectories
-set path=$PWD/**
-" No backups
+set exrc
+set secure
+set ffs=unix,dos,mac    " This is what files look like
+set path=$PWD/**        " Update find path to search subdirectories
 set nobackup
 set nowritebackup
 set nowb
 set noswapfile
-" Keep lots of history/undo
 set undolevels=1000
-" Files to ignore
-" Python
-set wildignore+=*.pyc,*.pyo,*/__pycache__/*
-" Erlang
-set wildignore+=*.beam
-" Temp files
-set wildignore+=*.swp,~*
-" Archives
-set wildignore+=*.zip,*.tar
+set wildignore+=*.pyc,*.pyo,*/__pycache__/*     " Python
+set wildignore+=*.swp,~*                        " Temp files
+set wildignore+=*.zip,*.tar                     " Archives
+set wildignore+=node_modules/*                  " Javascript / Node.js
 set wildmenu
-" Javascript/Node
-set wildignore+=node_modules/*
 
 set t_Co=256
 set colorcolumn=80,100
+highlight ColorColumn ctermbg=238
 
 " Tab sanity
 set tabstop=4
@@ -74,10 +73,43 @@ autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType make setlocal noexpandtab
 
+" netrw is vim's built in file explorer. It's default appearance is ugly.
+let g:netrw_banner=0
+let g:netrw_altv=1
+" What netrw_browse_split does
+                " =0: re-using the same window  (default)
+                " =1: horizontally splitting the window first
+                " =2: vertically   splitting the window first
+                " =3: open file in new tab
+                " =4: act like "P" (ie. open previous window)
+let g:netrw_browse_split=0
+let g:netrw_list_hide =  '^\.[^\.],'
+let g:netrw_list_hide .= '\.pyc$,'
+let g:netrw_list_hide .= '\.o$,\.obj$,'
+let g:netrw_list_hide .= '\.a$,\.so$,\.lib$,\.dll$,'
+let g:netrw_list_hide .= '\.pyc\s\+,'
+let g:netrw_list_hide .= '\.o\s\+,\.obj\s\+,'
+
+" replace error bell with visual bell
+set noerrorbells visualbell t_vb=
+
+" turn hybrid line numbers on
+set number relativenumber
+set nu rnu
 
 
-set exrc
-set secure
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" All that follows are plugins. They are managed by vim-plug, a package
+" manager for vim plugins. To quickly setup vim on a remote machine, only
+" copy everything above.
+"
+" For your local machine, first install vim-plug by following the instructions
+" at https://github.com/junegunn/vim-plug. Then, after launching vim, run
+" :PlugInstall
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 call plug#begin()
                             " GENERAL TOOLING
 Plug 'gmarik/vundle'                            " Package Manager
@@ -148,9 +180,12 @@ set nu rnu
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"               Spaghetti a la neoclide/coc.nvim
-"   This is the default init.vim config in the repo readme. It sets all the
-"   key bindings for code completion.
+"
+"                   Spaghetti a la neoclide/coc.nvim
+" This is the default init.vim config recommended in the repo readme. It sets
+" all the key bindings for code completion. See
+" https://github.com/neoclide/coc.nvim for details
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Give more space for displaying messages.
