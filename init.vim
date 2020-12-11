@@ -150,6 +150,25 @@ let g:python_highlight_all = 1
                             " CHROME EXTENSION (use nvim embedded in chrome)
 Plug 'glacambre/firenvim'
 
+" A lot of vim script, but it literally just sets nvim to a fixed size when
+" opened in the browser.
+function! s:IsFirenvimActive(event) abort
+  if !exists('*nvim_get_chan_info')
+    return 0
+  endif
+  let l:ui = nvim_get_chan_info(a:event.chan)
+  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
+      \ l:ui.client.name =~? 'Firenvim'
+endfunction
+
+function! OnUIEnter(event) abort
+  if s:IsFirenvimActive(a:event)
+    set lines=20                    " NUM LINES ON FIRENVIM LAUNCH
+    set columns=90                  " NUM COLS  ON FIRENVIM LAUNCH
+  endif
+endfunction
+autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+
 call plug#end()
 
 
