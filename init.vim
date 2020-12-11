@@ -1,9 +1,9 @@
-
-" My Essentials
+""""""""""""""""" My shortcuts and personal preferences """""""""""""""""""""""
 tnoremap jk <C-\><C-n>
 inoremap jk <Esc>
+
 " Clear search highlight on press "enter"
-nnoremap <CR> :noh<CR><CR>
+nnoremap <cr> :noh<cr><cr>
 
 " Ctrl + hjkl to move between windows
 noremap <C-h> <C-w>h
@@ -12,58 +12,81 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-c> <C-w>c
 
-" ctags enables "ctrl + ]" to jump to function / class definition
-command Mtags !rm tags && ctags -R .
-
 " Cycle through buffers with <leader>n and <leader>N
-map <leader>n :bn<CR>
-map <leader>N :bp<CR>
+map <leader>n :bn<cr>
+map <leader>N :bp<cr>
+
+" Delete buffer without closing window
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<cr>
 
 " Cycle through tabs with <leader>t
-map <leader>t :tabn<CR>
+map <leader>t :tabn<cr>
 
 " Input python docstring with <leader>d
-map <leader>d A<CR>"""<CR><CR>"""<Esc>kA<tab>
+map <leader>d A<cr>"""<cr><cr>"""<Esc>kA<tab>
 
-colorscheme Tomorrow-Night
-colorscheme zenburn
+" Input python breakpoint with <leader>b
+map <leader>b A<cr>breakpoint()<Esc>
+
+" Colorschemes.
+"   My three favorites are here and I just toggle on the one I want by
+"   commenting / uncommenting.
+colorscheme Tomorrow-Night  "dark
+" colorscheme zenburn         "dark
+" colorscheme xcode-default   "light
+
+" Quickly switch to my favorite light colorscheme with <leader>x
+map <leader>x :colorscheme xcode-default<cr>
+
+" Python providers
+"   Somewhere, install a python2.* and python3.* virtual environment for
+"   neovim. In each virtual environment, run 'pip install jedi neovim'
+"
+"   Then, put the path to the actual python interpreter within each of those
+"   environments here.
+let g:python_host_prog = "/Users/JohnDeVries/.pyenv/versions/neovim2/bin/python"
+let g:python3_host_prog = "/Users/JohnDeVries/.pyenv/versions/neovim3/bin/python3"
 
 " General purpose vim settings
-syntax enable on
-set nowrap
-set ttyfast
-set showmode
-set showcmd
-set title
-set number
-set hidden
-set exrc
-set secure
-set ffs=unix,dos,mac    " This is what files look like
-set path=$PWD/**        " Update find path to search subdirectories
+"   You can get more info on all of these with :help ____, but I like having
+"   the notes right here so you're not just copying stuff and having no idea
+"   what it does without doing a vim-help-research-project.
+set showtabline=2           " Always show file name at the top
+syntax enable on            " Enable syntax highlighting
+set nowrap                  " Do not wrap lines; not good for all files, but my preference!
+set showmode                " Show current editor mode in bottom left
+set showcmd                 " Normal mode; show keys you pressed (bottom-right)
+set title                   " see :h title
+set hidden                  " see :h hidden
+set exrc                    " allow plugins to execute .vimrc files
+set secure                  " recommended to accompany 'set exrc'
+set number relativenumber   " turn cursor-relative line numbering on
+set nu rnu                  " current line shows absolute line number
+set path=$PWD/**            " Update find path to search subdirectories
+set undolevels=1000         " Save the last 1000 edits in undo history
+set list                    " Display tabs and trailing whitespace
+set wildmenu                " Autocomplete command on <tab>
+set colorcolumn=80,100      " Column length rulers at 80 and 100 characters
+highlight ColorColumn ctermbg=238   " Ruler color
+
+" The next four settings completely prevent vim from backing your work up
+" anywhere. If, like me, you type :w after basically every line you write,
+" you'll be ok!
 set nobackup
 set nowritebackup
 set nowb
 set noswapfile
-set undolevels=1000
+
 set wildignore+=*.pyc,*.pyo,*/__pycache__/*     " Python
 set wildignore+=*.swp,~*                        " Temp files
 set wildignore+=*.zip,*.tar                     " Archives
 set wildignore+=node_modules/*                  " Javascript / Node.js
-set wildmenu
-
-set t_Co=256
-set colorcolumn=80,100
-highlight ColorColumn ctermbg=238
 
 " Tab sanity
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-" Show hidden characters, tabs, trailing whitespace
-set list
-set listchars=tab:→\ ,trail:·,nbsp:·
 " Different tab/space stops"
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
@@ -71,7 +94,7 @@ autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd FileType make setlocal noexpandtab
+autocmd Filetype make setlocal noexpandtab
 
 " netrw is vim's built in file explorer. It's default appearance is ugly.
 let g:netrw_banner=0
@@ -93,10 +116,8 @@ let g:netrw_list_hide .= '\.o\s\+,\.obj\s\+,'
 " replace error bell with visual bell
 set noerrorbells visualbell t_vb=
 
-" turn hybrid line numbers on
-set number relativenumber
-set nu rnu
 
+highlight Comment cterm=bold
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -119,72 +140,27 @@ Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
 Plug 'tpope/vim-sensible'                       " a universal set of defaults that (hopefully) everyone can agree on.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
 
-                            " JAVASCRIPT
-Plug 'jelera/vim-javascript-syntax'             " syntax highlighting
-                                                " prettier auto-formatter
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-
                             " CSS & SCSS
 Plug 'cakebaker/scss-syntax.vim'                " syntax highlighting
-
-                            " LINTING
-Plug 'dense-analysis/ale'                       " ale: Asynchronous Lint Engine
 
                             " PYTHON
 Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
 Plug 'vim-python/python-syntax'                 " syntax highlighting
 let g:python_highlight_all = 1
 
+                            " CHROME EXTENSION (use nvim embedded in chrome)
+Plug 'glacambre/firenvim'
+
 call plug#end()
-
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-
-let g:ale_set_highlights = 0
-let b:ale_fixers = {
-\    'python': ['autopep8'],
-\}
-let g:ale_linters = {'javascript': 'eslint', 'python': ['pylint']}
-let g:ale_fix_on_save = 1
-
-highlight Comment cterm=bold
-
-let g:netrw_banner=0
-let g:netrw_altv=1
-" What netrw_browse_split does
-                " =0: re-using the same window  (default)
-                " =1: horizontally splitting the window first
-                " =2: vertically   splitting the window first
-                " =3: open file in new tab
-                " =4: act like "P" (ie. open previous window)
-command Net1 let g:netrw_browse_split=0
-command Net4 let g:netrw_browse_split=4
-let g:netrw_browse_split=0
-let g:netrw_list_hide =  '^\.[^\.],'
-let g:netrw_list_hide .= '\.pyc$,'
-let g:netrw_list_hide .= '\.o$,\.obj$,'
-let g:netrw_list_hide .= '\.a$,\.so$,\.lib$,\.dll$,'
-let g:netrw_list_hide .= '\.pyc\s\+,'
-let g:netrw_list_hide .= '\.o\s\+,\.obj\s\+,'
-
-" replace error bell with visual bell
-set noerrorbells visualbell t_vb=
-
-" turn hybrid line numbers on
-set number relativenumber
-set nu rnu
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 "                   Spaghetti a la neoclide/coc.nvim
 " This is the default init.vim config recommended in the repo readme. It sets
-" all the key bindings for code completion. See
-" https://github.com/neoclide/coc.nvim for details
+" all the key bindings for code completion.
+" 
+" See https://github.com/neoclide/coc.nvim for details
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -230,8 +206,8 @@ endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
