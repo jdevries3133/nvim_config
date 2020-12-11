@@ -67,7 +67,6 @@ set undolevels=1000         " Save the last 1000 edits in undo history
 set list                    " Display tabs and trailing whitespace
 set wildmenu                " Autocomplete command on <tab>
 set colorcolumn=80,100      " Column length rulers at 80 and 100 characters
-highlight ColorColumn ctermbg=238   " Ruler color
 
 " The next four settings completely prevent vim from backing your work up
 " anywhere. If, like me, you type :w after basically every line you write,
