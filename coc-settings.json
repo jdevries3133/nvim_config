@@ -1,14 +1,14 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": [
-        "css",
-        "markdown",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "json"
-    ],
-    "diagnostic.checkCurrentLine": "true",
-    "coc.preferences.hoverTarget": "echo"
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "html"
+  ],
+  "diagnostic.checkCurrentLine": true,
+  "coc.preferences.hoverTarget": "echo"
 }
-

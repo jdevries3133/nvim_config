@@ -3,32 +3,29 @@ tnoremap jk <C-\><C-n>
 inoremap jk <Esc>
 
 " Clear search highlight on press "enter"
-nnoremap <cr> :noh<cr><cr>
+nnoremap <cr> :nohlsearch<cr><cr>
 
 " Ctrl + hjkl to move between windows
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-c> <C-w>c
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-c> <C-w>c
 
 " Cycle through buffers with <leader>n and <leader>N
-map <leader>n :bn<cr>
-map <leader>N :bp<cr>
+nnoremap <silent> <leader>n :bn<cr>
+nnoremap <silent> <leader>N :bp<cr>
 
 " Delete buffer without closing window
-map <leader>q :bp<bar>sp<bar>bn<bar>bd<cr>
-
-" Cycle through tabs with <leader>t
-map <leader>t :tabn<cr>
+nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<cr>
 
 " Input python docstring with <leader>d
-map <leader>d A<cr>"""<cr><cr>"""<Esc>kA<tab>
+nnoremap <leader>d o"""<cr><cr>"""<Esc>ki
 
 " Input python breakpoint with <leader>b
-map <leader>b A<cr>breakpoint()<Esc>
+nnoremap <leader>b obreakpoint()<Esc>
 
-" Colorschemes.
+" Colorschemes ( install these: https://github.com/flazz/vim-colorschemes)
 "   My three favorites are here and I just toggle on the one I want by
 "   commenting / uncommenting.
 colorscheme Tomorrow-Night  "dark
@@ -36,7 +33,49 @@ colorscheme Tomorrow-Night  "dark
 " colorscheme xcode-default   "light
 
 " Quickly switch to my favorite light colorscheme with <leader>x
-map <leader>x :colorscheme xcode-default<cr>
+nnoremap<leader>x :colorscheme xcode-default<cr>
+
+" General purpose vim settings
+"   You can get more info on all of these with :help ____, but I like having
+"   the notes right here so you're not just copying stuff and having no idea
+"   what it does without doing a vim-help-research-project.
+set showtabline=2           " Always show file name at the top
+syntax on                   " Enable syntax highlighting
+set nowrap                  " Do not wrap lines; not good for all files, but my preference!
+set showcmd                 " Normal mode; show keys you pressed (bottom-right)
+set exrc                    " allow plugins to execute .vimrc files
+set secure                  " recommended to accompany 'set exrc'
+set number relativenumber   " turn cursor-relative line numbering on
+set path=$PWD/**            " Update find path to search subdirectories
+set list                    " Display tabs and trailing whitespace
+set wildmenu                " Completion suggestions listed on <tab> press
+set colorcolumn=80,100      " Column length rulers at 80 and 100 characters
+
+" The next four settings completely prevent vim from backing your work up
+" anywhere. If, like me, you type :w after basically every line you write,
+" you'll be ok!
+set hidden
+set nobackup
+set nowritebackup
+set noswapfile
+
+set wildignore+=*.pyc,*.pyo,*/__pycache__/*     " Python
+set wildignore+=*.swp,~*                        " Temp files
+set wildignore+=*.zip,*.tar                     " Archives
+set wildignore+=node_modules/*                  " Javascript / Node.js
+
+"  tab/space stops
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+augroup tabconf
+    autocmd!
+    autocmd Filetype yaml,html,css,htmldjango,javascript,make,txt \
+        setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+augroup END
 
 " Python providers
 "   Somewhere, install a python2.* and python3.* virtual environment for
@@ -46,54 +85,6 @@ map <leader>x :colorscheme xcode-default<cr>
 "   environments here.
 let g:python_host_prog = "/Users/JohnDeVries/.pyenv/versions/neovim2/bin/python"
 let g:python3_host_prog = "/Users/JohnDeVries/.pyenv/versions/neovim3/bin/python3"
-
-" General purpose vim settings
-"   You can get more info on all of these with :help ____, but I like having
-"   the notes right here so you're not just copying stuff and having no idea
-"   what it does without doing a vim-help-research-project.
-set showtabline=2           " Always show file name at the top
-syntax enable on            " Enable syntax highlighting
-set nowrap                  " Do not wrap lines; not good for all files, but my preference!
-set showmode                " Show current editor mode in bottom left
-set showcmd                 " Normal mode; show keys you pressed (bottom-right)
-set title                   " see :h title
-set hidden                  " see :h hidden
-set exrc                    " allow plugins to execute .vimrc files
-set secure                  " recommended to accompany 'set exrc'
-set number relativenumber   " turn cursor-relative line numbering on
-set nu rnu                  " current line shows absolute line number
-set path=$PWD/**            " Update find path to search subdirectories
-set undolevels=1000         " Save the last 1000 edits in undo history
-set list                    " Display tabs and trailing whitespace
-set wildmenu                " Autocomplete command on <tab>
-set colorcolumn=80,100      " Column length rulers at 80 and 100 characters
-
-" The next four settings completely prevent vim from backing your work up
-" anywhere. If, like me, you type :w after basically every line you write,
-" you'll be ok!
-set nobackup
-set nowritebackup
-set nowb
-set noswapfile
-
-set wildignore+=*.pyc,*.pyo,*/__pycache__/*     " Python
-set wildignore+=*.swp,~*                        " Temp files
-set wildignore+=*.zip,*.tar                     " Archives
-set wildignore+=node_modules/*                  " Javascript / Node.js
-
-" Tab sanity
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-" Different tab/space stops"
-autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-autocmd Filetype make setlocal noexpandtab
 
 " netrw is vim's built in file explorer. It's default appearance is ugly.
 let g:netrw_banner=0
@@ -114,7 +105,6 @@ let g:netrw_list_hide .= '\.o\s\+,\.obj\s\+,'
 
 " replace error bell with visual bell
 set noerrorbells visualbell t_vb=
-
 
 highlight Comment cterm=bold
 
@@ -149,7 +139,6 @@ let g:python_highlight_all = 1
 
                             " CHROME EXTENSION (use nvim embedded in chrome)
 Plug 'glacambre/firenvim'
-
 " A lot of vim script, but it literally just sets nvim to a fixed size when
 " opened in the browser.
 function! s:IsFirenvimActive(event) abort
@@ -160,11 +149,13 @@ function! s:IsFirenvimActive(event) abort
   return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
       \ l:ui.client.name =~? 'Firenvim'
 endfunction
-
 function! OnUIEnter(event) abort
   if s:IsFirenvimActive(a:event)
-    set lines=20                    " NUM LINES ON FIRENVIM LAUNCH
-    set columns=90                  " NUM COLS  ON FIRENVIM LAUNCH
+    set wrap
+    set lines=20
+    set columns=90
+    au BufEnter github.com_*.txt set filetype=markdown
+    au BufEnter old.reddit.com_*.txt set filetype=markdown
   endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
@@ -181,6 +172,8 @@ call plug#end()
 " See https://github.com/neoclide/coc.nvim for details
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Give more space for displaying messages.
 set cmdheight=2
