@@ -10,5 +10,7 @@
     "html"
   ],
   "diagnostic.checkCurrentLine": true,
-  "coc.preferences.hoverTarget": "echo"
+  "coc.preferences.hoverTarget": "echo",
+  "python.linting.pylintEnabled": true,
+  "python.venvPath": "./venv"
 }

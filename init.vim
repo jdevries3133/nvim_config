@@ -51,6 +51,9 @@ set list                    " Display tabs and trailing whitespace
 set wildmenu                " Completion suggestions listed on <tab> press
 set colorcolumn=80,100      " Column length rulers at 80 and 100 characters
 
+set foldmethod=marker
+set foldcolumn=1
+
 " The next four settings completely prevent vim from backing your work up
 " anywhere. If, like me, you type :w after basically every line you write,
 " you'll be ok!
@@ -72,8 +75,7 @@ set expandtab
 
 augroup tabconf
     autocmd!
-    autocmd Filetype yaml,html,css,htmldjango,javascript,make,txt \
-        setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd Filetype yaml,html,css,htmldjango,javascript,make,txt setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 augroup END
 
@@ -122,7 +124,6 @@ highlight Comment cterm=bold
 
 call plug#begin()
                             " GENERAL TOOLING
-Plug 'gmarik/vundle'                            " Package Manager
 Plug 'tpope/vim-fugitive'                       " Git commands
 Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
@@ -137,10 +138,16 @@ Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
 Plug 'vim-python/python-syntax'                 " syntax highlighting
 let g:python_highlight_all = 1
 
+                            " JAVASCRIPT / TYPESCRIPT
+Plug 'yuezk/vim-js'                 " Syntax highlighting
+Plug 'MaxMEllon/vim-jsx-pretty'     " JSX syntax highlighting
+Plug 'leafgarland/typescript-vim'   " Typescript
+Plug 'peitalin/vim-jsx-typescript'  " TSX (JSX in Typescript)
+
                             " CHROME EXTENSION (use nvim embedded in chrome)
 Plug 'glacambre/firenvim'
-" A lot of vim script, but it literally just sets nvim to a fixed size when
-" opened in the browser.
+
+" NEXT ~20 LINES: Set fire.nvim element to a fixed size upon rendeirng.
 function! s:IsFirenvimActive(event) abort
   if !exists('*nvim_get_chan_info')
     return 0
@@ -160,6 +167,25 @@ function! OnUIEnter(event) abort
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
 
+" site-specific firenvim configurations
+if exists('g:started_by_firenvim')
+    let g:firenvim_config = {
+    \   'globalSettings': {},
+    \   'localSettings': {}
+    \}
+    " do not open in the reddit chat.
+    let g:firenvim_config['localSettings']['old.reddit.com'] = {
+    \   'selector': 'textarea:not(._24sbNUBZcOO5r5rr66_bs4):not(.TqpfKgK2FdKbljZzdRLIU)',
+    \   'takeover': 'always'
+    \}
+    " do not do anything in google web apps
+    let g:firenvim_config['localSettings']['\(docs\|sheets\|slides\|mail\)\.google\.com*'] = {
+    \   'takeover': 'never',
+    \   'priority': 0
+    \}
+endif
+
+
 call plug#end()
 
 
@@ -174,6 +200,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nnoremap <leader>l :CocCommand python.runLinting<cr>
 
 " Give more space for displaying messages.
 set cmdheight=2
