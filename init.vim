@@ -25,6 +25,15 @@ nnoremap <leader>d o"""<cr><cr>"""<Esc>ki
 " Input python breakpoint with <leader>b
 nnoremap <leader>b obreakpoint()<Esc>
 
+" Spell check in current buffer
+nnoremap <leader>s :setlocal spell spelllang=en_us<CR>
+
+" Open existing terminal in a new tab.
+nnoremap <silent><leader>t :tabnew<CR>:buffer ter<Tab><CR>
+
+" Open new terminal in a new tab
+nnoremap <silent><leader>T :tabe +ter<CR>
+
 " Colorschemes ( install these: https://github.com/flazz/vim-colorschemes)
 "   My three favorites are here and I just toggle on the one I want by
 "   commenting / uncommenting.
@@ -75,7 +84,7 @@ set expandtab
 
 augroup tabconf
     autocmd!
-    autocmd Filetype yaml,html,css,htmldjango,javascript,make,txt setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd Filetype yaml,html,css,htmldjango,javascript,make,txt,markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 augroup END
 
@@ -147,26 +156,6 @@ Plug 'peitalin/vim-jsx-typescript'  " TSX (JSX in Typescript)
                             " CHROME EXTENSION (use nvim embedded in chrome)
 Plug 'glacambre/firenvim'
 
-" NEXT ~20 LINES: Set fire.nvim element to a fixed size upon rendeirng.
-function! s:IsFirenvimActive(event) abort
-  if !exists('*nvim_get_chan_info')
-    return 0
-  endif
-  let l:ui = nvim_get_chan_info(a:event.chan)
-  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
-      \ l:ui.client.name =~? 'Firenvim'
-endfunction
-function! OnUIEnter(event) abort
-  if s:IsFirenvimActive(a:event)
-    set wrap
-    set lines=20
-    set columns=90
-    au BufEnter github.com_*.txt set filetype=markdown
-    au BufEnter old.reddit.com_*.txt set filetype=markdown
-  endif
-endfunction
-autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
-
 " site-specific firenvim configurations
 if exists('g:started_by_firenvim')
     let g:firenvim_config = {
@@ -176,14 +165,56 @@ if exists('g:started_by_firenvim')
     " do not open in the reddit chat.
     let g:firenvim_config['localSettings']['old.reddit.com'] = {
     \   'selector': 'textarea:not(._24sbNUBZcOO5r5rr66_bs4):not(.TqpfKgK2FdKbljZzdRLIU)',
-    \   'takeover': 'always'
+    \   'takeover': 'always',
+    \   'priority': 1
     \}
-    " do not do anything in google web apps
-    let g:firenvim_config['localSettings']['\(docs\|sheets\|slides\|mail\)\.google\.com*'] = {
+    let firenvim_blocklist = [
+    \   'docs.google.com',
+    \   'sheets.google.com',
+    \   'slides.google.com',
+    \   'mail.google.com',
+    \   'facebook.com',
+    \   'messenger.com',
+    \   'flipgrid.com'
+    \]
+    for site in firenvim_blocklist
+        let g:firenvim_config['localSettings'][site] = {
+    \   'selector': 'textarea',
     \   'takeover': 'never',
-    \   'priority': 0
+    \   'priority': 2,
     \}
+    endfor
 endif
+
+" NEXT ~20 LINES: Set firenvim window size and font size
+function! s:IsFirenvimActive(event) abort
+  if !exists('*nvim_get_chan_info')
+    return 0
+  endif
+  let l:ui = nvim_get_chan_info(a:event.chan)
+  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
+      \ l:ui.client.name =~? 'Firenvim'
+endfunction
+
+function! SetFont(timer) abort
+    set guifont=Monospace:h16
+endfunction
+
+function! SetLines(timer) abort
+    set columns=100
+    set lines=20
+    set wrap
+endfunction
+
+function! OnUIEnter(event) abort
+  if s:IsFirenvimActive(a:event)
+    call timer_start(100, function("SetFont"))
+    call timer_start(500, function("SetLines"))
+    au BufEnter github.com_*.txt set filetype=markdown
+    au BufEnter old.reddit.com_*.txt set filetype=markdown
+  endif
+endfunction
+autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
 
 
 call plug#end()
@@ -200,7 +231,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
-nnoremap <leader>l :CocCommand python.runLinting<cr>
 
 " Give more space for displaying messages.
 set cmdheight=2
