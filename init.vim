@@ -35,11 +35,7 @@ nnoremap <silent><leader>t :tabnew<CR>:buffer ter<Tab><CR>
 nnoremap <silent><leader>T :tabe +ter<CR>
 
 " Colorschemes ( install these: https://github.com/flazz/vim-colorschemes)
-"   My three favorites are here and I just toggle on the one I want by
-"   commenting / uncommenting.
-colorscheme Tomorrow-Night  "dark
-" colorscheme zenburn         "dark
-" colorscheme xcode-default   "light
+colorscheme gruvbox
 
 " Quickly switch to my favorite light colorscheme with <leader>x
 nnoremap<leader>x :colorscheme xcode-default<cr>
@@ -55,13 +51,10 @@ set showcmd                 " Normal mode; show keys you pressed (bottom-right)
 set exrc                    " allow plugins to execute .vimrc files
 set secure                  " recommended to accompany 'set exrc'
 set number relativenumber   " turn cursor-relative line numbering on
-set path=$PWD/**            " Update find path to search subdirectories
+set path=$PWD/**5           " Update find path to search up to 5 subdirectories
 set list                    " Display tabs and trailing whitespace
 set wildmenu                " Completion suggestions listed on <tab> press
-set colorcolumn=80,100      " Column length rulers at 80 and 100 characters
-
-set foldmethod=marker
-set foldcolumn=1
+set colorcolumn=80          " Line length rulers at 80 and 100 characters
 
 " The next four settings completely prevent vim from backing your work up
 " anywhere. If, like me, you type :w after basically every line you write,
