@@ -162,10 +162,7 @@ if exists('g:started_by_firenvim')
     \   'priority': 1
     \}
     let firenvim_blocklist = [
-    \   'docs.google.com',
-    \   'sheets.google.com',
-    \   'slides.google.com',
-    \   'mail.google.com',
+    \   '*.google.com',
     \   'facebook.com',
     \   'messenger.com',
     \   'flipgrid.com'
