@@ -2,7 +2,7 @@
 tnoremap jk <C-\><C-n>
 inoremap jk <Esc>
 
-" Clear search highlight on press "enter"
+"Clear searchhighlight on press "enter"
 nnoremap <cr> :nohlsearch<cr><cr>
 
 " Ctrl + hjkl to move between windows
@@ -125,7 +125,7 @@ highlight Comment cterm=bold
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin()
-                            " GENERAL TOOLING
+                            " GENERAL PURPOSE
 Plug 'tpope/vim-fugitive'                       " Git commands
 Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
@@ -140,11 +140,11 @@ Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
 Plug 'vim-python/python-syntax'                 " syntax highlighting
 let g:python_highlight_all = 1
 
-                            " JAVASCRIPT / TYPESCRIPT
-Plug 'yuezk/vim-js'                 " Syntax highlighting
-Plug 'MaxMEllon/vim-jsx-pretty'     " JSX syntax highlighting
-Plug 'leafgarland/typescript-vim'   " Typescript
-Plug 'peitalin/vim-jsx-typescript'  " TSX (JSX in Typescript)
+                            " JAVASCRIPT & TYPESCRIPT
+Plug 'yuezk/vim-js'                             " Syntax highlighting
+Plug 'MaxMEllon/vim-jsx-pretty'                 " JSX syntax highlighting
+Plug 'leafgarland/typescript-vim'               " Typescript
+Plug 'peitalin/vim-jsx-typescript'              " TSX (JSX in Typescript)
 
                             " CHROME EXTENSION (use nvim embedded in chrome)
 Plug 'glacambre/firenvim'
@@ -290,7 +290,6 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
