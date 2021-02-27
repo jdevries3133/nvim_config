@@ -1,9 +1,10 @@
 """"""""""""""""" My shortcuts and personal preferences """""""""""""""""""""""
+" Map jk to Escape
 tnoremap jk <C-\><C-n>
 inoremap jk <Esc>
 
 "Clear searchhighlight on press "enter"
-nnoremap <cr> :nohlsearch<cr><cr>
+nnoremap <silent> <cr> :nohlsearch<cr><cr>
 
 " Ctrl + hjkl to move between windows
 nnoremap <C-h> <C-w>h
@@ -26,19 +27,26 @@ nnoremap <leader>d o"""<cr><cr>"""<Esc>ki
 nnoremap <leader>b obreakpoint()<Esc>
 
 " Spell check in current buffer
-nnoremap <leader>s :setlocal spell spelllang=en_us<CR>
+nnoremap <silent> <leader>s :setlocal spell spelllang=en_us<CR>
 
 " Open existing terminal in a new tab.
-nnoremap <silent><leader>t :tabnew<CR>:buffer ter<Tab><CR>
+nnoremap <silent> <leader>t :tabnew<CR>:buffer ter<Tab><CR>
 
 " Open new terminal in a new tab
-nnoremap <silent><leader>T :tabe +ter<CR>
+nnoremap <silent> <leader>T :tabe +ter<CR>
 
 " Colorschemes ( install these: https://github.com/flazz/vim-colorschemes)
 colorscheme gruvbox
 
 " Quickly switch to my favorite light colorscheme with <leader>x
 nnoremap<leader>x :colorscheme xcode-default<cr>
+
+" :mr => :make run
+cnoremap mr<cr> make run<cr>
+
+" E to enter netrw from normal mode
+nnoremap E :E<cr>
+
 
 " General purpose vim settings
 "   You can get more info on all of these with :help ____, but I like having
@@ -55,6 +63,7 @@ set path=$PWD/**5           " Update find path to search up to 5 subdirectories
 set list                    " Display tabs and trailing whitespace
 set wildmenu                " Completion suggestions listed on <tab> press
 set colorcolumn=80          " Line length rulers at 80 and 100 characters
+set lazyredraw              " Do not draw when executing macros, etc
 
 " The next four settings completely prevent vim from backing your work up
 " anywhere. If, like me, you type :w after basically every line you write,
@@ -77,8 +86,7 @@ set expandtab
 
 augroup tabconf
     autocmd!
-    autocmd Filetype yaml,html,css,htmldjango,javascript,make,txt,markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-    autocmd Filetype python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+    autocmd Filetype yaml,html,css,htmldjango,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 " Python providers
@@ -92,7 +100,7 @@ let g:python3_host_prog = "/Users/JohnDeVries/.pyenv/versions/neovim3/bin/python
 
 " netrw is vim's built in file explorer. It's default appearance is ugly.
 let g:netrw_banner=0
-let g:netrw_altv=1
+
 " What netrw_browse_split does
                 " =0: re-using the same window  (default)
                 " =1: horizontally splitting the window first
@@ -100,17 +108,22 @@ let g:netrw_altv=1
                 " =3: open file in new tab
                 " =4: act like "P" (ie. open previous window)
 let g:netrw_browse_split=0
-let g:netrw_list_hide =  '^\.[^\.],'
-let g:netrw_list_hide .= '\.pyc$,'
-let g:netrw_list_hide .= '\.o$,\.obj$,'
-let g:netrw_list_hide .= '\.a$,\.so$,\.lib$,\.dll$,'
-let g:netrw_list_hide .= '\.pyc\s\+,'
-let g:netrw_list_hide .= '\.o\s\+,\.obj\s\+,'
+
+" netrw_liststyles:
+    " 1: thin
+    " 2: long
+    " 3: wide
+    " 4: tree
+let g:netrw_liststyle = 3
 
 " replace error bell with visual bell
 set noerrorbells visualbell t_vb=
 
+" Comments are bold
 highlight Comment cterm=bold
+" nvim inherits terminal background (nvim background is transparent)
+" highlight Normal guibg=NONE ctermbg=NONE
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -132,9 +145,6 @@ Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
 Plug 'tpope/vim-sensible'                       " a universal set of defaults that (hopefully) everyone can agree on.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
 
-                            " CSS & SCSS
-Plug 'cakebaker/scss-syntax.vim'                " syntax highlighting
-
                             " PYTHON
 Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
 Plug 'vim-python/python-syntax'                 " syntax highlighting
@@ -148,6 +158,9 @@ Plug 'peitalin/vim-jsx-typescript'              " TSX (JSX in Typescript)
 
                             " CHROME EXTENSION (use nvim embedded in chrome)
 Plug 'glacambre/firenvim'
+
+                            " C
+Plug 'NLKNguyen/c-syntax.vim'
 
 " site-specific firenvim configurations
 if exists('g:started_by_firenvim')
