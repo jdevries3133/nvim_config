@@ -1,4 +1,5 @@
 """"""""""""""""" My shortcuts and personal preferences """""""""""""""""""""""
+
 " Map jk to Escape
 tnoremap jk <C-\><C-n>
 inoremap jk <Esc>
@@ -16,6 +17,10 @@ nnoremap <C-c> <C-w>c
 " Cycle through buffers with <leader>n and <leader>N
 nnoremap <silent> <leader>n :bn<cr>
 nnoremap <silent> <leader>N :bp<cr>
+
+" Cycle through quickfix list with <leader>c and <leader>C
+nnoremap <silent> <leader>c :cn<cr>
+nnoremap <silent> <leader>C :cp<cr>
 
 " Delete buffer without closing window
 nnoremap <leader>q :bp<bar>sp<bar>bn<bar>bd<cr>
@@ -86,7 +91,7 @@ set expandtab
 
 augroup tabconf
     autocmd!
-    autocmd Filetype yaml,html,css,htmldjango,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd Filetype yaml,html,css,htmldjango,javascript,markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 " Python providers
