@@ -1,5 +1,6 @@
 {
   "javascript.suggestionActions.enabled": false,
+  "tsserver.disableAutomaticTypeAquisition": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",

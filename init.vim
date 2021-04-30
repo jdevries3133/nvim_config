@@ -34,14 +34,17 @@ nnoremap <leader>b obreakpoint()<Esc>
 " Spell check in current buffer
 nnoremap <silent> <leader>s :setlocal spell spelllang=en_us<CR>
 
-" Open existing terminal in a new tab.
+" Terminal shortcuts
+"
+" <leader>t => open existing terminal in new tab
+" <leader>T => open new terminal in new tab
+" tt => open existing terminal in current window
 nnoremap <silent> <leader>t :tabnew<CR>:buffer ter<Tab><CR>
-
-" Open new terminal in a new tab
 nnoremap <silent> <leader>T :tabe +ter<CR>
+nnoremap <silent> tt :buffer term<Tab><CR>
 
 " Colorschemes ( install these: https://github.com/flazz/vim-colorschemes)
-colorscheme gruvbox
+colorscheme jitterbug
 
 " Quickly switch to my favorite light colorscheme with <leader>x
 nnoremap<leader>x :colorscheme xcode-default<cr>
@@ -149,6 +152,8 @@ Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
 Plug 'tpope/vim-sensible'                       " a universal set of defaults that (hopefully) everyone can agree on.
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
+Plug 'fweep/vim-zsh-path-completion'            " ZSH-like file path completion
+cmap <S-Tab> <Plug>ZshPathComplete
 
                             " PYTHON
 Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
