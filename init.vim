@@ -43,20 +43,14 @@ nnoremap <silent> <leader>t :tabnew<CR>:buffer ter<Tab><CR>
 nnoremap <silent> <leader>T :tabe +ter<CR>
 nnoremap <silent> tt :buffer term<Tab><CR>
 
-" Colorschemes ( install these: https://github.com/flazz/vim-colorschemes)
-colorscheme jitterbug
-
-" Quickly switch to my favorite light colorscheme with <leader>x
-nnoremap<leader>x :colorscheme xcode-default<cr>
-
-" :mr => :make run
-cnoremap mr<cr> make run<cr>
+" Colorschemes (install these: https://github.com/flazz/vim-colorschemes)
+colorscheme Atelier_SavannaDark
 
 " E to enter netrw from normal mode
 nnoremap E :E<cr>
 
 
-" General purpose vim settings
+"""""""""""""""""""" General purpose vim settings """"""""""""""""""""""""""""
 "   You can get more info on all of these with :help ____, but I like having
 "   the notes right here so you're not just copying stuff and having no idea
 "   what it does without doing a vim-help-research-project.
@@ -95,6 +89,7 @@ set expandtab
 augroup tabconf
     autocmd!
     autocmd Filetype yaml,html,css,htmldjango,javascript,markdown setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd Filetype rst setlocal tabstop=3 shiftwidth=3 softtabstop=3 expandtab
 augroup END
 
 " Python providers
@@ -148,9 +143,10 @@ highlight Comment cterm=bold
 call plug#begin()
                             " GENERAL PURPOSE
 Plug 'tpope/vim-fugitive'                       " Git commands
-Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
 Plug 'tpope/vim-sensible'                       " a universal set of defaults that (hopefully) everyone can agree on.
+Plug 'tpope/vim-surround'                       " surrounding movements
+Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
 Plug 'fweep/vim-zsh-path-completion'            " ZSH-like file path completion
 cmap <S-Tab> <Plug>ZshPathComplete
