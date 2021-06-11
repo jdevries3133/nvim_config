@@ -162,69 +162,8 @@ Plug 'MaxMEllon/vim-jsx-pretty'                 " JSX syntax highlighting
 Plug 'leafgarland/typescript-vim'               " Typescript
 Plug 'peitalin/vim-jsx-typescript'              " TSX (JSX in Typescript)
 
-                            " CHROME EXTENSION (use nvim embedded in chrome)
-Plug 'glacambre/firenvim'
-
                             " C
 Plug 'NLKNguyen/c-syntax.vim'
-
-" site-specific firenvim configurations
-if exists('g:started_by_firenvim')
-    let g:firenvim_config = {
-    \   'globalSettings': {},
-    \   'localSettings': {}
-    \}
-    " do not open in the reddit chat.
-    let g:firenvim_config['localSettings']['old.reddit.com'] = {
-    \   'selector': 'textarea:not(._24sbNUBZcOO5r5rr66_bs4):not(.TqpfKgK2FdKbljZzdRLIU)',
-    \   'takeover': 'always',
-    \   'priority': 1
-    \}
-    let firenvim_blocklist = [
-    \   '*.google.com',
-    \   'facebook.com',
-    \   'messenger.com',
-    \   'flipgrid.com'
-    \]
-    for site in firenvim_blocklist
-        let g:firenvim_config['localSettings'][site] = {
-    \   'selector': 'textarea',
-    \   'takeover': 'never',
-    \   'priority': 2,
-    \}
-    endfor
-endif
-
-" NEXT ~20 LINES: Set firenvim window size and font size
-function! s:IsFirenvimActive(event) abort
-  if !exists('*nvim_get_chan_info')
-    return 0
-  endif
-  let l:ui = nvim_get_chan_info(a:event.chan)
-  return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
-      \ l:ui.client.name =~? 'Firenvim'
-endfunction
-
-function! SetFont(timer) abort
-    set guifont=Monospace:h16
-endfunction
-
-function! SetLines(timer) abort
-    set columns=100
-    set lines=20
-    set wrap
-endfunction
-
-function! OnUIEnter(event) abort
-  if s:IsFirenvimActive(a:event)
-    call timer_start(100, function("SetFont"))
-    call timer_start(500, function("SetLines"))
-    au BufEnter github.com_*.txt set filetype=markdown
-    au BufEnter old.reddit.com_*.txt set filetype=markdown
-  endif
-endfunction
-autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
-
 
 call plug#end()
 
