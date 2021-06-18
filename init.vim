@@ -33,6 +33,12 @@ nnoremap <leader>b obreakpoint()<Esc>
 
 " Spell check in current buffer
 nnoremap <silent> <leader>s :setlocal spell spelllang=en_us<CR>
+nnoremap <silent> <leader>S :setlocal nospell<CR>
+
+" Toggle fold shortcut
+nnoremap <leader>f zA
+nnoremap <leader>Fs :set foldmethod=syntax<CR>
+nnoremap <leader>Fi :set foldmethod=indent<CR>
 
 " Terminal shortcuts
 "
@@ -48,6 +54,12 @@ colorscheme Atelier_SavannaDark
 
 " E to enter netrw from normal mode
 nnoremap E :E<cr>
+
+" Open peps quickly
+command -nargs=+ Pep :e ~/repos/peps/pep-<args>.txt
+
+" Fast make
+cnoremap mj<cr> make -j<cr>
 
 
 """""""""""""""""""" General purpose vim settings """"""""""""""""""""""""""""
@@ -76,6 +88,7 @@ set nowritebackup
 set noswapfile
 
 set wildignore+=*.pyc,*.pyo,*/__pycache__/*     " Python
+set wildignore+=*.o,*.ko,*.obj,*.dSYM           " C
 set wildignore+=*.swp,~*                        " Temp files
 set wildignore+=*.zip,*.tar                     " Archives
 set wildignore+=node_modules/*                  " Javascript / Node.js
@@ -253,10 +266,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
