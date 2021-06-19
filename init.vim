@@ -1,4 +1,4 @@
-""""""""""""""""" My shortcuts and personal preferences """""""""""""""""""""""
+"""""""""""""""" My shortcuts and personal preferences """""""""""""""""""""""
 
 " Map jk to Escape
 tnoremap jk <C-\><C-n>
@@ -35,10 +35,14 @@ nnoremap <leader>b obreakpoint()<Esc>
 nnoremap <silent> <leader>s :setlocal spell spelllang=en_us<CR>
 nnoremap <silent> <leader>S :setlocal nospell<CR>
 
-" Toggle fold shortcut
+" Toggle fold
 nnoremap <leader>f zA
-nnoremap <leader>Fs :set foldmethod=syntax<CR>
-nnoremap <leader>Fi :set foldmethod=indent<CR>
+" Syntax fold, for C-like languages
+nnoremap <silent> <leader>Fs :set foldmethod=syntax<CR>
+" Indent fold for python
+nnoremap <silent> <leader>Fi :set foldmethod=indent<CR>
+" Open all folds
+nnoremap <silent> <leader>Fn :set foldmethod=manual<CR>zR
 
 " Terminal shortcuts
 "
@@ -61,6 +65,8 @@ command -nargs=+ Pep :e ~/repos/peps/pep-<args>.txt
 " Fast make
 cnoremap mj<cr> make -j<cr>
 
+" Toggle colorcolumn
+command! -nargs=1 Ruler :set colorcolumn=<args>
 
 """""""""""""""""""" General purpose vim settings """"""""""""""""""""""""""""
 "   You can get more info on all of these with :help ____, but I like having
@@ -76,7 +82,6 @@ set number relativenumber   " turn cursor-relative line numbering on
 set path=$PWD/**5           " Update find path to search up to 5 subdirectories
 set list                    " Display tabs and trailing whitespace
 set wildmenu                " Completion suggestions listed on <tab> press
-set colorcolumn=80          " Line length rulers at 80 and 100 characters
 set lazyredraw              " Do not draw when executing macros, etc
 
 " The next four settings completely prevent vim from backing your work up
@@ -179,6 +184,14 @@ Plug 'peitalin/vim-jsx-typescript'              " TSX (JSX in Typescript)
 Plug 'NLKNguyen/c-syntax.vim'
 
 call plug#end()
+
+
+" Aliases and preferences for git-fugitive commands
+command! -nargs=0 Gc :Git commit -v
+command! -nargs=0 Gd :Git diff
+command! -nargs=0 Gdsp :Gdiff
+command! -nargs=0 Gdsp :Gdiff
+command! -nargs=0 Gdqf :Git difftool
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -320,7 +333,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+set statusline^=col:\ %c\ \|\ %{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
