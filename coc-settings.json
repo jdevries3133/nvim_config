@@ -15,5 +15,5 @@
   "coc.preferences.hoverTarget": "echo",
   "python.linting.pylintEnabled": false,
   "python.venvPath": "./venv",
-  "clangd.path": "/Users/JohnDeVries/.config/coc/extensions/coc-clangd-data/install/11.0.0/clangd_11.0.0/bin/clangd"
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
 }
