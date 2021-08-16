@@ -11,6 +11,7 @@
     "json",
     "html"
   ],
+  "prettier.disableLanguages": ["django-html"],
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.hoverTarget": "echo",
   "python.linting.pylintEnabled": false,
