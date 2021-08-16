@@ -18,8 +18,6 @@ Plug 'tpope/vim-sensible'                       " a universal set of defaults th
 Plug 'tpope/vim-surround'                       " surrounding movements
 Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
-Plug 'fweep/vim-zsh-path-completion'            " ZSH-like file path completion
-cmap <S-Tab> <Plug>ZshPathComplete
 
                             " PYTHON
 Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
@@ -38,11 +36,3 @@ Plug 'NLKNguyen/c-syntax.vim'
 call plug#end()
 
 
-" Aliases for git-fugitive commands
-command! -nargs=0 Ga :Git add -A
-command! -nargs=0 Gc :Git commit -v
-command! -nargs=0 Gd :Git diff
-command! -nargs=0 Gp :Git push
-command! -nargs=0 Gdsp :Gdiff
-command! -nargs=0 Gdsp :Gdiff
-command! -nargs=0 Gdqf :Git difftool
