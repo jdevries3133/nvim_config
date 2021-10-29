@@ -18,6 +18,8 @@ Plug 'tpope/vim-sensible'                       " a universal set of defaults th
 Plug 'tpope/vim-surround'                       " surrounding movements
 Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
+Plug 'flazz/vim-colorschemes'                   " colorscheme collection
+Plug 'junegunn/fzf'                             " fuzzy finder
 
                             " PYTHON
 Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
@@ -36,3 +38,6 @@ Plug 'NLKNguyen/c-syntax.vim'
 call plug#end()
 
 
+" Plugin-related shortcuts
+
+nnoremap <Space><Space> :FZF!<CR>

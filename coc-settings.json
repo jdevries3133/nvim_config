@@ -1,6 +1,8 @@
 {
+  "coc.preferences.useQuickfixForLocations": true,
   "javascript.suggestionActions.enabled": false,
   "tsserver.disableAutomaticTypeAquisition": false,
+  "html.filetypes": ["djangohtml", "html"],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
@@ -11,7 +13,7 @@
     "json",
     "html"
   ],
-  "prettier.disableLanguages": ["django-html"],
+  "prettier.disableLanguages": ["django-html", "djangohtml", "html"],
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.hoverTarget": "echo",
   "python.linting.pylintEnabled": false,
