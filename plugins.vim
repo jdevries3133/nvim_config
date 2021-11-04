@@ -13,31 +13,35 @@
 call plug#begin()
                             " GENERAL PURPOSE
 Plug 'tpope/vim-fugitive'                       " Git commands
-Plug 'tpope/vim-commentary'                     " Comment anything out with gcc
-Plug 'tpope/vim-sensible'                       " a universal set of defaults that (hopefully) everyone can agree on.
-Plug 'tpope/vim-surround'                       " surrounding movements
 Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
+Plug 'tpope/vim-commentary'                     " Comment anything out with 'gcc'
+Plug 'tpope/vim-sensible'                       " a universal set of defaults
+Plug 'tpope/vim-surround'                       " surrounding movements
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
-Plug 'flazz/vim-colorschemes'                   " colorscheme collection
-Plug 'junegunn/fzf'                             " fuzzy finder
+Plug 'nvim-telescope/telescope.nvim'            " project-wide search tool
+Plug 'jremmen/vim-ripgrep'                      " ripgrep connector for telescope
+Plug 'nvim-lua/plenary.nvim'                    " dependency of telescope and ripgrep
+
+" treesitter parses ASTs and informs colorschemes and other plugins
+Plug 'nvim-treesitter/nvim-treesitter', {
+\   'do': ':TSUpdate'
+\}
+
+" colorschemens
+Plug 'sainnhe/sonokai'
+Plug 'morhetz/gruvbox'
 
                             " PYTHON
 Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
-Plug 'vim-python/python-syntax'                 " syntax highlighting
-let g:python_highlight_all = 1
-
-                            " JAVASCRIPT & TYPESCRIPT
-Plug 'yuezk/vim-js'                             " Syntax highlighting
-Plug 'MaxMEllon/vim-jsx-pretty'                 " JSX syntax highlighting
-Plug 'leafgarland/typescript-vim'               " Typescript
-Plug 'peitalin/vim-jsx-typescript'              " TSX (JSX in Typescript)
-
-                            " C
-Plug 'NLKNguyen/c-syntax.vim'
 
 call plug#end()
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
 
-" Plugin-related shortcuts
 
-nnoremap <Space><Space> :FZF!<CR>
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+
+colorscheme sonokai
