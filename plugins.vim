@@ -11,13 +11,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin()
-                            " GENERAL PURPOSE
+
+" general purpose
 Plug 'tpope/vim-fugitive'                       " Git commands
 Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
 Plug 'tpope/vim-commentary'                     " Comment anything out with 'gcc'
 Plug 'tpope/vim-sensible'                       " a universal set of defaults
 Plug 'tpope/vim-surround'                       " surrounding movements
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " intelligent auto-complete
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " language support library
 Plug 'nvim-telescope/telescope.nvim'            " project-wide search tool
 Plug 'jremmen/vim-ripgrep'                      " ripgrep connector for telescope
 Plug 'nvim-lua/plenary.nvim'                    " dependency of telescope and ripgrep
@@ -31,8 +32,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 
-                            " PYTHON
-Plug 'Vimjas/vim-python-pep8-indent'            " pep8 indenting
+" javascript
+Plug 'MaxMEllon/vim-jsx-pretty'
+
+" python
+Plug 'Vimjas/vim-python-pep8-indent'
 
 call plug#end()
 
@@ -44,4 +48,10 @@ nnoremap <leader>g <cmd>Telescope live_grep<cr>
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 
+
+augroup my_colours
+  autocmd!
+  autocmd ColorScheme sonokai hi SpellBad cterm=reverse
+  autocmd ColorScheme sonokai hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+augroup END
 colorscheme sonokai

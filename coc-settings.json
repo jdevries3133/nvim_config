@@ -1,5 +1,5 @@
 {
-  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.hoverTarget": "echo",
   "javascript.suggestionActions.enabled": false,
   "tsserver.disableAutomaticTypeAquisition": false,
   "html.filetypes": ["djangohtml", "html"],
@@ -13,9 +13,8 @@
     "json",
     "html"
   ],
-  "prettier.disableLanguages": ["django-html", "djangohtml", "html"],
+  "prettier.disableLanguages": ["django-html", "djangohtml"],
   "diagnostic.checkCurrentLine": true,
-  "coc.preferences.hoverTarget": "echo",
   "python.linting.pylintEnabled": false,
   "python.venvPath": "./venv",
   "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
