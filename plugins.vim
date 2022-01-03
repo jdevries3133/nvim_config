@@ -31,6 +31,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {
 " colorschemens
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+
 
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -49,9 +51,11 @@ let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 
 
-augroup my_colours
-  autocmd!
-  autocmd ColorScheme sonokai hi SpellBad cterm=reverse
-  autocmd ColorScheme sonokai hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-augroup END
-colorscheme sonokai
+" augroup my_colours
+"   autocmd!
+"   autocmd ColorScheme sonokai hi SpellBad cterm=reverse
+"   autocmd ColorScheme sonokai hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+" augroup END
+set background=light
+colorscheme PaperColor
+

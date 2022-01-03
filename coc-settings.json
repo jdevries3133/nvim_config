@@ -17,5 +17,14 @@
   "diagnostic.checkCurrentLine": true,
   "python.linting.pylintEnabled": false,
   "python.venvPath": "./venv",
-  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd"
+  "clangd.path": "/opt/homebrew/opt/llvm/bin/clangd",
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  }
 }
