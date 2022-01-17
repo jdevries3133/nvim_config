@@ -40,6 +40,11 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 " python
 Plug 'Vimjas/vim-python-pep8-indent'
 
+" hashicorp configuration language syntax highlighting
+Plug 'jvirtanen/vim-hcl'
+
+
+
 call plug#end()
 
 " Find files using Telescope command-line sugar.
@@ -47,15 +52,4 @@ nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 
 
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-
-
-" augroup my_colours
-"   autocmd!
-"   autocmd ColorScheme sonokai hi SpellBad cterm=reverse
-"   autocmd ColorScheme sonokai hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
-" augroup END
-set background=light
 colorscheme PaperColor
-
