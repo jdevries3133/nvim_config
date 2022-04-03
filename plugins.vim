@@ -32,6 +32,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'sainnhe/gruvbox-material'
 
 
 " javascript
@@ -44,12 +45,23 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jvirtanen/vim-hcl'
 
 
-
 call plug#end()
+
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
 
 
-colorscheme PaperColor
+" Seeing the hidden files is good, but idk why the ignore pattern
+" DOESN'T FUCKING WORK
+lua <<EOF
+require('telescope').setup {
+    file_ignore_patterns = {"^%.git/"},
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    }
+}
+EOF

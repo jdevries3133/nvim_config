@@ -2,7 +2,6 @@
   "coc.preferences.hoverTarget": "echo",
   "javascript.suggestionActions.enabled": false,
   "tsserver.disableAutomaticTypeAquisition": false,
-  "html.filetypes": ["djangohtml", "html"],
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
     "markdown",
@@ -13,7 +12,7 @@
     "json",
     "html"
   ],
-  "prettier.disableLanguages": ["django-html", "djangohtml"],
+  "emmet.includeLanguages": { "htmldjango": "html", "htmldjango": "html" },
   "diagnostic.checkCurrentLine": true,
   "python.linting.pylintEnabled": false,
   "python.venvPath": "./venv",
