@@ -22,6 +22,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " language support library
 Plug 'nvim-telescope/telescope.nvim'            " project-wide search tool
 Plug 'jremmen/vim-ripgrep'                      " ripgrep connector for telescope
 Plug 'nvim-lua/plenary.nvim'                    " dependency of telescope and ripgrep
+Plug 'nvim-lualine/lualine.nvim'                " statusline
+Plug 'kyazdani42/nvim-web-devicons'             " icons (for statusline, etc)
+
 
 " treesitter parses ASTs and informs colorschemes and other plugins
 Plug 'nvim-treesitter/nvim-treesitter', {
@@ -37,6 +40,7 @@ Plug 'sainnhe/gruvbox-material'
 
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
+
 
 " python
 Plug 'Vimjas/vim-python-pep8-indent'
@@ -65,3 +69,16 @@ require('telescope').setup {
     }
 }
 EOF
+
+lua << END
+require('lualine').setup {
+    sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'g:coc_status'},
+    lualine_y = {'progress', 'filetype'},
+    lualine_z = {'location',}
+  }
+}
+END
