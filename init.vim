@@ -1,4 +1,5 @@
 source $HOME/.vim/common.vim
+source $HOME/.vim/snippets.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/coc-config.vim
 
