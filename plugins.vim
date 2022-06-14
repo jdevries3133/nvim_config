@@ -71,6 +71,13 @@ require('telescope').setup {
 EOF
 
 lua << END
+
+local function cwd()
+    home = os.getenv("HOME")
+    cwd = vim.loop.cwd()
+    return cwd:gsub(home, "~")
+end
+
 require('lualine').setup {
     sections = {
     lualine_a = {'mode'},
@@ -78,7 +85,10 @@ require('lualine').setup {
     lualine_c = {'filename'},
     lualine_x = {'g:coc_status'},
     lualine_y = {'progress', 'filetype'},
-    lualine_z = {'location',}
+    lualine_z = {
+        'location',
+        cwd
+    }
   }
 }
 END

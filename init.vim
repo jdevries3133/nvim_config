@@ -8,5 +8,5 @@ set background=dark
 
 " nvim-only config
 autocmd BufEnter * set laststatus=3
-set cmdheight=1
+set cmdheight=0
 set noshowmode
