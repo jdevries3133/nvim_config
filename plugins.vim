@@ -13,17 +13,18 @@
 call plug#begin()
 
 " general purpose
-Plug 'tpope/vim-fugitive'                       " Git commands
-Plug 'tommcdo/vim-fugitive-blame-ext'           " Git blame extension
-Plug 'tpope/vim-commentary'                     " Comment anything out with 'gcc'
-Plug 'tpope/vim-sensible'                       " a universal set of defaults
-Plug 'tpope/vim-surround'                       " surrounding movements
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " language support library
-Plug 'nvim-telescope/telescope.nvim'            " project-wide search tool
-Plug 'jremmen/vim-ripgrep'                      " ripgrep connector for telescope
-Plug 'nvim-lua/plenary.nvim'                    " dependency of telescope and ripgrep
-Plug 'nvim-lualine/lualine.nvim'                " statusline
-Plug 'kyazdani42/nvim-web-devicons'             " icons (for statusline, etc)
+Plug 'tpope/vim-fugitive'
+Plug 'tommcdo/vim-fugitive-blame-ext'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'neovim/nvim-lspconfig'
 
 
 " treesitter parses ASTs and informs colorschemes and other plugins
@@ -31,37 +32,35 @@ Plug 'nvim-treesitter/nvim-treesitter', {
 \   'do': ':TSUpdate'
 \}
 
-" colorschemens
+" colorschemes
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/gruvbox-material'
 
-
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
-
 
 " python
 Plug 'Vimjas/vim-python-pep8-indent'
 
-" hashicorp configuration language syntax highlighting
+" hashicorp configuration language
 Plug 'jvirtanen/vim-hcl'
 
-
 call plug#end()
+
+
+lua require("nvim-lsp-installer").setup {}
 
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>f <cmd>Telescope find_files<cr>
 nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
 
 
-" Seeing the hidden files is good, but idk why the ignore pattern
-" DOESN'T FUCKING WORK
 lua <<EOF
 require('telescope').setup {
-    file_ignore_patterns = {"^%.git/"},
     pickers = {
         find_files = {
             hidden = true
