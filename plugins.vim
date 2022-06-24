@@ -27,25 +27,20 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
 Plug 'dcampos/cmp-snippy'
-
-
-" treesitter parses ASTs and informs colorschemes and other plugins
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-treesitter/nvim-treesitter', {
 \   'do': ':TSUpdate'
 \}
-
 " colorschemes
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/gruvbox-material'
-
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
-
 " python
 Plug 'Vimjas/vim-python-pep8-indent'
-
 " hashicorp configuration language
 Plug 'jvirtanen/vim-hcl'
 

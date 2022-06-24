@@ -4,4 +4,5 @@ vim.cmd("source $HOME/.config/nvim/plugins.vim")
 
 require("neovim")
 require("lsp")
+require("dap_conf")
 require("completion")
