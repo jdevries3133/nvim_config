@@ -12,27 +12,21 @@ local function setup_conditional_breakpoint()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end
 
--- mappings to enter dap from normal mode are prefixed by <leader>, like other
--- normal mode actions
-vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, mapopts)
-vim.keymap.set(
-  'n',
-  '<leader>B', -- conditional breakpoint
-  setup_conditional_breakpoint,
-  mapopts
-)
-vim.keymap.set('n', '<leader>d', dap.continue, mapopts)
+local set = vim.keymap.set
 
--- mappings to interact with the debugger, usually run from inside the DAP
--- UI are prefixed by space to avoid cluttering the <leader> namespace while
--- maintaining 2-key combinations
-vim.keymap.set('n', '<space>c', dap.continue, mapopts)
-vim.keymap.set('n', '<space>s', dap.step_over, mapopts)
-vim.keymap.set('n', '<space>i', dap.step_into, mapopts)
-vim.keymap.set('n', '<space>o', dap.step_out, mapopts)
-vim.keymap.set('n', '<space>r', dap.run_last, mapopts)
+set('n', '<space>b', dap.toggle_breakpoint, mapopts)
+set('n', '<space>B', setup_conditional_breakpoint, mapopts)
+set('n', '<space>c', dap.continue, mapopts)
+set('n', '<space>s', dap.step_over, mapopts)
+set('n', '<space>i', dap.step_into, mapopts)
+set('n', '<space>o', dap.step_out, mapopts)
+set('n', '<space>r', dap.run_last, mapopts)
+set('n', '<space>C', dapui.close, mapopts)
 
---------------------------------- dap core ------------------------------------
+
+--------------------------------- dap config ----------------------------------
+
+-- python
 
 dap.adapters.python = {
   type = 'executable';
@@ -42,13 +36,47 @@ dap.adapters.python = {
 
 dap.configurations.python = {
   {
+    name = "run current file (generic)",
     type = "python",
     request = "launch",
-    name = "Launch file",
     program = "${file}",
     pythonPath = "python3",
+  },
+  {
+    name = "unittest (generic)",
+    type = "python",
+    request = "launch",
+    module = "unittest",
+    pythonPath = "python3"
+  },
+  {
+    name = "pytest (generic)",
+    type = "python",
+    request = "launch",
+    module = "pytest",
+    pythonPath = "python3"
   }
 }
+
+-- npm/node
+dap.adapters.node = {
+  type = 'executable',
+  command = 'node',
+  args = { os.getenv('HOME') .. '/.vscode_node_debug/out/src/nodeDebug.js' },
+}
+
+
+-- we will always try to load launch.json files if they're present
+require('dap.ext.vscode').load_launchjs(
+  vim.fn.getcwd() .. '/.vscode/launch.json',
+  {
+    ["node"] = {
+      "javascript",
+      "typescript",
+      "typescriptreact"
+    }
+  }
+)
 
 
 --------------------------------- ui ------------------------------------------
@@ -76,7 +104,7 @@ dapui.setup({
   layouts = {
     {
       elements = {
-      -- Elements can be strings or table with id and size keys.
+        -- Elements can be strings or table with id and size keys.
         { id = "scopes", size = 0.25 },
         "breakpoints",
         "stacks",
