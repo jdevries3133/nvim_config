@@ -33,6 +33,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {
 \   'do': ':TSUpdate'
 \}
 Plug 'MunifTanjim/prettier.nvim'
+Plug 'simrat39/rust-tools.nvim'
 
 " TODO: setup this plugin
 " Plug 'theHamsta/nvim-dap-virtual-text'
