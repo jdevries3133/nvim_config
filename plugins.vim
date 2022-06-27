@@ -6,47 +6,44 @@
 call plug#begin()
 
 " general purpose
-Plug 'tpope/vim-fugitive'
-Plug 'tommcdo/vim-fugitive-blame-ext'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'neovim/nvim-lspconfig'
+Plug 'MunifTanjim/prettier.nvim'
 Plug 'arkav/lualine-lsp-progress'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
-Plug 'dcampos/cmp-snippy'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'jremmen/vim-ripgrep'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mfussenegger/nvim-dap'
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'rcarriga/nvim-dap-ui'
-Plug 'nvim-treesitter/nvim-treesitter', {
-\   'do': ':TSUpdate'
-\}
-Plug 'MunifTanjim/prettier.nvim'
-Plug 'simrat39/rust-tools.nvim'
-
-" TODO: setup this plugin
-" Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'tommcdo/vim-fugitive-blame-ext'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'williamboman/nvim-lsp-installer'
 
 " colorschemes
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/gruvbox-material'
+
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
+
 " python
 Plug 'Vimjas/vim-python-pep8-indent'
+
 " hashicorp configuration language
 Plug 'jvirtanen/vim-hcl'
 

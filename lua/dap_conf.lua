@@ -1,3 +1,6 @@
+-- nvim-dap, nvim-dap-ui, and dap virtual text config for debugging inside
+-- neovim
+
 local dap = require('dap')
 local dapui = require('dapui')
 
@@ -17,8 +20,8 @@ local set = vim.keymap.set
 set('n', '<space>b', dap.toggle_breakpoint, mapopts)
 set('n', '<space>B', setup_conditional_breakpoint, mapopts)
 set('n', '<space>c', dap.continue, mapopts)
-set('n', '<space>s', dap.step_over, mapopts)
-set('n', '<space>i', dap.step_into, mapopts)
+set('n', '<space>n', dap.step_over, mapopts)
+set('n', '<space>s', dap.step_into, mapopts)
 set('n', '<space>o', dap.step_out, mapopts)
 set('n', '<space>r', dap.run_last, mapopts)
 set('n', '<space>C', dapui.close, mapopts)
@@ -58,7 +61,8 @@ dap.configurations.python = {
   }
 }
 
--- npm/node
+
+-- node
 dap.adapters.node = {
   type = 'executable',
   command = 'node',
@@ -70,10 +74,16 @@ dap.adapters.node = {
 require('dap.ext.vscode').load_launchjs(
   vim.fn.getcwd() .. '/.vscode/launch.json',
   {
+    -- mapping of launch types to file names
     ["node"] = {
       "javascript",
       "typescript",
       "typescriptreact"
+    },
+    ["lldb"] = {
+      "rust",
+      "C",
+      "C++"
     }
   }
 )
