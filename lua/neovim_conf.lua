@@ -1,4 +1,4 @@
--- config that is unique to neovim.
+-- native config that is unique to neovim.
 
 vim.g.colors_name = "PaperColor"
 vim.opt.background = "dark"

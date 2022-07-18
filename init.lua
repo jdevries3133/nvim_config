@@ -22,8 +22,7 @@ vim.cmd("source $HOME/.vim/snippets.vim")
 vim.cmd("source $HOME/.config/nvim/plugins.vim")
 
 
--- lua config modules. Sources of these files are in ./lua
-require("neovim_conf") ----------------- general purpose neovim-specific
-require("lsp_conf") -------------------- languages server protocol
-require("dap_conf") -------------------- debugger adapter protocol
-require("cmp_conf") -------------------- neovim-cmp (completion suggestions)
+require("neovim_conf") ---- general purpose neovim-specific
+require("lsp_conf") ------- languages server protocol
+require("dap_conf") ------- debugger adapter protocol
+require("cmp_conf") ------- neovim-cmp (completion suggestions)

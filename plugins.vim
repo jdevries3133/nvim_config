@@ -6,7 +6,6 @@
 call plug#begin()
 
 " general purpose
-Plug 'MunifTanjim/prettier.nvim'
 Plug 'arkav/lualine-lsp-progress'
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'

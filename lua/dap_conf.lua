@@ -25,6 +25,7 @@ set('n', '<space>s', dap.step_into, mapopts)
 set('n', '<space>o', dap.step_out, mapopts)
 set('n', '<space>r', dap.run_last, mapopts)
 set('n', '<space>C', dapui.close, mapopts)
+set('n', '<space>O', dapui.open, mapopts)
 
 
 --------------------------------- dap config ----------------------------------
@@ -66,7 +67,7 @@ dap.configurations.python = {
 dap.adapters.node = {
   type = 'executable',
   command = 'node',
-  args = { os.getenv('HOME') .. '/.vscode_node_debug/out/src/nodeDebug.js' },
+  args = { os.getenv('HOME') .. '/repos/vscode_node_debug/out/src/nodeDebug.js' },
 }
 
 
