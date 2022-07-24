@@ -70,6 +70,20 @@ dap.adapters.node = {
   args = { os.getenv('HOME') .. '/repos/vscode_node_debug/out/src/nodeDebug.js' },
 }
 
+dap.configurations.javascript = {
+  {
+    type = 'node',
+    request = 'attach',
+    cwd = vim.fn.getcwd(),
+    sourceMaps = true,
+    protocol = 'inspector',
+    skipFiles = {'<node_internals>/**/*.js'},
+  }
+}
+
+dap.configurations.typescript = dap.configurations.javascript
+dap.configurations.typescriptreact = dap.configurations.javascript
+
 
 -- we will always try to load launch.json files if they're present
 require('dap.ext.vscode').load_launchjs(
@@ -151,11 +165,11 @@ dapui.setup({
 -- make dapui automatically open when dap is launched
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+  dapui.open({})
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+  dapui.close({})
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+  dapui.close({})
 end

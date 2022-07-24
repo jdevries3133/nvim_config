@@ -1,11 +1,8 @@
 BandLab
 NJSLS
 BandLab's
-new/!
 new
-evaluating/!
 evaluating
-and/!
 and
 ELA
 solfége
@@ -78,3 +75,11 @@ github
 FFI
 ORM
 postgres
+frontend
+webpack
+configs
+serverless
+SSR
+npm
+js
+CRA

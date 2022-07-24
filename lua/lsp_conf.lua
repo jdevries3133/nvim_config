@@ -2,10 +2,20 @@
 -- uses the `lspconfig` package to abbreviate configuration for each specific
 -- LSP
 
+
+require("nvim-lsp-installer").setup {}
+
+require("lsp_lines").setup()
+
+-- disable normal virtual text to avoid duplication w/ lsp_lines
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
@@ -29,6 +39,34 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>f', vim.lsp.buf.formatting, bufopts)
   vim.cmd("xnoremap <silent><buffer> <leader>f :lua vim.lsp.buf.range_formatting({})<CR>")
 end
+
+
+-- this location handler populates the quickfixlist but does not open the
+-- `:copen` drawer
+local function location_handler(_, result, ctx)
+  vim.g.lsp_last_word = vim.fn.expand('<cword>')
+  if result == nil or vim.tbl_isempty(result) then
+    print(ctx.method, 'No location found')
+    return nil
+  end
+  local util = require('vim.lsp.util')
+  if vim.tbl_islist(result) then
+    if #result == 1 then
+      util.jump_to_location(result[1], 'utf-8')
+    elseif #result > 1 then
+      vim.fn.setqflist(util.locations_to_items(result, 'utf-8'))
+    end
+  else
+    util.jump_to_location(result, 'utf-8')
+  end
+end
+
+
+vim.lsp.handlers['textDocument/declaration'] = location_handler
+vim.lsp.handlers['textDocument/definition'] = location_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
+vim.lsp.handlers['textDocument/implementation'] = location_handler
+vim.lsp.handlers['textDocument/references'] = location_handler
 
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
@@ -94,6 +132,7 @@ require('lspconfig')['sumneko_lua'].setup {
     },
   }
 }
+
 require('lspconfig')['tailwindcss'].setup {
   on_attach = on_attach,
   flags = lsp_flags,

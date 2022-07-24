@@ -30,12 +30,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 " colorschemes
 Plug 'sainnhe/sonokai'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sainnhe/gruvbox-material'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
 
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -49,11 +52,8 @@ Plug 'jvirtanen/vim-hcl'
 call plug#end()
 
 
-""""""""""""""""""""""""""""" lsp-installer """""""""""""""""""""""""""""""""""
-lua require("nvim-lsp-installer").setup {}
-
-
 """"""""""""""""""""""""""""" telescope """""""""""""""""""""""""""""""""""""""
+
 nnoremap <leader>tf <cmd>Telescope find_files<cr>
 nnoremap <leader>tg <cmd>Telescope live_grep<cr>
 nnoremap <leader>tb <cmd>Telescope buffers<cr>
@@ -63,6 +63,9 @@ nnoremap <leader>ts <cmd>Telescope lsp_workspace_symbols<cr>
 
 lua <<EOF
 require('telescope').setup {
+    defaults = {
+        layout_strategy = 'vertical',
+    },
     pickers = {
         find_files = {
             hidden = true
@@ -82,6 +85,7 @@ local function cwd()
 end
 
 require('lualine').setup {
+    theme = 'tokyonight',
     options = {
         globalstatus = false,
     },

@@ -3,6 +3,13 @@
 local cmp = require('cmp')
 
 
+-- I don't know why sumenko lua complains that I need to cehck for nil but sure
+if (cmp == nil) then
+  print("error: nvim cmp not configured")
+  return
+end
+
+
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
