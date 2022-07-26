@@ -1,8 +1,7 @@
 -- native config that is unique to neovim.
 
 -- previous was `PaperColor` if this doesn't work out
-vim.g.colors_name = "tokyonight"
-vim.g.tokyonight_style = "night"
+vim.g.colors_name = "PaperColor"
 
 
 vim.opt.background = "dark"

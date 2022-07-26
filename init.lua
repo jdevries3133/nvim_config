@@ -26,3 +26,4 @@ require("neovim_conf") ---- general purpose neovim-specific
 require("lsp_conf") ------- languages server protocol
 require("dap_conf") ------- debugger adapter protocol
 require("cmp_conf") ------- neovim-cmp (completion suggestions)
+require("treesitter") ----- treesitter and treesitter-context
