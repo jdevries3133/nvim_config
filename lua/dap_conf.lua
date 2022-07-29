@@ -72,12 +72,14 @@ dap.adapters.node = {
 
 dap.configurations.javascript = {
   {
+    name = "default global attach",
     type = 'node',
     request = 'attach',
     cwd = vim.fn.getcwd(),
-    sourceMaps = true,
     protocol = 'inspector',
     skipFiles = {'<node_internals>/**/*.js'},
+    sourceMaps = true,
+    outDir = "${workspaceRoot}/dist"
   }
 }
 
