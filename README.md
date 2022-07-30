@@ -1,12 +1,20 @@
 # My nvim Config
 
 Remember to install [vim-plugged](https://github.com/junegunn/vim-plug)
-and run `:PlugInstall` to install plugins specified in `plugins.vim`.
+and run `:PlugInstall`. There will be lots of startup errors until you do that!
 
 ## Dependency on Vim Config
 
-A file named `~/.vim/common.vim` is part of my vim config, and contains the
-common settings between vim and neovim. This configuration sources it in the
-`init.vim`, so either clone my vim config into `~/.vim` and use that as well,
-or just copy and paste the `common.vim` file from
-[that repo](https://github.com/jdevries3133/vim_config)
+This config depends on `~/.vim/common.vim` from my
+[vim config.](https://github.com/jdevries3133/vim_config)
+It is sourced in `init.vim`.
+
+Either clone my vim config into `~/.vim` and use that as well,
+or just use this shell script to grab the latest `common.vim` all by itself:
+
+```bash
+mkdir -p $HOME/.vim
+curl \
+  -o $HOME/.vim/common.vim \
+  https://raw.githubusercontent.com/jdevries3133/vim_config/main/common.vim
+```
