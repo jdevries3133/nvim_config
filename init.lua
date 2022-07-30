@@ -20,6 +20,7 @@ vim.cmd("source $HOME/.vim/snippets.vim")
 
 -- ./plugins.vim contains all `Plug` directives for vim-plug
 vim.cmd("source $HOME/.config/nvim/plugins.vim")
+vim.cmd("set runtimepath+=$HOME/.vim/after")
 
 
 require("neovim_conf") ---- general purpose neovim-specific
