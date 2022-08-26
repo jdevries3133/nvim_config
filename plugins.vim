@@ -32,6 +32,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+Plug 'ldelossa/litee.nvim'
+Plug 'ldelossa/gh.nvim'
 
 " colorschemes
 Plug 'sainnhe/sonokai'
@@ -60,6 +62,8 @@ nnoremap <leader>tg <cmd>Telescope live_grep<cr>
 nnoremap <leader>tb <cmd>Telescope buffers<cr>
 nnoremap <leader>tj <cmd>Telescope jumplist<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <leader>tc <cmd>Telescope git_commits<cr>
+nnoremap <leader>tr <cmd>Telescope git_branches<cr>
 
 
 lua <<EOF
