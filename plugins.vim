@@ -24,6 +24,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'nvim-treesitter/playground'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'tpope/vim-commentary'
@@ -31,7 +32,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+Plug 'mtdl9/vim-log-highlighting'
 
 " colorschemes
 Plug 'sainnhe/sonokai'
