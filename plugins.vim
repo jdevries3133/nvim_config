@@ -33,8 +33,10 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'mtdl9/vim-log-highlighting'
-Plug 'ldelossa/litee.nvim'
-Plug 'ldelossa/gh.nvim'
+if executable('gh')
+    Plug 'ldelossa/litee.nvim'
+    Plug 'ldelossa/gh.nvim'
+endif
 
 " colorschemes
 Plug 'sainnhe/sonokai'
