@@ -1,5 +1,5 @@
 require('litee.lib').setup()
-require('litee.gh').setup({
+local gh = require('litee.gh').setup({
   -- deprecated, around for compatability for now.
   jump_mode   = "invoking",
   -- remap the arrow keys to resize any litee.nvim windows.
@@ -42,3 +42,12 @@ require('litee.gh').setup({
       goto_web = "gx"
   }
 })
+
+
+local dv = require('litee.gh.pr.diff_view')
+vim.keymap.set('n', 'co', ":GHCreateThread<CR>")
+local pr = require('litee.gh.pr')
+vim.keymap.set('n', 'gho', function()
+  print("opening pr...")
+  pr.open_pull()
+end)
