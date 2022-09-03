@@ -23,6 +23,24 @@ require("nvim-treesitter.configs").setup {
   -- Automatically install missing parsers when entering buffer
   auto_install = true,
 
+  playground = {
+    enabled = true,
+    update_time = 25,
+    persist_queries = false,
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    }
+  },
+
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
@@ -42,5 +60,6 @@ require("nvim-treesitter.configs").setup {
 }
 
 
-vim.api.nvim_command("set foldmethod=expr")
-vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = false
