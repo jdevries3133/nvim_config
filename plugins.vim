@@ -39,12 +39,12 @@ if executable('gh')
 endif
 
 " colorschemes
-Plug 'sainnhe/sonokai'
-Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'sainnhe/gruvbox-material'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'sainnhe/sonokai'                             " works on all terminals
+Plug 'morhetz/gruvbox'                             " works on all terminals
+Plug 'NLKNguyen/papercolor-theme'                  " works on all terminals
+Plug 'sainnhe/gruvbox-material'                    " works on all terminals
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " works on all terminals
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }     " REQUIRES TrueColor; see README.md
 
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
