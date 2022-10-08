@@ -149,5 +149,3 @@ require("catppuccin").setup({
     custom_highlights = {},
 })
 EOF
-
-colorscheme catppuccin
