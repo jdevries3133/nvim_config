@@ -67,6 +67,7 @@ nnoremap <leader>tj <cmd>Telescope jumplist<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_workspace_symbols<cr>
 nnoremap <leader>tc <cmd>Telescope git_commits<cr>
 nnoremap <leader>tr <cmd>Telescope git_branches<cr>
+nnoremap <leader>td <cmd>Telescope diagnostics<cr>
 
 
 lua <<EOF
