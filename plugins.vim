@@ -39,12 +39,12 @@ if executable('gh')
 endif
 
 " colorschemes
-Plug 'sainnhe/sonokai'
-Plug 'morhetz/gruvbox'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'sainnhe/gruvbox-material'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-
+Plug 'sainnhe/sonokai'                             " works on all terminals
+Plug 'morhetz/gruvbox'                             " works on all terminals
+Plug 'NLKNguyen/papercolor-theme'                  " works on all terminals
+Plug 'sainnhe/gruvbox-material'                    " works on all terminals
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " works on all terminals
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }     " REQUIRES TrueColor; see README.md
 
 " javascript
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -54,6 +54,7 @@ Plug 'Vimjas/vim-python-pep8-indent'
 
 " hashicorp configuration language
 Plug 'jvirtanen/vim-hcl'
+
 
 call plug#end()
 
@@ -111,3 +112,41 @@ require('lualine').setup {
     }
 }
 END
+
+let g:catppuccin_flavour = "mocha"
+
+lua << EOF
+require("catppuccin").setup({
+    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
+    transparent_background = false,
+    term_colors = false,
+    dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+    },
+    styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+    },
+    integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        treesitter = true,
+    },
+    color_overrides = {},
+    custom_highlights = {},
+})
+EOF

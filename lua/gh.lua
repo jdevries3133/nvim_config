@@ -1,6 +1,8 @@
+-- gh.nvim shows an annoying warning if the github CLI is not installed, so
+-- we only install the plugin and run this setup if it is.
 if vim.fn.executable('gh') == 1 then
   require('litee.lib').setup()
-  require('litee.gh').setup({
+  local gh = require('litee.gh').setup({
     -- deprecated, around for compatability for now.
     jump_mode   = "invoking",
     -- remap the arrow keys to resize any litee.nvim windows.
@@ -43,4 +45,14 @@ if vim.fn.executable('gh') == 1 then
         goto_web = "gx"
     }
   })
+
+
+  local dv = require('litee.gh.pr.diff_view')
+  vim.keymap.set('n', 'co', ":GHCreateThread<CR>")
+  local pr = require('litee.gh.pr')
+  vim.keymap.set('n', 'gho', function()
+    print("opening pr...")
+    pr.open_pull()
+  end)
+
 end
