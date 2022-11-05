@@ -70,22 +70,6 @@ dap.adapters.node = {
   args = { os.getenv('HOME') .. '/repos/vscode_node_debug/out/src/nodeDebug.js' },
 }
 
-dap.configurations.javascript = {
-  {
-    name = "default global attach",
-    type = 'node',
-    request = 'attach',
-    cwd = vim.fn.getcwd(),
-    protocol = 'inspector',
-    skipFiles = {'<node_internals>/**/*.js'},
-    sourceMaps = true,
-    outDir = "${workspaceRoot}/dist"
-  }
-}
-
-dap.configurations.typescript = dap.configurations.javascript
-dap.configurations.typescriptreact = dap.configurations.javascript
-
 
 -- we will always try to load launch.json files if they're present
 require('dap.ext.vscode').load_launchjs(

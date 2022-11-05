@@ -31,6 +31,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'mtdl9/vim-log-highlighting'
 if executable('gh')
@@ -68,6 +71,7 @@ nnoremap <leader>tj <cmd>Telescope jumplist<cr>
 nnoremap <leader>ts <cmd>Telescope lsp_workspace_symbols<cr>
 nnoremap <leader>tc <cmd>Telescope git_commits<cr>
 nnoremap <leader>tr <cmd>Telescope git_branches<cr>
+nnoremap <leader>td <cmd>Telescope diagnostics<cr>
 
 
 lua <<EOF
@@ -149,3 +153,9 @@ require("catppuccin").setup({
     custom_highlights = {},
 })
 EOF
+
+" dadbod.vim (SQL Tool)
+let g:dbs = {
+\ 'dev': getenv('DEV_DB_URL'),
+\ 'prod': getenv('PROD_DB_URL')
+\ }
