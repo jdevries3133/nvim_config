@@ -43,7 +43,6 @@ backend
 MySQL
 SVG
 django
-javascript
 PostgreSQL
 unmaintained
 versioning
@@ -93,3 +92,4 @@ microk8s
 jiva
 automagical
 Gitlab
+ripgrep

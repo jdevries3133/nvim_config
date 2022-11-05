@@ -21,11 +21,9 @@ curl \
 
 ## Colors
 
-Catppuccin requires a terminal emulator with TrueColor support. macOS's default
-"Terminal.app," for example, does not support this. iTerm2 is an alternative.
-It's easy to tweak this config for terminals that don't support TrueColor if
-you don't want to move to one:
+Some install colorschemes require a terminal emulator with TrueColor support.
+macOS's default "Terminal.app," for example, does not support this. iTerm2 is
+an alternative. Usually, I have a TrueColor-required theme set as my default,
+so feel free to change the colorscheme in `./lua/neovim_conf.lua` to change the
+colorscheme.
 
-1. Remove Catppuccin from the plugins in ./plugins.vim
-2. Use any other color scheme; the plugin file is annotated with which ones
-   work on any (256 color) terminal
