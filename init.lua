@@ -30,3 +30,4 @@ require("cmp_conf") ---------------------- neovim-cmp (completion suggestions)
 require("treesitter") -------------------- treesitter and treesitter-context
 require("gh") ---------------------------- github code review plugin
 require("git_remote_open_file").setup() -- custom gitlab file opener
+require("dadbod_conf")

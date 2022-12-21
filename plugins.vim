@@ -156,8 +156,3 @@ require("catppuccin").setup({
 })
 EOF
 
-" dadbod.vim (SQL Tool)
-let g:dbs = {
-\ 'dev': getenv('DEV_DB_URL'),
-\ 'prod': getenv('PROD_DB_URL')
-\ }
