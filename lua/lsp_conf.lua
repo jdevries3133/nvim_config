@@ -1,6 +1,34 @@
--- neovim language server protocol configuration
--- uses the `lspconfig` package to abbreviate configuration for each specific
--- LSP
+-- LSP = language server protocol.
+--
+-- The mappings section at the top is most relevant for day-to-day usage. Also
+-- the most likey thing you might want to change around.
+--
+-- A very tiny 1-line config is required for the language servers you plan to
+-- use; you need to pass the on_attach callback into each one so that the
+-- keyboard shortcuts will be setup for that buffer. This configuration is at
+-- the bottom of the module and you'll find that the LSP you want is probably
+-- already configured. 
+--
+-- These are the LSPs that are 100% configured; you don't need to make a config
+-- change to use them:
+--
+-- | Server        | Language(s)                          |
+-- | ------------- | ------------------------------------ |
+-- | pyright       | python                               |
+-- | tsserver      | Javascript / Typescript              |
+-- | eslint        | Javascript / Typescript (linting)    |
+-- | rust_analyzer | Rust                                 |
+-- | clangd        | C / C++                              |
+-- | dockerls      | Dockerfiles                          |
+-- | dartls        | Dart                                 |
+-- | sumenko_lua   | lua                                  |
+-- | tailwindcss   | everywhere tailwind classes are used |
+--
+-- One last step: when you're happy with the keyboard shortcuts and checked that
+-- your language is in the table above, you do need to install the actual LSP
+-- program on your machine. nvim-lsp-installer makes this extremely easy, just
+-- run `LspInstallInfo` to get a list of all servers it can install. Just
+-- scroll to the server you want, and press `i` to install it.
 
 require("nvim-lsp-installer").setup {}
 
@@ -60,26 +88,19 @@ vim.lsp.handlers['textDocument/typeDefinition'] = location_handler
 vim.lsp.handlers['textDocument/implementation'] = location_handler
 vim.lsp.handlers['textDocument/references'] = location_handler
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
-
+-- keep the configured language servers in sync with the list in the docstring
+-- at the top of the module
 require('lspconfig')['pyright'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
 }
 require('lspconfig')['tsserver'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
 }
 require('lspconfig')['eslint'].setup {
   on_attach = on_attach,
-  flags = lsp_flags
 }
 require('lspconfig')['rust_analyzer'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
   -- Server-specific settings...
   settings = {
     ["rust-analyzer"] = {}
@@ -87,15 +108,12 @@ require('lspconfig')['rust_analyzer'].setup {
 }
 require('lspconfig')['clangd'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
 }
 require('lspconfig')['dockerls'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
 }
 require('lspconfig')['dartls'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
 }
 
 
@@ -104,7 +122,6 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 require('lspconfig')['sumneko_lua'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
   settings = {
     Lua = {
       runtime = {
@@ -131,7 +148,6 @@ require('lspconfig')['sumneko_lua'].setup {
 
 require('lspconfig')['tailwindcss'].setup {
   on_attach = on_attach,
-  flags = lsp_flags,
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

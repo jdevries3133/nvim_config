@@ -1,25 +1,31 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins managed by vim-plug First, install vim-plug by following the
-" instructions at https://github.com/junegunn/vim-plug. Then, run :PlugInstall
+" Plugins managed by vim-plug: https://github.com/junegunn/vim-plug All plugin
+" strings are references to GitHub repositories, and you should refer to the
+" source repository for details about that plugin
+"
+" Configuration for all plugins when necessary is in the `lua` folder, where
+" each plugin has a module with a similar name that contains its own config.
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin()
 
 " general purpose
-Plug 'arkav/lualine-lsp-progress'
+Plug 'arkav/lualine-lsp-progress'  " for example, this is https://github.com/arkav/lualine-lsp-progress
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
 Plug 'honza/vim-snippets'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-
 Plug 'jremmen/vim-ripgrep'
+Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mfussenegger/nvim-dap'
+Plug 'mtdl9/vim-log-highlighting'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lualine/lualine.nvim'
@@ -30,132 +36,36 @@ Plug 'nvim-treesitter/playground'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
-
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'mtdl9/vim-log-highlighting'
 if executable('gh')
     Plug 'ldelossa/litee.nvim'
     Plug 'ldelossa/gh.nvim'
 endif
 
 " colorschemes
-Plug 'sainnhe/sonokai'
-Plug 'ellisonleao/gruvbox.nvim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'sainnhe/gruvbox-material'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/sonokai'
 
-" javascript
+" language-specific plugins
 Plug 'MaxMEllon/vim-jsx-pretty'
-
-" python
 Plug 'Vimjas/vim-python-pep8-indent'
-
-" hashicorp configuration language
 Plug 'jvirtanen/vim-hcl'
 
 
 call plug#end()
 
 
-""""""""""""""""""""""""""""" telescope """""""""""""""""""""""""""""""""""""""
-
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
-nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-nnoremap <leader>tb <cmd>Telescope buffers<cr>
-nnoremap <leader>tj <cmd>Telescope jumplist<cr>
-nnoremap <leader>ts <cmd>Telescope lsp_workspace_symbols<cr>
-nnoremap <leader>tc <cmd>Telescope git_commits<cr>
-nnoremap <leader>tr <cmd>Telescope git_branches<cr>
-nnoremap <leader>td <cmd>Telescope diagnostics<cr>
 
 
-lua <<EOF
-require('telescope').setup {
-    defaults = {
-        layout_strategy = 'vertical',
-    },
-    pickers = {
-        find_files = {
-            hidden = true
-        }
-    }
-}
-EOF
-
-
-""""""""""""""""""""""""""""" statusline """"""""""""""""""""""""""""""""""""""
-lua << END
-
-local function cwd()
-    home = os.getenv("HOME")
-    cwd = vim.loop.cwd()
-    return cwd:gsub(home, "~")
-end
-
-require('lualine').setup {
-    theme = 'tokyonight',
-    options = {
-        globalstatus = false,
-    },
-    sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {'filename'},
-        lualine_x = {'lsp_progress'},
-        lualine_y = {'progress', 'filetype'},
-        lualine_z = {
-            'location',
-            cwd
-        }
-    }
-}
-END
-
-let g:catppuccin_flavour = "mocha"
-
-lua << EOF
-require("catppuccin").setup({
-    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-    transparent_background = false,
-    term_colors = false,
-    dim_inactive = {
-        enabled = false,
-        shade = "dark",
-        percentage = 0.15,
-    },
-    styles = {
-        comments = { "italic" },
-        conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
-    },
-    integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        telescope = true,
-        treesitter = true,
-    },
-    color_overrides = {},
-    custom_highlights = {},
-})
-EOF
-
+" TODO: this config is moving to lua soon too
 " dadbod.vim (SQL Tool)
 let g:dbs = {
 \ 'dev': getenv('DEV_DB_URL'),

@@ -1,4 +1,5 @@
--- neovim-cmp setup, which provides auto-completion prompts
+-- neovim-cmp provides "intellisense" completion prompts from LSP data and
+-- other sources.
 
 local cmp = require('cmp')
 

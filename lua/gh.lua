@@ -1,3 +1,8 @@
+-- gh.nvim is an plugin for performing github pull request reviews inside
+-- neovim. The plugin itself is a bit rough and ready, but doing code reviews
+-- inside neovim with LSP and everything else is very nice.
+
+
 -- gh.nvim shows an annoying warning if the github CLI is not installed, so
 -- we only install the plugin and run this setup if it is.
 if vim.fn.executable('gh') == 1 then

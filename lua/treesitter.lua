@@ -1,3 +1,17 @@
+-- Treesitter parses languages into an abstract syntax tree, and then provides
+-- and API for plugins to integrate with. On its own, it doesn't really do
+-- anything, but a lot of plugins use it to do cool things. In particular,
+-- catpuccin and gruvbox colorscheme plugins use treesitter to do outstandingly
+-- accurate and highly performant syntax highlighting.
+--
+-- A parser for each language must be installed with `:TSInstall [lang]`. You
+-- can get a list of the options with `:TSInstallInfo`. The best way to confirm
+-- that treesitter is working is to use `:TSPlaygroundToggle`, which itself is
+-- a super cool playground thing that will show you the information coming
+-- from treesitter side-by-side with your current source file, and you'll
+-- probably learn a thing or two about how your programming language is parsed
+-- while yuo're at it!
+
 require("treesitter-context").setup{
     enable = true,
     max_lines = 0,

@@ -1,5 +1,29 @@
--- nvim-dap, nvim-dap-ui, and dap virtual text config for debugging inside
--- neovim
+-- Dap = debugger adapter protocol. Config for nvim-dap and nvim-dap-ui are
+-- here, and they are used for debugging inside neovim. All debugging-related
+-- key shortcuts are prefixed by <space>. You can see all of them at the top
+-- in the "mappings" section.
+--
+-- To be honest, DAP is pretty janky. I often pop VS Code open for debugging,
+-- or use the chrome debugger for client-side debugging. Some assembly is also
+-- required to get this to work.
+--
+-- For python, you'll need to install the debugpy module:
+--
+--    python3 -m pip install debugpy
+--
+-- You will also need to ensure that `python3 -m debugpy --version` from the
+-- command line works in order for neovim to be able to discover the module.
+--
+-- For javascript, you'll need to install vscode_node_debug, which is truly
+-- cursed and broken. You'll notice that I have it installed into a hard-coded
+-- file system path, pointing into where I have a local clone of the upstream
+-- repository for the project, because I am debugging it all the time. Source
+-- maps, in particular, don't work right which is infuriating for me because it
+-- makes it impossible to edit source code while debugging, which mostly
+-- defeats the point for me.
+--
+-- I still use DAP, but it's very broken right now. I hope and pray that I can
+-- get it working better one day.
 
 local dap = require('dap')
 local dapui = require('dapui')
