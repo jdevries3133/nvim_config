@@ -76,6 +76,12 @@ make it your own. In fact, you'll find that a majority of this code doesn't do
 anything too opinionated. Most of it is just the boring stuff that you'd tear
 your hair out trying to cobble together.
 
+## `PLUGINS.md`
+
+Take a look at this document. It's an index of all the plugins included in this
+config, with some rationale for why they're here, how they interact with each
+other, why they're important to my workflow, etc.
+
 ## Setup
 
 > ⚠️ On startup, there will be a barrage of errors until you've completed all
