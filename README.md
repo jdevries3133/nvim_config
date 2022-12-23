@@ -33,25 +33,22 @@ an issue!
 
 > I just want to use AstroNvim or some other popular boilerplate
 
-OK, you may feel free. Just try not to use the fancy file explorers that these
-shove in your face as they try to emulate VS Code. Also, I'd recommend against
-pinning a file explorer into your vim view - the lack of UI is a benefit to
-vim, not a drawback. In my config, you can jump to the file explorer around
-your current file anytime by just pressing `E`. You don't need it taking up
-screen real estate all the time, and there are a bunch more ways to navigate
-between files in vim than just going to the file explorer all the time.
+My only suggestion here is to point out that this config is much smaller and
+simpler. It might be a clearer signal of how big your config should be for you
+to become happy with your neovim experience, and as a config developed and used
+by a single person, it might just be a better place for you to start forming
+your own config.
 
-That's my only major gripe with the mass-market configs; they broadly try to
-make vim look like VS Code, which causes disconnects like the above.
+The point of neovim isn't for it to "just work," but rather for it to become
+akin to a grizzled mechanic's shop - morphing over time to suit the needs of
+their workflow until a level of ergonomics incrementally emerges that could
+never be engineered for a mass market.
 
 > I have my own config that I already started
 
 That's awesome! You can probably integrate what you have into this config
 without too much trouble, and still get all the other benefits that this config
 provides.
-
-Meanwhile, there are many, many _perfectly valid_ reasons _not_ to fork this
-config. Again, I don't mean to be pushy - you do you.
 
 Lastly, here are some high-level highlights about this config:
 
