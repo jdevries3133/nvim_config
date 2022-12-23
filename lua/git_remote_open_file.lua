@@ -21,7 +21,7 @@ function M.gitlabOpenFile()
     local relpath = vim.fn.substitute(path, cwd .. '/', '', '')
 
     -- call "open" with the URL to the file in the browser
-    io.popen("open " .. base .. relpath)
+    io.popen("python3 -c 'import webbrowser; webbrowser.open(\"" .. base .. relpath .. "\")'")
   end
 
 end
