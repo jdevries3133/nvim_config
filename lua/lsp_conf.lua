@@ -44,12 +44,12 @@ local function location_handler(_, result, ctx)
   local util = require('vim.lsp.util')
   if vim.tbl_islist(result) then
     if #result == 1 then
-      util.jump_to_location(result[1], 'utf-8')
+      util.jump_to_location(result[1], 'utf-8', true)
     elseif #result > 1 then
       vim.fn.setqflist(util.locations_to_items(result, 'utf-8'))
     end
   else
-    util.jump_to_location(result, 'utf-8')
+    util.jump_to_location(result, 'utf-8', true)
   end
 end
 
