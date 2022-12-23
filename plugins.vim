@@ -6,6 +6,8 @@
 " Configuration for all plugins when necessary is in the `lua` folder, where
 " each plugin has a module with a similar name that contains its own config.
 "
+" See ./PLUGINS.md for notes on each plugin, what it does, & why it's here.
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin()
@@ -14,14 +16,11 @@ call plug#begin()
 Plug 'arkav/lualine-lsp-progress'  " for example, this is https://github.com/arkav/lualine-lsp-progress
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
-Plug 'honza/vim-snippets'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'jremmen/vim-ripgrep'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'mfussenegger/nvim-dap'
