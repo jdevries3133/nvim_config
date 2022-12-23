@@ -60,13 +60,3 @@ Plug 'jvirtanen/vim-hcl'
 
 
 call plug#end()
-
-
-
-
-" TODO: this config is moving to lua soon too
-" dadbod.vim (SQL Tool)
-let g:dbs = {
-\ 'dev': getenv('DEV_DB_URL'),
-\ 'prod': getenv('PROD_DB_URL')
-\ }

@@ -42,3 +42,4 @@ require("git_remote_open_file").setup() -- custom gitlab file opener
 require("telescope_conf") ---------------- telescope is a pop-up search tool
 require("statusline") -------------------- line at the bottom of the screen
 require("catppuccin_conf") --------------- very configurable color scheme
+require("dadbod_conf") ------------------- SQL client
