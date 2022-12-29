@@ -30,7 +30,6 @@ uses that set of words as a completion source. This actually comes in handy
 more than you'd think, for example if you're writing some technical document
 and the same long keyword keeps coming up over and over again.
 
-
 # `hrsh7th/cmp-nvim-lsp`
 
 This is the plugin that queries the languages support server for code
@@ -142,22 +141,95 @@ the debugger adapters themselves are quite janky. Details are in
 
 # `tommcdo/vim-fugitive-blame-ext`
 
-TODO: will finish the rest of these another time!
+Provides interactive `:Git blame` which integrates with vim-fugitive.
 
 # `tpope/vim-commentary`
+
+Allows you to comment things our with the `gc` action in normal mode.
+
 # `tpope/vim-dadbod`
+
+Dadbod.vim is a SQL client for vim. Set `DEV_DB_URL` and `PROD_DB_URL` for your
+database to make it work, or take a look at `lua/dadbod_conf.lua` to revise the
+config to meet your needs.
+
 # `tpope/vim-fugitive`
+
+vim-fugitive is a fantastic git plugin. See its own documentation for how to
+use it.
+
 # `tpope/vim-sensible`
+
+This is just a set of sensible defaults for vim according to tpope, a true vim
+wizard.
+
 # `tpope/vim-surround`
+
+This gives you a new motion `s` for "surrounding." It allows you to change and
+delete surrounding text objects, like quotation marks, parenthesis, curly
+braces, etc. For example:
+
+| Starting Text | Normal-Mode Command | Verbal Interpretation           | Ending Text |
+| ------------- | ------------------- | ------------------------------- | ----------- |
+| `'value'`     | `ds'`               | delete surrounding single quote | `value`     |
+| `({ value })` | `ds{`               | delete surrounding curly brace  | `(value)`   |
+| `(value)`     | `cs({`              | change surrounding `(` to `{`   | `{value}`   |
+| `'value'`     | `cs'"`              | change surrounding `'` to `"`   | `"value"`   |
+
+This is clearly quite useful and extensible.
+
 # `williamboman/nvim-lsp-installer`
+
+This is a package manager for language support servers. Open it up with
+`:LspInstallInfo`, it makes it very easy to get LSP servers installed and keep
+them up to date.
+
 # `ldelossa/litee.nvim`
+
+This is a UI framework from the guy who wrote `gh.nvim`, and it's a dependency.
+
 # `ldelossa/gh.nvim`
+
+This is a plugin for doing github code reviews inside neovim. I only have it
+installed on my personal machine because I use GitLab at work. Moreover, this
+plugin will complain if the github CLI isn't installed on your machine.
+
+Although quite janky and buggy (this was just a quick hobby project for
+somebody), it's super nice to be able to do code reviews inside vim with
+language support, goto definition, etc.
+
 # `NLKNguyen/papercolor-theme`
+
+Just a color theme enable it with `:colorscheme PaperColor`.
+
 # `catppuccin/nvim`
+
+Just a color theme this is the default (already enabled). It's also much more
+configurable than the others, so config is in `lua/catppuccin_conf.lua`.
+
 # `ellisonleao/gruvbox.nvim`
+
+Just a color theme enable it with `:colorscheme gruvbox`.
+
 # `folke/tokyonight.nvim`
+
+Just a color theme enable it with `:colorscheme tokyonight` (and there are many
+variations like `tokyonight-day`).
+
 # `sainnhe/gruvbox-material`
+
+Just a color theme enable it with `:colorscheme gruvbox-material`.
+
 # `sainnhe/sonokai`
-# `MaxMEllon/vim-jsx-pretty`
+
+Just a color theme enable it with `:colorscheme sonokai`.
+
 # `Vimjas/vim-python-pep8-indent`
+
+Indent rules for python, because by default vim only understands C-like
+languages and will do wild things when writing python code.
+
 # `jvirtanen/vim-hcl`
+
+Syntax highlighting for HashiCorp Configuration Language (HCL), which is used
+by [Terraform](https://www.terraform.io/).

@@ -54,7 +54,6 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
 
 " language-specific plugins
-Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jvirtanen/vim-hcl'
 
