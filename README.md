@@ -63,24 +63,6 @@ mkdir -p $XDG_CONFIG_HOME/nvim
 git clone https://github.com/jdevries3133/nvim_config.git $XDG_CONFIG_HOME/nvim
 ```
 
-### Handle Dependencies with my [Vim Config](https://github.com/jdevries3133/vim_config)
-
-I don't want to duplicate code, so my neovim config simply sources some vim
-script from my vim config. That poses a problem if you strive to use this
-config alone, though. The most straightforward thing you can do is run this
-shell script to grab my `common.vim` file, which is the only required
-dependency.
-
-```bash
-mkdir -p $HOME/.vim
-curl \
-  -o $HOME/.vim/common.vim \
-  https://raw.githubusercontent.com/jdevries3133/vim_config/main/common.vim
-```
-
-For the full me-experience, clone my whole vim config into `~/.vim`, and this
-config will pickup on a few additional files.
-
 ### vim-plugged
 
 Install [vim-plugged](https://github.com/junegunn/vim-plug) according to their

@@ -10,7 +10,7 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call plug#begin()
+call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 
 " general purpose
 Plug 'arkav/lualine-lsp-progress'  " for example, this is https://github.com/arkav/lualine-lsp-progress
@@ -56,6 +56,10 @@ Plug 'sainnhe/sonokai'
 " language-specific plugins
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jvirtanen/vim-hcl'
+
+" my own vim config (non-neovim), which we'll borrow some config files from,
+" see ./lua/vim_config_adapter.lua
+Plug 'jdevries3133/vim_config'
 
 
 call plug#end()
