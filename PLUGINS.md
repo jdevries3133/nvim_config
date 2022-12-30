@@ -92,14 +92,6 @@ things.
 This is an implementation of the debugger adapter protocol for neovim. It is
 cursed and fraught, see `./lua/dap_conf.lua` for details, and good luck!
 
-## `mtdl9/vim-log-highlighting`
-
-Nice syntax highlighting for logs. It is regex-based, so it's not super
-performant. That being said, the author did write the regexes smartly enough
-that they are performant enough.
-
-Overall, just some nice syntax highlighting for log files.
-
 ## `neovim/nvim-lspconfig`
 
 This plugin provides a lot of the boilerplate that would be needed to get
