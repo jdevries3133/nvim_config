@@ -49,16 +49,15 @@ other, why they're important to my workflow, etc.
 ## Setup
 
 > ⚠️ On startup, there will be a barrage of errors until you've completed all
-> these steps
+> these steps!
 
 ### Clone the Repo
 
 Clone this whole repository into `~/.config/nvim`. This will only work if the
 folder is currently empty, so move any existing config into a different
-location for now, or delete it.
+location for now.
 
 ```bash
-# note: $XDG_CONFIG_HOME is ~/.config on macOS / Linux machines
 mkdir -p $XDG_CONFIG_HOME/nvim
 git clone https://github.com/jdevries3133/nvim_config.git $XDG_CONFIG_HOME/nvim
 ```
@@ -71,7 +70,11 @@ installation instructions. It's just a quick shell command for your machine.
 Then, open neovim for the first time. You'll see a bunch of errors on initial
 startup, this is expected. Run the `:PlugInstall` to install all the plugins.
 After the process is complete, close and open neovim. Now, you should expect no
-errors. In the future, you can update plugins with `:PlugUpdate`, which you
+errors. If there are still issues, try `:PlugInstall` a second time; I've
+noticed that there are sometimes race conditions with plugins that depend on
+each other being installed in the wrong order during initial setup, which is
+why you might need to install more than once to get everything into a healthy
+state. In the future, you can update plugins with `:PlugUpdate`, which you
 should do regularly. If you update and have an issue, pull from upstream; maybe
 I fixed it! If not, open an issue on the repo, I'd love to know about it and
 fix it!
@@ -85,16 +88,37 @@ available. Install LSPs for the languages you use. There are more details in
 `./lua/lsp_conf.lua`.
 
 Treesitter parses languages to create an abstract syntax tree (AST). This
-provides perfect syntax highlighting. View the available parsers with
-`:TSInstallInfo`, and install the one(s) you want with `:TSInstall [parser]`
-where `[parser]` is the name of one of the parsers in the info list. Try out
-`:TSPlaygroundToggle` to explore ASTs of your code and confirm that Treesitter
-is working. More details are in `./lua/treesitter.lua`.
+provides perfect syntax highlighting. Per this config, the following languages
+are installed by default:
+
+- `c`
+- `vimscript`
+- `lua`
+- `rust`
+- `javascript`
+- `typescript`
+- `bash`
+- `git` (`.gitignore`, `GIT_COMMIT`, etc.)
+- `diff` ()
+
+You can add more for the languages you use by including them in the
+`ensure_installed` table inside `./lua/treesitter.lua`. View `:TSInstallInfo`
+to get the exact names of all the parsers that are available.
 
 ## Colors
 
 Ensure you are using a terminal with TrueColor support. On macOS, the default
 "Terminal.app," does not. I prefer to use iTerm2 instead.
+
+## Maintenance
+
+All of these manual plugin steps are generally followed by manual updates!
+
+- Make sure your neovim version itself stays up to date.
+- Make sure you run `:PlugUpdate` to update all plugins often
+- `:LspInstallInfo` will tell you about any out-of-date language servers so you
+  can keep those updated
+- `:TSUpdate` will update Treesitter parsers
 
 # Any Issues?
 

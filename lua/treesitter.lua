@@ -28,8 +28,21 @@ require("treesitter-context").setup{
 }
 
 require("nvim-treesitter.configs").setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust", "javascript", "typescript", "bash" },
+  -- You can put "all" to make treesitter install every available parser
+  ensure_installed = {
+    "c",
+    "vim",
+    "lua",
+    "rust",
+    "javascript",
+    "typescript",
+    "bash",
+    "diff",
+    "gitcommit",
+    "gitignore",
+    "git_rebase",
+    "gitattributes"
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
