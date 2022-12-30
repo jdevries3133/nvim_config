@@ -13,44 +13,8 @@ vim plugin for your current editor, so go do that now if you haven't already!
 
 ## Background
 
-I don't care if you use my config or not, but I may as well explain where I'm
-coming from so that you can understand if it might work for you. At the risk of
-sounding a bit pushy, I want to address some common reservations for adopting
-my config directly that I've heard, which I think are invalid:
-
-> This is cheating
-
-No it's not. There's a lot to learn here. It took me years, and now I've got
-something good going. Why not start from a good place?
-
-> I won't be able to navigate or change this
-
-I don't think that's true. Documenting this config has been a very high
-priority for me, right alongside making it work well. I share this with
-coworkers, friends, enemies, and everyone in-between. If you can't navigate or
-make changes to this config, I done goofed and I'd like to know about it; open
-an issue!
-
-> I just want to use AstroNvim or some other popular boilerplate
-
-My only suggestion here is to point out that this config is much smaller and
-simpler. It might be a clearer signal of how big your config should be for you
-to become happy with your neovim experience, and as a config developed and used
-by a single person, it might just be a better place for you to start forming
-your own config.
-
-The point of neovim isn't for it to "just work," but rather for it to become
-akin to a grizzled mechanic's shop - morphing over time to suit the needs of
-their workflow until a level of ergonomics incrementally emerges that could
-never be engineered for a mass market.
-
-> I have my own config that I already started
-
-That's awesome! You can probably integrate what you have into this config
-without too much trouble, and still get all the other benefits that this config
-provides.
-
-Lastly, here are some high-level highlights about this config:
+Here are some highlights about myself and this config so that you can decide
+whether my config is right for you:
 
 - I try to ["grok vi"](https://stackoverflow.com/a/1220118)
   - I strive to use the things "included" with vim instead of building my own
@@ -99,12 +63,13 @@ mkdir -p $XDG_CONFIG_HOME/nvim
 git clone https://github.com/jdevries3133/nvim_config.git $XDG_CONFIG_HOME/nvim
 ```
 
-### Create or Get `~/.vim/common.vim`
+### Handle Dependencies with my [Vim Config](https://github.com/jdevries3133/vim_config)
 
-I have a `common.vim` file for shared config between vim and neovim, which is
-part of my [vim config.](https://github.com/jdevries3133/vim_config) It is
-sourced in `init.vim`, and thus a dependency of this setup. If you want to use
-my `common.vim` file as well, you can grab it from github as follows:
+I don't want to duplicate code, so my neovim config simply sources some vim
+script from my vim config. That poses a problem if you strive to use this
+config alone, though. The most straightforward thing you can do is run this
+shell script to grab my `common.vim` file, which is the only required
+dependency.
 
 ```bash
 mkdir -p $HOME/.vim
@@ -112,6 +77,9 @@ curl \
   -o $HOME/.vim/common.vim \
   https://raw.githubusercontent.com/jdevries3133/vim_config/main/common.vim
 ```
+
+For the full me-experience, clone my whole vim config into `~/.vim`, and this
+config will pickup on a few additional files.
 
 ### vim-plugged
 
@@ -121,7 +89,10 @@ installation instructions. It's just a quick shell command for your machine.
 Then, open neovim for the first time. You'll see a bunch of errors on initial
 startup, this is expected. Run the `:PlugInstall` to install all the plugins.
 After the process is complete, close and open neovim. Now, you should expect no
-errors.
+errors. In the future, you can update plugins with `:PlugUpdate`, which you
+should do regularly. If you update and have an issue, pull from upstream; maybe
+I fixed it! If not, open an issue on the repo, I'd love to know about it and
+fix it!
 
 ### LSP & Treesitter
 
