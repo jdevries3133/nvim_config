@@ -100,3 +100,6 @@ TrueColor
 macOS
 iTerm2
 AST
+hostnames
+whitelist
+glu
