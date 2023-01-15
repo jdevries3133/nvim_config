@@ -16,6 +16,7 @@ including:
 - debugging (nvim-dap is quite jank but sort of works)
 - good syntax highlighting
 - rich colors
+- SQL client
 
 At the same time, I avoid:
 

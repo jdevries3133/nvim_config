@@ -110,6 +110,37 @@ to get the exact names of all the parsers that are available.
 Ensure you are using a terminal with TrueColor support. On macOS, the default
 "Terminal.app," does not. I prefer to use iTerm2 instead.
 
+## Environment Variables
+
+Some secrets and configuration options can be provided through environment
+variables.
+
+For the [vim-dadbod plugin](https://github.com/tpope/vim-dadbod), there are
+environment variables to provide connection strings for production and
+development databases. This is the paradigm I use at work, but ideally I'd
+probably prefer to make this more dynamic in the future.
+
+**DEV_DB_URL** is the connection string for your development database, which
+you can interact with `:DBUI` ()
+
+**PROD_DB_URL** is the connection string for your production database
+
+**NVIM_USE_EMMET_LS** toggles the emmet language server on or off. [Emmet
+abbreviations](https://docs.emmet.io/abbreviations/) are extraordinarily useful
+if you are writing a high volume of html, and extraordinarily annoying if not,
+since they'll also show up in React jsx/tsx completion suggestions.
+
+**GIT_REPO_BASE_URL** is used by my home-grown script. If you are using github
+or gitlab, `:Gopen` will open up the current file in your web browser, which I
+use many times every day to send a reference to part of the codebase to a
+colleague and it might be one of my favorite things in this whole config. If
+you pay attention, Github and Gitlab have url patterns where the relative path
+to the file is at the end, so if you just set the base url appropriately, this
+plugin will work for any project. Of course, if you move between projects you
+might need a shell hook to update this variable as needed. The script also
+doesn't look at the current git branch, which would be necessary for a robust
+implementation. If you add that feature, please submit a PR!
+
 ## Maintenance
 
 All of these manual plugin steps are generally followed by manual updates!
