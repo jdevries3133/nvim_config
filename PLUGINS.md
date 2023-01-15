@@ -1,6 +1,26 @@
-# Rationale
+# Overview & Rationale
 
-TODO
+There are quite a few plugins in here. I'll use this doc to explain their
+purpose, which will hopefully be helpful for anyone looking to adopt this
+config.
+
+The plugins I use strive to provide rich IDE-like features in neovim,
+including:
+
+- git integration
+- language support
+  - type checking
+  - linting
+  - goto definitino [`gd`]
+  - goto reference [`gr`]
+- debugging (nvim-dap is quite jank but sort of works)
+- good syntax highlighting
+- rich colors
+
+At the same time, I avoid:
+
+- clunky persistent UI
+- mouse usage
 
 # Plugin Index
 
@@ -23,7 +43,11 @@ _requires_ a snippet provider. I chose this one. I'm actually surprised that it
 does provide quite a few useful snippets like HTML boilerplate, license
 headers, etc.
 
-It's also extendable but I'm not really a big snippet user.
+It's also extendable but I'm not really a big snippet user. I have my own
+[custom snippet
+thing](https://github.com/jdevries3133/vim_config/blob/main/snippets.vim) which
+is good enough for me, although jank enough that I'd suggest using a proper
+snippet plugin if you use snippets a lot.
 
 I also know that [luasnip](https://github.com/L3MON4D3/LuaSnip) seems like the
 trendier snippet plugin as of writing, so you might want to swap cmp-snippy out
@@ -86,6 +110,11 @@ This works together with a so-called ["nerd
 font,"](https://github.com/ryanoasis/nerd-fonts) to put icons all over the
 place, including in the status line and inside telescope when searching for
 things.
+
+## `lewis6991/gitsigns.nvim`
+
+This provides simple git-related decorations, like highlighting numbers on the
+sidebar based on the change status.
 
 ## `mfussenegger/nvim-dap`
 
