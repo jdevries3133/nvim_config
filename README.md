@@ -22,7 +22,7 @@ whether my config is right for you:
   - I understand what vim doesn't do, and use plugins as necessary to build out
     a rich development environment
 - I am a web programmer who also dabbles in systems a bit; there is good
-  support for all popular programming languages and development workflows
+  support for many popular programming languages and development workflows
 - All source code here is very well documented, and opinionated decisions are
   explained
 - I have been using vim for about 3 years, and this config has organically
