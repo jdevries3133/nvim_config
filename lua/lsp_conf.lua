@@ -116,7 +116,6 @@ require('lspconfig')['dartls'].setup {
   on_attach = on_attach,
 }
 
-
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
@@ -149,6 +148,16 @@ require('lspconfig')['sumneko_lua'].setup {
 require('lspconfig')['tailwindcss'].setup {
   on_attach = on_attach,
 }
+
+-- emmet language server is really annoying if I'm not vomitting a large volume
+-- of html (most projects) but very useful if I am (new projects, personal
+-- projects, etc.). So, I have this environment variable to turn it on or off.
+if vim.fn.getenv('NVIM_USE_EMMET_LS') then
+  require('lspconfig')['emmet_ls'].setup {
+    on_attach = on_attach,
+  }
+end
+
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
