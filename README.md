@@ -120,17 +120,17 @@ environment variables to provide connection strings for production and
 development databases. This is the paradigm I use at work, but ideally I'd
 probably prefer to make this more dynamic in the future.
 
-**DEV_DB_URL** is the connection string for your development database, which
+**`DEV_DB_URL`** is the connection string for your development database, which
 you can interact with `:DBUI` ()
 
-**PROD_DB_URL** is the connection string for your production database
+**`PROD_DB_URL`** is the connection string for your production database
 
-**NVIM_USE_EMMET_LS** toggles the emmet language server on or off. [Emmet
+**`NVIM_USE_EMMET_LS`** toggles the emmet language server on or off. [Emmet
 abbreviations](https://docs.emmet.io/abbreviations/) are extraordinarily useful
 if you are writing a high volume of html, and extraordinarily annoying if not,
 since they'll also show up in React jsx/tsx completion suggestions.
 
-**GIT_REPO_BASE_URL** is used by my home-grown script. If you are using github
+**`GIT_REPO_BASE_URL`** is used by my home-grown script. If you are using github
 or gitlab, `:Gopen` will open up the current file in your web browser, which I
 use many times every day to send a reference to part of the codebase to a
 colleague and it might be one of my favorite things in this whole config. If
