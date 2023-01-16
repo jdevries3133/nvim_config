@@ -10,6 +10,17 @@ if (cmp == nil) then
   return
 end
 
+-- disable cmp for log files, since buffer completion is super slow for huge
+-- files
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+  pattern = "*.log",
+  callback = function ()
+    if vim.bo.filetype == "log" then
+      cmp.setup.buffer { enabled = false }
+    end
+  end}
+)
+
 
 cmp.setup({
   snippet = {
