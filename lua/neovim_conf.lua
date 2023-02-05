@@ -21,3 +21,8 @@ vim.cmd('nnoremap <leader>l :LspRestart<CR>')
 -- dadbod-ui, for example. Until the ergonomics improve, or the plugins are
 -- updated to support this setting better, I need to keep cmdheight = 1.
 vim.opt.cmdheight = 1
+
+
+-- The indentation behavior of this plugin for multiline comments is
+-- unfathomably stupid
+vim.cmd('let g:typescript_indent_disable = 1')
