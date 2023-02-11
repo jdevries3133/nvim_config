@@ -107,3 +107,13 @@ url
 Glu
 PII
 Vitest
+Velero
+CertManager
+LetsEncrypt
+Kibana
+Grafana
+ServiceMonitor
+Nginx
+S3
+Restic
+chai
