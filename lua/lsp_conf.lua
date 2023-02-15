@@ -21,7 +21,7 @@
 -- | clangd        | C / C++                              |
 -- | dockerls      | Dockerfiles                          |
 -- | dartls        | Dart                                 |
--- | sumenko_lua   | lua                                  |
+-- | lua_ls        | lua                                  |
 -- | tailwindcss   | everywhere tailwind classes are used |
 --
 -- One last step: when you're happy with the keyboard shortcuts and checked that
@@ -119,7 +119,7 @@ require('lspconfig')['dartls'].setup {
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['lua_ls'].setup {
   on_attach = on_attach,
   settings = {
     Lua = {
