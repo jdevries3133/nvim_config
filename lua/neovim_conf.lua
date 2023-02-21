@@ -23,6 +23,13 @@ vim.cmd('nnoremap <leader>l :LspRestart<CR>')
 vim.opt.cmdheight = 1
 
 
--- The indentation behavior of this plugin for multiline comments is
--- unfathomably stupid
-vim.cmd('let g:typescript_indent_disable = 1')
+-- fix comments; convert `//`-style comments to ` * ...`
+vim.cmd("vnoremap <leader>c :s/\\/\\// */g<CR>");
+
+-- Neovim comes with a default typescript indentation plugin:
+-- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
+-- for comments. It is apparently trying to do prosaic indentation where the
+-- first line of a paragraph is indented by 2 spaces. I don't know why anyone
+-- would want this and it makes it very difficult to write markdown in
+-- typescript comments, so it is disabled
+vim.g.typescript_indent_disable = 1
