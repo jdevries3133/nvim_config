@@ -17,8 +17,11 @@ require('telescope').setup {
     }
 }
 
--- TODO: a bit blursed to do this all through vim.cmd; convert these to proper
--- lua calls
+-- Note: the `fd` file-finder searches through stuff in `.git`, but acknowledges
+-- `.gitignore` files. To make it be not-stupid inside git repos, just do:
+--
+--     echo '*' > .git/.gitignore
+--
 vim.cmd("nnoremap <leader>tf <cmd>Telescope find_files<cr>")
 vim.cmd("nnoremap <leader>tg <cmd>Telescope live_grep<cr>")
 vim.cmd("nnoremap <leader>tb <cmd>Telescope buffers<cr>")
