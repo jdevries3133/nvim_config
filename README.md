@@ -51,6 +51,11 @@ other, why they're important to my workflow, etc.
 > ⚠️ On startup, there will be a barrage of errors until you've completed all
 > these steps!
 
+## `DAP.md`
+
+Some additional setup is required for debugging inside neovim. See
+[DAP.md](./DAP.md) for details.
+
 ### Clone the Repo
 
 Clone this whole repository into `~/.config/nvim`. This will only work if the

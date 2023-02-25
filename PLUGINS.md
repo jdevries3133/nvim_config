@@ -122,6 +122,10 @@ sidebar based on the change status.
 This is an implementation of the debugger adapter protocol for neovim. It is
 cursed and fraught, see `./lua/dap_conf.lua` for details, and good luck!
 
+# `mxsdev/nvim-dap-vscode-js`
+
+Adapter to connect `nvim-dap` with `vscode-js-debug`.
+
 ## `neovim/nvim-lspconfig`
 
 This plugin provides a lot of the boilerplate that would be needed to get

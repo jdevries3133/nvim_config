@@ -14,14 +14,6 @@
 -- You will also need to ensure that `python3 -m debugpy --version` from the
 -- command line works in order for neovim to be able to discover the module.
 --
--- For javascript, you'll need to install vscode_node_debug, which is truly
--- cursed and broken. You'll notice that I have it installed into a hard-coded
--- file system path, pointing into where I have a local clone of the upstream
--- repository for the project, because I am debugging it all the time. Source
--- maps, in particular, don't work right which is infuriating for me because it
--- makes it impossible to edit source code while debugging, which mostly
--- defeats the point for me.
---
 -- I still use DAP, but it's very broken right now. I hope and pray that I can
 -- get it working better one day.
 
@@ -54,7 +46,7 @@ set('n', '<space>O', dapui.open, mapopts)
 
 --------------------------------- dap config ----------------------------------
 
--- python
+---- python ----
 
 dap.adapters.python = {
   type = 'executable';
@@ -87,12 +79,16 @@ dap.configurations.python = {
 }
 
 
--- node
-dap.adapters.node = {
-  type = 'executable',
-  command = 'node',
-  args = { os.getenv('HOME') .. '/repos/vscode_node_debug/out/src/nodeDebug.js' },
-}
+---- node ----
+--
+require("dap-vscode-js").setup({
+  -- Path to vscode-js-debug installation.
+  debugger_path = os.getenv("HOME") .. "/repos/vscode-js-debug",
+  -- which adapters to register in nvim-dap
+  adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, 
+  log_file_path = os.getenv("HOME") .. "/.cache/nvim/dap_vscode_js.log",
+  log_file_level = vim.log.levels.DEBUG
+})
 
 
 -- we will always try to load launch.json files if they're present
@@ -100,15 +96,10 @@ require('dap.ext.vscode').load_launchjs(
   vim.fn.getcwd() .. '/.vscode/launch.json',
   {
     -- mapping of launch types to file names
-    ["node"] = {
+    ["pwa-node"] = {
       "javascript",
       "typescript",
       "typescriptreact"
-    },
-    ["lldb"] = {
-      "rust",
-      "C",
-      "C++"
     }
   }
 )
@@ -173,7 +164,6 @@ dapui.setup({
 
 
 -- make dapui automatically open when dap is launched
-
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open({})
 end
