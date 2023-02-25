@@ -32,4 +32,8 @@ vim.cmd("vnoremap <leader>c :s/\\/\\// */g<CR>");
 -- first line of a paragraph is indented by 2 spaces. I don't know why anyone
 -- would want this and it makes it very difficult to write markdown in
 -- typescript comments, so it is disabled
-vim.g.typescript_indent_disable = 1
+vim.cmd [[
+  augroup noindent
+    autocmd Filetype typescript,typescriptreact set indentexpr=
+  augroup END
+]]
