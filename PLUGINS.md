@@ -210,6 +210,11 @@ braces, etc. For example:
 
 This is clearly quite useful and extensible.
 
+## `vmchale/just-vim`
+
+Simple regex-based syntax highlighting for
+[Justfiles](https://github.com/casey/just)
+
 ## `williamboman/nvim-lsp-installer`
 
 This is a package manager for language support servers. Open it up with

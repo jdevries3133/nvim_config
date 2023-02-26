@@ -40,6 +40,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'vmchale/just-vim'
 Plug 'williamboman/nvim-lsp-installer'
 if executable('gh')
     Plug 'ldelossa/litee.nvim'
