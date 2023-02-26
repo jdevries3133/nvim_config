@@ -12,7 +12,7 @@ cd ~/repos
 
 # This is the debugger adapter for node, you need to install it manually
 git clone https://github.com/microsoft/vscode-js-debug.git
-cd vscode-js-delabug
+cd vscode-js-debug
 
 # At time of writing, there are bugs on the main branch, so stick with a stable
 # version; I've had luck with 1.68
