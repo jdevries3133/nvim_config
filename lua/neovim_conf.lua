@@ -2,7 +2,7 @@
 -- config is in this repository because most of it is in `common.vim`, which
 -- must be fetched separately since it's part of my vim config.
 
-vim.g.colors_name = "catppuccin"
+vim.g.colors_name = "catppuccin-frappe"
 vim.opt.background = "dark"
 vim.opt.laststatus = 3
 vim.opt.showmode = false
