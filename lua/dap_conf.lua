@@ -136,13 +136,12 @@ dapui.setup({
         "stacks",
         "watches",
       },
-      size = 40,
+      size = 60,
       position = "left",
     },
     {
       elements = {
         "repl",
-        "console",
       },
       size = 10,
       position = "bottom",
