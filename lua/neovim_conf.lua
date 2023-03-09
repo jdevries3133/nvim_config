@@ -35,6 +35,6 @@ vim.cmd("vnoremap <leader>c :s/\\/\\// */g<CR>");
 -- typescript comments, so it is disabled
 vim.cmd [[
   augroup noindent
-    autocmd Filetype typescript,typescriptreact set indentexpr=
+    autocmd Filetype javascript,javascriptreact,typescript,typescriptreact set indentexpr=
   augroup END
 ]]
