@@ -7,6 +7,7 @@ vim.opt.background = "dark"
 vim.opt.laststatus = 3
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
+vim.opt.mouse = nil
 
 -- MFW company typescript setup be like: https://i.imgur.com/mtGc7Sl.mp4
 vim.cmd('nnoremap <leader>l :LspRestart<CR>')
