@@ -13,6 +13,9 @@ require('telescope').setup {
     pickers = {
         find_files = {
             hidden = true
+        },
+        colorscheme = {
+            enable_preview = true
         }
     }
 }
@@ -30,3 +33,4 @@ vim.cmd("nnoremap <leader>ts <cmd>Telescope lsp_workspace_symbols<cr>")
 vim.cmd("nnoremap <leader>tc <cmd>Telescope git_commits<cr>")
 vim.cmd("nnoremap <leader>tr <cmd>Telescope git_branches<cr>")
 vim.cmd("nnoremap <leader>td <cmd>Telescope diagnostics<cr>")
+vim.cmd("nnoremap <leader>tc <cmd>Telescope colorscheme<cr>")
