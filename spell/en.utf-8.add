@@ -121,3 +121,7 @@ toml
 DAP
 Actix
 Justfile
+XSS
+scaffolded
+auth
+Excalidraw
