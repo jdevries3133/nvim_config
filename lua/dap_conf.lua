@@ -82,16 +82,20 @@ dap.configurations.python = {
 ---- node ----
 --
 require("dap-vscode-js").setup({
-  -- Path to vscode-js-debug installation.
+  -- Path to vscode-js-debug installation; as you can see, I'm typically
+  -- cloning the whole repo (https://github.com/microsoft/vscode-js-debug.git),
+  -- and then compiling it locally.
   debugger_path = os.getenv("HOME") .. "/repos/vscode-js-debug",
   -- which adapters to register in nvim-dap
   adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, 
-  log_file_path = os.getenv("HOME") .. "/.cache/nvim/dap_vscode_js.log",
-  log_file_level = vim.log.levels.DEBUG
+  log_file_path = os.getenv("HOME") .. "/.cache/nvim/dap_vscode_js.log"
 })
 
 
--- we will always try to load launch.json files if they're present
+-- We will always try to load launch.json files if they're present; I find
+-- this generally better than catchall configs (like I have above for python).
+-- Most projects have too much stuff going on for a default config to work
+-- well
 require('dap.ext.vscode').load_launchjs(
   vim.fn.getcwd() .. '/.vscode/launch.json',
   {
@@ -100,10 +104,56 @@ require('dap.ext.vscode').load_launchjs(
       "javascript",
       "typescript",
       "typescriptreact"
+    },
+    ["codelldb"] = {
+      "rust"
     }
   }
 )
 
+
+-- lldb config came from https://www.reddit.com/r/neovim/comments/q2hxkg/anyone_using_nvimdap_with_codelldb/
+-- (top comment)
+
+-- this guy: https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb
+-- needs to be installed and on your $PATH for this to work
+--
+-- Then, execute codelldb --port 13000 before and during any debugging sessions
+dap.adapters.codelldb = {
+    type = 'server',
+    host = '127.0.0.1',
+    port = 13000
+}
+
+dap.configurations.c = {
+    {
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
+        end,
+        --program = '${fileDirname}/${fileBasenameNoExtension}',
+        cwd = '${workspaceFolder}',
+        terminal = 'integrated'
+    }
+}
+
+dap.configurations.cpp = dap.configurations.c
+
+-- I prefer to have the launch.json per-project, but this guy's catch-all
+-- debug setup is actually pretty generally useful, so I'll keep it around
+-- dap.configurations.rust = {
+--     {
+--         type = 'codelldb',
+--         request = 'launch',
+--         program = function()
+--             return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
+--         end,
+--         cwd = '${workspaceFolder}',
+--         terminal = 'integrated',
+--         sourceLanguages = { 'rust' }
+--     }
+-- }
 
 --------------------------------- ui ------------------------------------------
 
