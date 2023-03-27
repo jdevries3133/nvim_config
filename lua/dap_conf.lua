@@ -3,19 +3,9 @@
 -- key shortcuts are prefixed by <space>. You can see all of them at the top
 -- in the "mappings" section.
 --
--- To be honest, DAP is pretty janky. I often pop VS Code open for debugging,
--- or use the chrome debugger for client-side debugging. Some assembly is also
--- required to get this to work.
---
--- For python, you'll need to install the debugpy module:
---
---    python3 -m pip install debugpy
---
--- You will also need to ensure that `python3 -m debugpy --version` from the
--- command line works in order for neovim to be able to discover the module.
---
--- I still use DAP, but it's very broken right now. I hope and pray that I can
--- get it working better one day.
+-- There is no "lsp config" equivalent for DAP, so each language has a bit of
+-- assembly required. See the docs for each support language; so far, I have
+-- support for Python, JavaScript/TypeScript, and Rust
 
 local dap = require('dap')
 local dapui = require('dapui')
@@ -58,6 +48,12 @@ set('v', '<space>v', dapui.eval, mapopts)
 --------------------------------- dap config ----------------------------------
 
 ---- python ----
+-- For python, you'll need to install the debugpy module:
+--
+--    python3 -m pip install debugpy
+--
+-- You will also need to ensure that `python3 -m debugpy --version` from the
+-- command line works in order for neovim to be able to discover the module.
 
 dap.adapters.python = {
   type = 'executable';
@@ -91,7 +87,7 @@ dap.configurations.python = {
 
 
 ---- node ----
---
+
 require("dap-vscode-js").setup({
   -- Path to vscode-js-debug installation.
   debugger_path = os.getenv("HOME") .. "/repos/vscode-js-debug",
