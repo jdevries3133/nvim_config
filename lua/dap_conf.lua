@@ -31,6 +31,15 @@ local function setup_conditional_breakpoint()
   dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
 end
 
+local function float_scopes()
+  dapui.float_element("scopes", {
+    width = 120,
+    height = 90,
+    enter = true,
+    position = "center"
+  })
+end
+
 local set = vim.keymap.set
 
 set('n', '<space>b', dap.toggle_breakpoint, mapopts)
@@ -42,6 +51,8 @@ set('n', '<space>o', dap.step_out, mapopts)
 set('n', '<space>r', dap.run_last, mapopts)
 set('n', '<space>C', dapui.close, mapopts)
 set('n', '<space>O', dapui.open, mapopts)
+set('n', '<space>v', float_scopes, mapopts)
+set('v', '<space>v', dapui.eval, mapopts)
 
 
 --------------------------------- dap config ----------------------------------
