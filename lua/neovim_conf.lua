@@ -44,6 +44,6 @@ vim.cmd [[
 -- These make italics work inside tmux.
 -- See https://gist.github.com/gutoyr/4192af1aced7a1b555df06bd3781a722
 vim.cmd[[
-set t_ZH=[3m
-set t_ZR=[23m
+  set t_ZH=[3m
+  set t_ZR=[23m
 ]]
