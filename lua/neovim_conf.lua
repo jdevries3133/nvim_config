@@ -2,8 +2,15 @@
 -- config is in this repository because most of it is in `common.vim`, which
 -- must be fetched separately since it's part of my vim config.
 
-vim.g.colors_name = "catppuccin-frappe"
-vim.opt.background = "dark"
+if os.getenv('NEOVIM_LIGHT') then
+  vim.g.colors_name = "catppuccin-latte"
+  vim.opt.background = "light"
+else
+  vim.g.colors_name = "catppuccin-mocha"
+  vim.opt.background = "dark"
+
+end
+
 vim.opt.laststatus = 3
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
@@ -44,6 +51,22 @@ vim.cmd [[
 -- These make italics work inside tmux.
 -- See https://gist.github.com/gutoyr/4192af1aced7a1b555df06bd3781a722
 vim.cmd[[
-set t_ZH=[3m
-set t_ZR=[23m
+  set t_ZH=[3m
+  set t_ZR=[23m
 ]]
+
+-- Hide all semantic highlights
+-- This is a nice idea, but ts-server is slow AF as it is; I don't want to
+-- wait 3 seconds for syntax highlighting to work.
+--
+-- Probably the best thing would be to have some heuristic for toggling this
+-- feature off if the LSP is too slow
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
+end
+
+
+vim.cmd[[
+  autocmd FileType mysql setlocal commentstring=--\ %s
+]]
+
