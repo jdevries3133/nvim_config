@@ -20,6 +20,8 @@ vim.opt.guicursor = "i:block"
 -- MFW company typescript setup be like: https://i.imgur.com/mtGc7Sl.mp4
 vim.cmd('nnoremap <leader>l :LspRestart<CR>')
 
+vim.cmd('nnoremap <leader>nn :NoNeckPain<CR>')
+
 -- This is the default, but serves as a reminder to set cmdheight = 0 when it
 -- becomes stable. The cmdheight = 0 option was introduced in neovim 0.8, but
 -- it's considered experimental and definitely feels experimental. There are
