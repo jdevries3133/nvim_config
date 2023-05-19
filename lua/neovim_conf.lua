@@ -71,3 +71,4 @@ vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
 ]]
 
+vim.cmd('nnoremap <leader>db :DBUI<CR>')
