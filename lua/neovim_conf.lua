@@ -2,13 +2,12 @@
 -- config is in this repository because most of it is in `common.vim`, which
 -- must be fetched separately since it's part of my vim config.
 
-if os.getenv('NEOVIM_LIGHT') then
+if os.getenv('NEOVIM_LIGHT') == '1' then
   vim.g.colors_name = "catppuccin-latte"
   vim.opt.background = "light"
 else
   vim.g.colors_name = "catppuccin-mocha"
   vim.opt.background = "dark"
-
 end
 
 vim.opt.laststatus = 3
