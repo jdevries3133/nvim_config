@@ -13,7 +13,8 @@
 call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 
 " general purpose
-Plug 'arkav/lualine-lsp-progress'  " for example, this is https://github.com/arkav/lualine-lsp-progress
+Plug 'ThePrimeagen/harpoon'
+Plug 'arkav/lualine-lsp-progress'
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
