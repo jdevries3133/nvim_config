@@ -16,7 +16,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.mouse = nil
 vim.opt.guicursor = "i:block"
 
--- MFW company typescript setup be like: https://i.imgur.com/mtGc7Sl.mp4
 vim.cmd('nnoremap <leader>l :LspRestart<CR>')
 
 vim.cmd('nnoremap <leader>nn :NoNeckPain<CR>')
@@ -32,10 +31,6 @@ vim.cmd('nnoremap <leader>nn :NoNeckPain<CR>')
 -- updated to support this setting better, I need to keep cmdheight = 1.
 vim.opt.cmdheight = 1
 
-
--- fix comments; convert `//`-style comments to ` * ...`
-vim.cmd("vnoremap <leader>c :s/\\/\\// */g<CR>");
-
 -- Neovim comes with a default typescript indentation plugin:
 -- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
 -- for comments. It is apparently trying to do prosaic indentation where the
@@ -48,14 +43,6 @@ vim.cmd [[
   augroup END
 ]]
 
-
--- These make italics work inside tmux.
--- See https://gist.github.com/gutoyr/4192af1aced7a1b555df06bd3781a722
-vim.cmd[[
-  set t_ZH=[3m
-  set t_ZR=[23m
-]]
-
 -- Hide all semantic highlights
 -- This is a nice idea, but ts-server is slow AF as it is; I don't want to
 -- wait 3 seconds for syntax highlighting to work.
@@ -65,7 +52,6 @@ vim.cmd[[
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
-
 
 vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
