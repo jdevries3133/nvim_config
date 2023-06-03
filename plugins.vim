@@ -43,6 +43,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'vmchale/just-vim'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'wuelnerdotexe/vim-astro'
 if executable('gh')
     Plug 'ldelossa/litee.nvim'
     Plug 'ldelossa/gh.nvim'
