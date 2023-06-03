@@ -32,9 +32,6 @@ vim.cmd('nnoremap <leader>l :LspRestart<CR>')
 vim.opt.cmdheight = 1
 
 
--- fix comments; convert `//`-style comments to ` * ...`
-vim.cmd("vnoremap <leader>c :s/\\/\\// */g<CR>");
-
 -- Neovim comes with a default typescript indentation plugin:
 -- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
 -- for comments. It is apparently trying to do prosaic indentation where the
