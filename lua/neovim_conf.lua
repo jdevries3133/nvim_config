@@ -2,13 +2,12 @@
 -- config is in this repository because most of it is in `common.vim`, which
 -- must be fetched separately since it's part of my vim config.
 
-if os.getenv('NEOVIM_LIGHT') then
+if os.getenv('NEOVIM_LIGHT') == '1' then
   vim.g.colors_name = "catppuccin-latte"
   vim.opt.background = "light"
 else
   vim.g.colors_name = "catppuccin-mocha"
   vim.opt.background = "dark"
-
 end
 
 vim.opt.laststatus = 3
@@ -19,6 +18,8 @@ vim.opt.guicursor = "i:block"
 
 -- MFW company typescript setup be like: https://i.imgur.com/mtGc7Sl.mp4
 vim.cmd('nnoremap <leader>l :LspRestart<CR>')
+
+vim.cmd('nnoremap <leader>nn :NoNeckPain<CR>')
 
 -- This is the default, but serves as a reminder to set cmdheight = 0 when it
 -- becomes stable. The cmdheight = 0 option was introduced in neovim 0.8, but
@@ -67,3 +68,4 @@ vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
 ]]
 
+vim.cmd('nnoremap <leader>db :DBUI<CR>')

@@ -35,6 +35,7 @@ Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/playground'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'shortcuts/no-neck-pain.nvim', { 'tag': '*' }
 Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dadbod'
