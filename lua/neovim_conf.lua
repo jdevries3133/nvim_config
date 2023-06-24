@@ -43,16 +43,6 @@ vim.cmd [[
   augroup END
 ]]
 
--- Hide all semantic highlights
--- This is a nice idea, but ts-server is slow AF as it is; I don't want to
--- wait 3 seconds for syntax highlighting to work.
---
--- Probably the best thing would be to have some heuristic for toggling this
--- feature off if the LSP is too slow
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-  vim.api.nvim_set_hl(0, group, {})
-end
-
 vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
 ]]
