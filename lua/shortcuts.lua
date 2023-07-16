@@ -1,5 +1,14 @@
+-- Keyboard shortcuts are like a pair of fine leather shoes: the better they
+-- fit to my feet, the more they'll stink for you!
+--
+-- To make this config friendly for forking, here are all the shortcuts I've
+-- defined front-and-center. Some are fairly non-controversial, while others
+-- are more uniquely suited to my workflow.
+
 local M = {}
 
+-- You can delete or comment-out any line here and the mapping will go away;
+-- every mapping is conditionally applied only if it's present in this table!
 M.my_custom_shortcuts = {
   completion_scroll_docs_forward = '<C-f>',
   completion_scroll_docs_back = '<C-b>',
