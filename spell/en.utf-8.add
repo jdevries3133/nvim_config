@@ -145,3 +145,5 @@ JWT
 unmerged
 async
 Astro
+TypeScript
+treesitter
