@@ -19,4 +19,3 @@ require("statusline") -------------------- status line at the bottom of the UI
 require("catppuccin_conf") --------------- very configurable color scheme
 require("dadbod_conf") ------------------- SQL client
 require("firenvim_conf") ----------------- nvim-ify browser textareas
-require("harpoon_conf") ------------------ beefed up global marks

@@ -13,7 +13,6 @@
 call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 
 " general purpose
-Plug 'ThePrimeagen/harpoon'
 Plug 'arkav/lualine-lsp-progress'
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
