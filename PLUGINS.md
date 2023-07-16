@@ -1,29 +1,55 @@
 # Overview & Rationale
 
-There are quite a few plugins in here. I'll use this doc to explain their
-purpose, which will hopefully be helpful for anyone looking to adopt this
+I consider my plugin choices pretty minimal and conservative. Because these are
+well-maintained and extremely popular plugins in the community, they do not
+break; full stop. I know a common neovim complaint is that the plugins can be
+more volatile and chaotic, and to be sure, there are plenty of volatile and
+chaotic plugins an any software ecosystem, but I personally run `:PlugUpdate`
+all the time and very rarely have any issues. Plus, this config is constantly
+evolving, so abandoned plugins get cycled out and new ones get cycled in all
+the time.
+
+# Plugin Overview
+
+## `jdevries3133/vim_config`
+
+Maybe this is the most important bit to understand!! My own vim config is a
+dependency of this config. In `./lua/vim_config_adapter.lua` you'll notice that
+the `common.vim` file from my vim config, the snippets module, and all the
+"after" scripts (which setup custom git-fugitive aliases) are called from this
 config.
 
-The plugins I use strive to provide rich IDE-like features in neovim,
-including:
+This is a bit untraditional, but it's been the most easy and reliable way to
+keep my vim and neovim configs in sync with each other without any weird
+out-of-band assumptions which would harm the portability and ease-of-adoption
+of this config.
 
-- git integration
-- language support
-  - type checking
-  - linting
-  - goto definitino [`gd`]
-  - goto reference [`gr`]
-- debugging (nvim-dap is quite jank but sort of works)
-- good syntax highlighting
-- rich colors
-- SQL client
+**For folks forking this config, there's an important consequence to consider
+--** you'll be a subscriber to all future changes I make to my vim config,
+including breaking your config if the layout of my vim config changes and you
+do not similarly update your own fork of _this_ config.
 
-At the same time, I avoid:
+This is probably the roughest edge for forking this config, but fear not, there
+is a simple fix:
 
-- clunky persistent UI
-- mouse usage
+Fork `jdevries3133/vim_config` on GitHub. You will then have a copy of the repo
+on your own account that you control. Then, you can just replace `jdevries3133`
+to your GitHub username, so that this config depends on _your fork_ of _my vim
+config._
 
-# Plugin Index
+At that point, if you make changes and push them to the main branch of your vim
+config, you'll get those updates also pulled into your neovim config every time
+you run `:PlugUpdate` in neovim.
+
+Alternatively, if you do not use vim at all, another good option is to copy
+over this `common.vim` file, maybe even add the git-fugitive aliases to it,
+source that file in `init.lua`, and forego all of the complexity of these two
+loosely coupled configs. I personally benefit from this complexity because I
+actually do use neovim _and_ vim. The vim config is way, WAY simpler, it runs
+mind-bogglingly fast, and I particularly like to use it for processing logs and
+other gigantic text files that my programming-optimized neovim configuration
+tends to have a tough time with. Plus, sometimes I like to just use vim for a
+bit to ensure my vim-fu remains up-to-snuff.
 
 ## `arkav/lualine-lsp-progress`
 
@@ -34,32 +60,30 @@ its act together, and you'll see output in the status bar during this time.
 
 ## `dcampos/cmp-snippy`
 
-This is an adapter to connect `nvim-snippy` to `cmp-nvim` so it can provide
+This is an adapter to integrate `nvim-snippy` to `cmp-nvim` so it can provide
 completion suggestions.
 
 ## `dcampos/nvim-snippy`
 
-For whatever reason, nvim-cmp, the thing that provides completion suggestions,
-_requires_ a snippet provider. I chose this one. I'm actually surprised that it
-does provide quite a few useful snippets like HTML boilerplate, license
-headers, etc.
+For whatever reason, `nvim-cmp`, the thing that provides completion
+suggestions, _requires_ a snippet provider. I chose this one. I'm actually
+surprised that it does provide quite a few useful snippets like HTML
+boilerplate, license headers, etc.
 
 It's also extendable but I'm not really a big snippet user. I have my own
 [custom snippet
 thing](https://github.com/jdevries3133/vim_config/blob/main/snippets.vim) which
-is good enough for me, although jank enough that I'd suggest using a proper
-snippet plugin if you use snippets a lot.
+is good enough for me, although jank enough compared to real snippet plugins
+that I'd not advise others to use it!
 
 I also know that [luasnip](https://github.com/L3MON4D3/LuaSnip) seems like the
-trendier snippet plugin as of writing, so you might want to swap cmp-snippy out
-for luasnip if you're a snippet lover.
+trendier snippet plugin as of writing, so you might want to swap `cmp-snippy`
+out for `luasnip` if you're a heavy snippet user.
 
 ## `hrsh7th/cmp-buffer`
 
 This looks at the file you're in, looks at the other words in the file, and
-uses that set of words as a completion source. This actually comes in handy
-more than you'd think, for example if you're writing some technical document
-and the same long keyword keeps coming up over and over again.
+uses that set of words as a completion source.
 
 ## `hrsh7th/cmp-nvim-lsp`
 
@@ -70,40 +94,38 @@ in `./lua/cmp_conf.lua`
 
 ## `hrsh7th/cmp-nvim-lsp-signature-help`
 
-This is a fairly recent addition, it shoes function signature information when
+This is a fairly recent addition, it shows function signature information when
 you type the opening parenthesis to a function call just like VS Code.
 
-I was missing this for a long, long time and it drove me truly insane.
+I was missing this for a long, long time and it drove me truly insane and I am
+so happy that I finally figured out how to make neovim do it!
 
 ## `hrsh7th/cmp-path`
 
-This is actually amazing, it provides completion suggestions for paths anytime
-you start typing something that looks like a file path. So if you type `/`, it
-will immediately show you the directories at the root of your machine. `./`, or
-`../../` will similarly provide path completion suggestions from your current
-file.
+Another completion plugin; this provides completion suggestions for file paths
+anytime you start typing something that looks like a file path. So if you type
+`/`, it will immediately show you the directories at the root of your machine.
+`./`, or `../../` will similarly provide path completion suggestions relative
+to the file you're currently editing.
 
-Super helpful for imports in javascript / typescript.
+Super helpful for imports in JavaScript / TypeScript.
 
 ## `hrsh7th/nvim-cmp`
 
-This is the completion provider plugin which provides the UI of completion
-suggestions, and is configured to call out to the previous plugins for
-completion suggestions.
+This is the completion plugin which provides the completion UI and framework
+in which all of the above completion suggestions exist.
 
 ## `kristijanhusak/vim-dadbod-ui`
 
 This provides a UI for `tpope/dadbod.vim`, which is a SQL client for vim. Very,
 very, very nice if you work with SQL. You need to provide connection strings as
 environment variables to get this to work; `DEV_DB_URL`, and `PROD_DB_URL`.
-Once provided, you can open the UI with `:DBUI`.
+Once provided, you can open the UI with `<leader>db` or `:DBUI`.
 
-You can save useful queries, have multiple buffers for composing queries open,
-queries will execute on save, which causes a nice results buffer to open up.
-The results buffer is an infinitely wide non-wrapping vim buffer, so you can
-actually view very wide tables without it becoming incomprehensible spaghetti.
-
-Overall 10/10 if you do any SQL.
+Overall 11/10 if you do any SQL. As a pro-tip: your saved queries will go into
+a directory on your machine. If you find that directory and make it into a git
+repository, you'll get version control for your saved queries, and it'll
+seamlessly integrate with `tpope/vim-fugitive`.
 
 ## `kyazdani42/nvim-web-devicons`
 
@@ -112,19 +134,41 @@ font,"](https://github.com/ryanoasis/nerd-fonts) to put icons all over the
 place, including in the status line and inside telescope when searching for
 things.
 
+You will need to install one of these special fonts on your machine and
+configure your terminal to use that font for this plugin to work.
+
 ## `lewis6991/gitsigns.nvim`
 
-This provides simple git-related decorations, like highlighting numbers on the
-sidebar based on the change status.
+This decorates the sidebar based on git changes.
 
 ## `mfussenegger/nvim-dap`
 
-This is an implementation of the debugger adapter protocol for neovim. It is
-cursed and fraught, see `./lua/dap_conf.lua` for details, and good luck!
+This is an implementation of the debugger adapter protocol for neovim. It took
+a lot of work for me to figure out how to get this thing to work right, but the
+investment was very worth it. If you look in `./lua/dap_conf.lua`, I go deep on
+configuring it. I have had the most success in JavaScript/TypeScript and Python
+environments, and to a lesser extent with Rust / C.
+
+The greatest revelation here is that you can evaluate a selection in the
+debugger context by highlighting some source code in visual mode and using the
+shortcut `<space>v`. So, you can highlight a symbol, hit `<space>v`, and see
+the value. However, you can _also_ highlight an expression or function call,
+and you can even tinker with the code inline and `<space>v` some new source
+code which will be evaluated. You can also press `<space>v`, in normal mode to
+open up a floating window where you can browse all values in scope.
+
+Another favorite feature is jumping through the evaluation stack. A pretty
+basic debugger feature, but being able to do it in neovim is just so enjoyable.
+
+I cannot express how nice it is to be able to debug, edit, and inspect code all
+at the same time and all inside neovim.
 
 # `mxsdev/nvim-dap-vscode-js`
 
-Adapter to connect `nvim-dap` with `vscode-js-debug`.
+Adapter to connect `nvim-dap` with `vscode-js-debug`. `vscode-js-debug` is the
+DAP (debugger) server for Node.js. This is the same technology that is used
+under the hood by VS Code, so it works... well, I wouldn't say great, but
+exactly as good as VS Code!
 
 ## `neovim/nvim-lspconfig`
 
@@ -140,17 +184,23 @@ various other plugins.
 ## `nvim-lualine/lualine.nvim`
 
 This provides the status line at the bottom. It is highly-configurable, and
-configured in `./lua/statusline.lua`, and there are more details about the
-plugin there.
+configured in `./lua/statusline.lua`.
 
 ## `nvim-telescope/telescope.nvim`
 
 This is the "search for stuff in a popup," plugin. It does a lot; see
 `./lua/telescope_conf.lua`.
 
+You can easily discover the many, many things Telescope can search through by
+just typing `:Telescope <tab>` in the command line and perusing all the
+completion options that appear.
+
 ## `nvim-treesitter/nvim-treesitter`
 
-AST parser plugin, mainly used by colorschemes for good syntax highlighting.
+AST parser plugin, whose main purpose is to facilitate syntax highlighting. By
+default, vim uses fairly naive regular expressions for syntax highlighting,
+which are mind-bogglingly slow for large files.
+
 See `./lua/treesitter.lua`.
 
 ## `nvim-treesitter/nvim-treesitter-context`
@@ -167,27 +217,42 @@ parsed, but also super useful if you need to debug treesitter itself.
 ## `rcarriga/nvim-dap-ui`
 
 Provides a UI for the debugger adapter protocol inside neovim. This plugin is
-actually fantastic, but as mentioned before `nvim-dap` itself is cursed, and
-the debugger adapters themselves are quite janky. Details are in
-`./lua/dap_conf.lua`, and good luck debugging; it's been a wild ride.
+excellent, and very configurable. See `./lua/dap_conf.lua`.
+
+## `shortcuts/no-neck-pain.nvim`
+
+A problem: when I am focusing on just one file, vim shoves it to the left side
+of my screen, and I'm looking slightly to the left for hours at a time. Ouch --
+neck pain ensues.
+
+With this plugin, you can just use the shortcut `<leader>nn`, and the text
+buffer(s) you have open will be centered. `<leader>nn` performs a toggling
+action, so you can run it again to re-center.
 
 ## `tommcdo/vim-fugitive-blame-ext`
 
-Provides interactive `:Git blame` which integrates with vim-fugitive.
+Provides interactive `:Git blame` which integrates with vim-fugitive. For
+example, try pressing `<enter>` over a git hash, you will leap into vim
+fugitive exploration.
 
 ## `tpope/vim-commentary`
 
-Allows you to comment things our with the `gc` action in normal mode.
+Allows you to comment things out / in with the `gc` action in normal mode. For
+example `gcc` to comment-out (or in) the current line, or `gca{` to comment out
+everything around the curly braces your cursor is currently inside of.
 
 ## `tpope/vim-dadbod`
 
-Dadbod.vim is a SQL client for vim. Set `DEV_DB_URL` and `PROD_DB_URL` for your
-database to make it work, or take a look at `lua/dadbod_conf.lua` to revise the
-config to meet your needs.
+`Dadbod.vim` is a SQL client for vim.
+
+Take a look at `lua/dadbod_conf.lua` to see how its setup. You are going to
+need to pass database connection URLs into dadbod to enable it to make
+connections, which you can see I do through environment variables since you
+obviously want to take great care to keep that out of version control.
 
 ## `tpope/vim-fugitive`
 
-vim-fugitive is a fantastic git plugin. See its own documentation for how to
+`vim-fugitive` is a fantastic git plugin. See its own documentation for how to
 use it.
 
 ## `tpope/vim-sensible`
@@ -208,32 +273,16 @@ braces, etc. For example:
 | `(value)`     | `cs({`              | change surrounding `(` to `{`   | `{value}`   |
 | `'value'`     | `cs'"`              | change surrounding `'` to `"`   | `"value"`   |
 
-This is clearly quite useful and extensible.
-
-## `vmchale/just-vim`
-
-Simple regex-based syntax highlighting for
-[Justfiles](https://github.com/casey/just)
-
 ## `williamboman/nvim-lsp-installer`
 
 This is a package manager for language support servers. Open it up with
 `:LspInstallInfo`, it makes it very easy to get LSP servers installed and keep
 them up to date.
 
-## `ldelossa/litee.nvim`
+## `wuelnerdotexe/vim-astro`
 
-This is a UI framework from the guy who wrote `gh.nvim`, and it's a dependency.
-
-## `ldelossa/gh.nvim`
-
-This is a plugin for doing github code reviews inside neovim. I only have it
-installed on my personal machine because I use GitLab at work. Moreover, this
-plugin will complain if the github CLI isn't installed on your machine.
-
-Although quite janky and buggy (this was just a quick hobby project for
-somebody), it's super nice to be able to do code reviews inside vim with
-language support, goto definition, etc.
+Provides syntax highlighting for Astro files. If you use Astro, there is also
+an Astro LSP you can install with `nvim-lsp-installer`.
 
 ## `NLKNguyen/papercolor-theme`
 
