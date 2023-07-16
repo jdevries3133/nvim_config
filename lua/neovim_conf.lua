@@ -25,17 +25,6 @@ if shortcuts.toggle_no_neck_pain then
   vim.cmd('nnoremap ' .. shortcuts.toggle_no_neck_pain  ..' :NoNeckPain<CR>')
 end
 
--- This is the default, but serves as a reminder to set cmdheight = 0 when it
--- becomes stable. The cmdheight = 0 option was introduced in neovim 0.8, but
--- it's considered experimental and definitely feels experimental. There are
--- some wonky interactions with plugins where it will show some text and prompt
--- you to press "enter" to make it go away, requiring an extra keystroke to
--- facilitate the zero-height UI at the bottom without causing you to lose
--- important information. This is especially annoying when working with
--- dadbod-ui, for example. Until the ergonomics improve, or the plugins are
--- updated to support this setting better, I need to keep cmdheight = 1.
-vim.opt.cmdheight = 1
-
 -- Neovim comes with a default typescript indentation plugin:
 -- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
 -- for comments. It is apparently trying to do prosaic indentation where the
