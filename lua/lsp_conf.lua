@@ -32,13 +32,15 @@
 
 require("nvim-lsp-installer").setup {}
 
+local shortcuts = require("shortcuts").my_custom_shortcuts
+local apply_shortcut = require("shortcuts").apply_shortcut
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<leader>K', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+apply_shortcut('n', shortcuts.lsp_diagnostic_goto_next, vim.diagnostic.goto_prev, opts)
+apply_shortcut('n', shortcuts.lsp_open_float, vim.diagnostic.goto_next, opts)
+apply_shortcut('n', shortcuts.lsp_diagnostic_set_loclist, vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -49,12 +51,10 @@ local on_attach = function(_, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  apply_shortcut('n', shortcuts.lsp_goto_definition, vim.lsp.buf.definition, bufopts)
+  apply_shortcut('n', shortcuts.lsp_goto_references, vim.lsp.buf.references, bufopts)
+  apply_shortcut('n', shortcuts.lsp_hover, vim.lsp.buf.hover, bufopts)
+  apply_shortcut('n', shortcuts.lsp_rename, vim.lsp.buf.rename, bufopts)
 end
 
 
@@ -114,8 +114,6 @@ require('lspconfig')['dartls'].setup {
 }
 
 local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
 require('lspconfig')['lua_ls'].setup {
   on_attach = on_attach,
   settings = {

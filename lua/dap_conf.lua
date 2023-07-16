@@ -9,6 +9,7 @@
 
 local dap = require('dap')
 local dapui = require('dapui')
+local shortcuts = require('shortcuts').my_custom_shortcuts
 
 --------------------------------- mappings ------------------------------------
 
@@ -38,7 +39,6 @@ set('n', '<space>c', dap.continue, mapopts)
 set('n', '<space>n', dap.step_over, mapopts)
 set('n', '<space>s', dap.step_into, mapopts)
 set('n', '<space>o', dap.step_out, mapopts)
-set('n', '<space>r', dap.run_last, mapopts)
 set('n', '<space>C', dapui.close, mapopts)
 set('n', '<space>O', dapui.open, mapopts)
 set('n', '<space>v', float_scopes, mapopts)

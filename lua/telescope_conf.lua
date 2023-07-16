@@ -6,6 +6,8 @@
 -- might be some that you would like to try tha I don't have keyboared
 -- shortcuts for.
 
+local shortcuts = require('shortcuts').my_custom_shortcuts
+
 require('telescope').setup {
     defaults = {
         layout_strategy = 'vertical',
@@ -25,13 +27,20 @@ require('telescope').setup {
 --
 --     echo '*' > .git/.gitignore
 --
-vim.cmd("nnoremap <leader>tf <cmd>Telescope find_files<cr>")
-vim.cmd("nnoremap <leader>tg <cmd>Telescope live_grep<cr>")
-vim.cmd("nnoremap <leader>tb <cmd>Telescope buffers<cr>")
-vim.cmd("nnoremap <leader>tj <cmd>Telescope jumplist<cr>")
-vim.cmd("nnoremap <leader>tc <cmd>Telescope git_commits<cr>")
-vim.cmd("nnoremap <leader>tr <cmd>Telescope git_branches<cr>")
-vim.cmd("nnoremap <leader>td <cmd>Telescope diagnostics<cr>")
-vim.cmd("nnoremap <leader>tc <cmd>Telescope colorscheme<cr>")
-vim.cmd("nnoremap <leader>tc <cmd>Telescope colorscheme<cr>")
-vim.cmd("nnoremap <leader>ts <cmd>Telescope git_status<cr>")
+
+local function set_mapping(mapping, telescope_command)
+  if not mapping then
+    return
+  end
+  vim.cmd("nnoremap " .. mapping .. " <cmd>Telescope " .. telescope_command .. "<cr>")
+end
+
+set_mapping(shortcuts.telescope_find_files, 'find_files')
+set_mapping(shortcuts.telescope_live_grep, 'live_grep')
+set_mapping(shortcuts.telescope_buffers, 'buffers')
+set_mapping(shortcuts.telescope_jumplist, 'jumplist')
+set_mapping(shortcuts.telescope_git_commits, 'git_commits')
+set_mapping(shortcuts.telescope_git_branches, 'git_branches')
+set_mapping(shortcuts.telescope_lsp_diagnostics, 'diagnostics')
+set_mapping(shortcuts.telescope_colorscheme, 'colorscheme')
+set_mapping(shortcuts.telescope_git_status, 'git_status')
