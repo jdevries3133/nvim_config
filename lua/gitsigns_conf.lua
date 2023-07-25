@@ -1,4 +1,4 @@
 require("gitsigns").setup({
-	numhl = true,
-	signcolumn = true,
+  numhl = true,
+  signcolumn = true,
 })
