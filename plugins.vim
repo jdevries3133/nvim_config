@@ -56,8 +56,8 @@ Plug 'sainnhe/sonokai'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'jvirtanen/vim-hcl'
 
-" my own vim config (non-neovim), which we'll borrow some config files from,
-" see ./lua/vim_config_adapter.lua
+" my own vim config (non-neovim), which we'll borrow some config files from.
+" ./FORKING.md has some details about this quirk & what to do about it!
 Plug 'jdevries3133/vim_config'
 
 
