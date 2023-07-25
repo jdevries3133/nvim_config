@@ -24,32 +24,9 @@ keep my vim and neovim configs in sync with each other without any weird
 out-of-band assumptions which would harm the portability and ease-of-adoption
 of this config.
 
-**For folks forking this config, there's an important consequence to consider
---** you'll be a subscriber to all future changes I make to my vim config,
-including breaking your config if the layout of my vim config changes and you
-do not similarly update your own fork of _this_ config.
-
-This is probably the roughest edge for forking this config, but fear not, there
-is a simple fix:
-
-Fork `jdevries3133/vim_config` on GitHub. You will then have a copy of the repo
-on your own account that you control. Then, you can just replace `jdevries3133`
-to your GitHub username, so that this config depends on _your fork_ of _my vim
-config._
-
-At that point, if you make changes and push them to the main branch of your vim
-config, you'll get those updates also pulled into your neovim config every time
-you run `:PlugUpdate` in neovim.
-
-Alternatively, if you do not use vim at all, another good option is to copy
-over this `common.vim` file, maybe even add the git-fugitive aliases to it,
-source that file in `init.lua`, and forego all of the complexity of these two
-loosely coupled configs. I personally benefit from this complexity because I
-actually do use neovim _and_ vim. The vim config is way, WAY simpler, it runs
-mind-bogglingly fast, and I particularly like to use it for processing logs and
-other gigantic text files that my programming-optimized neovim configuration
-tends to have a tough time with. Plus, sometimes I like to just use vim for a
-bit to ensure my vim-fu remains up-to-snuff.
+Nonetheless, you may not wish to subscribe to _surprise backdoor by Jack_, and
+I don't think you should! [The forking guide](./FORKING.md) has details for what
+to do about this!
 
 ## `arkav/lualine-lsp-progress`
 
