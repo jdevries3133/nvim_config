@@ -1,8 +1,10 @@
--- Native (non-plugin) config that is unique to neovim. Very little "vim-native"
--- config is in this repository because most of it is in `common.vim`, which
--- must be fetched separately since it's part of my vim config.
+-- Most of my "generic" vim config preferences are in the
+-- [`common.vim`](https://github.com/jdevries3133/vim_config/blob/main/common.vim)
+-- file of my vim config. Thus, there are only a very few lingering items here
+-- which are my neovim-specific ad-hoc config items.
 
 local shortcuts = require("shortcuts").my_custom_shortcuts
+local apply_shortcut = require("shortcuts").apply_shortcut
 
 if os.getenv('NEOVIM_LIGHT') == '1' then
   vim.g.colors_name = "catppuccin-latte"
@@ -18,12 +20,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.mouse = nil
 vim.opt.guicursor = "i:block"
 
-if shortcuts.lsp_restart then
-  vim.cmd('nnoremap ' .. shortcuts.lsp_restart .. ' :LspRestart<CR>')
-end
-if shortcuts.toggle_no_neck_pain then
-  vim.cmd('nnoremap ' .. shortcuts.toggle_no_neck_pain  ..' :NoNeckPain<CR>')
-end
+apply_shortcut('nnoremap ' .. shortcuts.lsp_restart .. ' :LspRestart<CR>')
+apply_shortcut('nnoremap ' .. shortcuts.toggle_no_neck_pain  ..' :NoNeckPain<CR>')
 
 -- Neovim comes with a default typescript indentation plugin:
 -- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
