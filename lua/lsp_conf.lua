@@ -7,7 +7,7 @@
 -- use; you need to pass the on_attach callback into each one so that the
 -- keyboard shortcuts will be setup for that buffer. This configuration is at
 -- the bottom of the module and you'll find that the LSP you want is probably
--- already configured. 
+-- already configured.
 --
 -- These are the LSPs that are 100% configured; you don't need to make a config
 -- change to use them:
@@ -45,7 +45,7 @@ apply_shortcut('n', shortcuts.lsp_diagnostic_set_loclist, vim.diagnostic.setlocl
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
+  -- Enable completion triggered by <c-x><c-o> in insert mode
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -55,6 +55,11 @@ local on_attach = function(_, bufnr)
   apply_shortcut('n', shortcuts.lsp_goto_references, vim.lsp.buf.references, bufopts)
   apply_shortcut('n', shortcuts.lsp_hover, vim.lsp.buf.hover, bufopts)
   apply_shortcut('n', shortcuts.lsp_rename, vim.lsp.buf.rename, bufopts)
+  -- Note: the JavaScript ecosystem has no official code formatter so this
+  -- might not work right. If you try to use this, it will dispatch to the
+  -- formatting behavior of ts-server, which may not be the code formatter you
+  -- want or use.
+  apply_shortcut('n', shortcuts.lsp_format, vim.lsp.buf.format, opts)
 end
 
 

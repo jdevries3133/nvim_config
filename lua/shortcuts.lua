@@ -36,6 +36,11 @@ M.my_custom_shortcuts = {
   lsp_goto_definition = 'gd',
   lsp_goto_references = 'gr',
   lsp_hover = 'K',
+  -- Note: the JavaScript ecosystem has no official code formatter so this
+  -- might not work right. If you try to use this, it will dispatch to the
+  -- formatting behavior of ts-server, which may not be the code formatter you
+  -- want or use.
+  lsp_format = '<leader>lf',
   lsp_open_float = '<leader>K',
   lsp_restart = '<leader>l',
   lsp_rename = '<leader>rn',
