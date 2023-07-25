@@ -10,6 +10,7 @@
 local dap = require('dap')
 local dapui = require('dapui')
 local shortcuts = require('shortcuts').my_custom_shortcuts
+local apply_shortcut = require('shortcuts').apply_shortcut
 
 --------------------------------- mappings ------------------------------------
 
@@ -31,18 +32,16 @@ local function float_scopes()
   })
 end
 
-local set = vim.keymap.set
-
-set('n', '<space>b', dap.toggle_breakpoint, mapopts)
-set('n', '<space>B', setup_conditional_breakpoint, mapopts)
-set('n', '<space>c', dap.continue, mapopts)
-set('n', '<space>n', dap.step_over, mapopts)
-set('n', '<space>s', dap.step_into, mapopts)
-set('n', '<space>o', dap.step_out, mapopts)
-set('n', '<space>C', dapui.close, mapopts)
-set('n', '<space>O', dapui.open, mapopts)
-set('n', '<space>v', float_scopes, mapopts)
-set('v', '<space>v', dapui.eval, mapopts)
+apply_shortcut('n', shortcuts.dap_toggle_breakpoint, dap.toggle_breakpoint, mapopts)
+apply_shortcut('n', shortcuts.dap_set_conditional_breakpoint, setup_conditional_breakpoint, mapopts)
+apply_shortcut('n', shortcuts.dap_continue, dap.continue, mapopts)
+apply_shortcut('n', shortcuts.dap_step_over, dap.step_over, mapopts)
+apply_shortcut('n', shortcuts.dap_step_into, dap.step_into, mapopts)
+apply_shortcut('n', shortcuts.dap_step_out, dap.step_out, mapopts)
+apply_shortcut('n', shortcuts.dap_ui_close, dapui.close, mapopts)
+apply_shortcut('n', shortcuts.dap_ui_open, dapui.open, mapopts)
+apply_shortcut('n', shortcuts.dap_float_scopes, float_scopes, mapopts)
+apply_shortcut('v', shortcuts.dap_visual_mode_eval, dapui.eval, mapopts)
 
 -- We will always try to load launch.json files if they're present; I find
 -- this generally better than catchall configs (like I have above for python).
@@ -105,8 +104,8 @@ dapui.setup({
     },
   },
   floating = {
-    max_height = nil, -- These can be integers or a float between 0 and 1.
-    max_width = nil, -- Floats will be treated as percentage of your screen.
+    max_height = nil,  -- These can be integers or a float between 0 and 1.
+    max_width = nil,   -- Floats will be treated as percentage of your screen.
     border = "single", -- Border style. Can be "single", "double" or "rounded"
     mappings = {
       close = { "q", "<Esc>" },
@@ -140,9 +139,9 @@ end
 -- command line works in order for neovim to be able to discover the module.
 
 dap.adapters.python = {
-  type = 'executable';
-  command = 'python3';
-  args = { '-m', 'debugpy.adapter' };
+  type = 'executable',
+  command = 'python3',
+  args = { '-m', 'debugpy.adapter' },
 }
 
 dap.configurations.python = {
@@ -180,7 +179,7 @@ dap.configurations.python = {
 require("dap-vscode-js").setup({
   debugger_path = os.getenv("HOME") .. "/repos/vscode-js-debug",
   -- which adapters to register in nvim-dap
-  adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, 
+  adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
   log_file_path = os.getenv("HOME") .. "/.cache/nvim/dap_vscode_js.log"
 })
 
@@ -197,22 +196,22 @@ require("dap-vscode-js").setup({
 -- Then, execute `codelldb --port 13000` before and during any debugging
 -- sessions. This just needs to be running in the background somewhere.
 dap.adapters.codelldb = {
-    type = 'server',
-    host = '127.0.0.1',
-    port = 13000
+  type = 'server',
+  host = '127.0.0.1',
+  port = 13000
 }
 
 dap.configurations.c = {
-    {
-        type = 'codelldb',
-        request = 'launch',
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
-        end,
-        --program = '${fileDirname}/${fileBasenameNoExtension}',
-        cwd = '${workspaceFolder}',
-        terminal = 'integrated'
-    }
+  {
+    type = 'codelldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    --program = '${fileDirname}/${fileBasenameNoExtension}',
+    cwd = '${workspaceFolder}',
+    terminal = 'integrated'
+  }
 }
 
 dap.configurations.cpp = dap.configurations.c
@@ -232,4 +231,3 @@ dap.configurations.cpp = dap.configurations.c
 --         sourceLanguages = { 'rust' }
 --     }
 -- }
-
