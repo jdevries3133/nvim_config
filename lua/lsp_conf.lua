@@ -1,34 +1,19 @@
 -- LSP = language server protocol.
 --
--- The mappings section at the top is most relevant for day-to-day usage. Also
--- the most likey thing you might want to change around.
+-- This is where the fancy IDE-like magic happens.
 --
--- A very tiny 1-line config is required for the language servers you plan to
--- use; you need to pass the on_attach callback into each one so that the
--- keyboard shortcuts will be setup for that buffer. This configuration is at
--- the bottom of the module and you'll find that the LSP you want is probably
--- already configured.
+-- Neovim itself is an LSP client, it talks to the LSP server. The LSP server
+-- is where all the language-specific code smartness is implemented, which
+-- obviously varies between different languages.
+-- 
+-- I have a plugin for managing installation of LSP servers. For the most part,
+-- if you want neovim to Get Smart™️, you just need to run `:LspInstallInfo`.
+-- That'll pop open a UI where you can install all the language servers your
+-- heart desires.
 --
--- These are the LSPs that are 100% configured; you don't need to make a config
--- change to use them:
---
--- | Server        | Language(s)                          |
--- | ------------- | ------------------------------------ |
--- | pyright       | python                               |
--- | tsserver      | Javascript / Typescript              |
--- | eslint        | Javascript / Typescript (linting)    |
--- | rust_analyzer | Rust                                 |
--- | clangd        | C / C++                              |
--- | dockerls      | Dockerfiles                          |
--- | dartls        | Dart                                 |
--- | lua_ls        | lua                                  |
--- | tailwindcss   | everywhere tailwind classes are used |
---
--- One last step: when you're happy with the keyboard shortcuts and checked that
--- your language is in the table above, you do need to install the actual LSP
--- program on your machine. nvim-lsp-installer makes this extremely easy, just
--- run `LspInstallInfo` to get a list of all servers it can install. Just
--- scroll to the server you want, and press `i` to install it.
+-- Notice that at the bottom there are ~3 lines of boilerplate which every
+-- language you use is going to need to register your keyboard shortcuts.
+-- You may need to add languages there if you use ones that I do not.
 
 require("nvim-lsp-installer").setup {}
 
