@@ -8,7 +8,8 @@ required:
 
 ```bash
 # you need to peek in ./lua/dap_conf.lua if you want to use a different local
-# path for your DAP server
+# path for your DAP server, but I let mine live at $HOME/repos/vscode-js-debug,
+# and you should consider doing the same!
 mkdir ~/repos
 cd ~/repos
 
@@ -27,15 +28,7 @@ npm run compile
 You're then good to go! You'll notice that the [dap config](./lua/dap_conf.lua)
 references the path to `~/repos/vscode-js-debug`, and you can launch the
 debugger with `<space>c`. All of my debugger shortcuts are prefixed by
-`<space>`:
-
-- `<space>c`: Continue (also starts a session, also can end a session if a
-  session is active)
-- `<space>C`: Close nvim-dap UI (but does not stop debugging session!)
-- `<space>O`: Open nvim-dap UI
-- `<space>s`: Step
-- `<space>b`: Set breakpoint
-- `<space>B`: Set conditional breakpoint
+`<space>`. See the [shortcuts module](./lua/shortcuts.lua) to learn more.
 
 ## DAP Configurations
 
