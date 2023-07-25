@@ -10,7 +10,15 @@
 -- a super cool playground thing that will show you the information coming
 -- from treesitter side-by-side with your current source file, and you'll
 -- probably learn a thing or two about how your programming language is parsed
--- while yuo're at it!
+-- while you're at it!
+--
+-- Also notice that I have a fairly extensive list of `ensure_installed`
+-- languages. These will be installed if missing as soon as you open neovim
+-- for the first time.
+--
+-- Keep in mind, treesitter uses some pretty wild native dynamically loaded
+-- C libraries under the hood, so things can get kind of weird. `:TSUpdate` and
+-- `:TSUninstall` are your friends here for, "turning it off and on again."
 
 require("treesitter-context").setup{
     enable = true,
