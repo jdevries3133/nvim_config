@@ -1,14 +1,18 @@
 -- Keyboard shortcuts are like a pair of fine leather shoes: the better they
--- fit to my feet, the more they'll stink for you!
+-- fit to my feet, the more they'll stink for you! To make this config
+-- friendly for forking, here are all the shortcuts I've defined
+-- front-and-center.
 --
--- To make this config friendly for forking, here are all the shortcuts I've
--- defined front-and-center. Some are fairly non-controversial, while others
--- are more uniquely suited to my workflow.
+-- I strongly recommend commenting out all of these if you fork my config. When
+-- you are ready to learn part of my config, comment-in and learn one or two
+-- shortcuts at a time. Ideally, CHANGE the actual shortcut to a value that
+-- makes sense for you.
 
 local M = {}
 
--- You can delete or comment-out any line here and the mapping will go away;
--- every mapping is conditionally applied only if it's present in this table!
+-- You can safely delete or comment-out any line here and the mapping will go
+-- away; every mapping is conditionally applied only if it's present in this
+-- table!
 M.my_custom_shortcuts = {
   completion_scroll_docs_forward = '<C-f>',
   completion_scroll_docs_back = '<C-b>',
@@ -57,13 +61,13 @@ M.my_custom_shortcuts = {
 }
 
 -- Wrapper around `vim.keymap.set` that will automatically not apply the
--- shortcut if it is `nil`. This is good for using shortcuts from the above
--- mapping, because they will become automatically "disabled" in a uniform way
--- if the line from the mapping is simply deleted or commented-out
+-- shortcut if it is `nil`. At callsites, we generally apply the shortcuts in
+-- the above table through this wrapper to make it easy for forkers to
+-- get a good comment-out workflow for finding shortcuts that work for them.
 --
--- Note that there are some consumers who do not use these shortcuts via this
--- utility. For example, ./cmp_conf.lua, where the configuration pattern does
--- not use `vim.keymap.set`
+-- Clearly, after you have forked and start to more personally adopt this
+-- config, this indirection doesn't really continue to do you any good, unless
+-- you want to become a neovim evangelist like myself.
 function M.apply_shortcut(mode, shortcut, func, options)
   if shortcut then
     vim.keymap.set(mode, shortcut, func, options)
