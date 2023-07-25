@@ -146,6 +146,7 @@ unmerged
 async
 Astro
 TypeScript
+treesitter
 entrypoint
 Todos
 callsite

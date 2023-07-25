@@ -11,12 +11,9 @@ require("lsp_conf") ---------------------- languages server protocol
 require("dap_conf") ---------------------- debugger adapter protocol
 require("cmp_conf") ---------------------- neovim-cmp (completion suggestions)
 require("treesitter") -------------------- language parser; try :TSPlaygroundToggle!
-require("gh") ---------------------------- github code review plugin
 require("git_remote_open_file").setup() -- my own custom "gitlab file opener" plugin
 require("gitsigns_conf") ----------------- git decorations, like sidebar colors
 require("telescope_conf") ---------------- telescope is a pop-up search tool
 require("statusline") -------------------- status line at the bottom of the UI
 require("catppuccin_conf") --------------- very configurable color scheme
 require("dadbod_conf") ------------------- SQL client
-require("firenvim_conf") ----------------- nvim-ify browser textareas
-require("harpoon_conf") ------------------ beefed up global marks

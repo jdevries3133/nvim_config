@@ -1,16 +1,18 @@
 # Debugger Adapter Protocol
 
-Holy frick I actually got DAP to work with Javascript / Typescript and I could
+Holy frick I actually got DAP to work with JavaScript / Typescript and I could
 not be more elated.
 
 Most of the setup happens on `:PlugInstall`, but some additional assembly is
 required:
 
 ```bash
+# you need to peek in ./lua/dap_conf.lua if you want to use a different local
+# path for your DAP server
 mkdir ~/repos
 cd ~/repos
 
-# This is the debugger adapter for node, you need to install it manually
+# This is the debugger adapter for node, you need to build it from source
 git clone https://github.com/microsoft/vscode-js-debug.git
 cd vscode-js-debug
 
@@ -62,6 +64,6 @@ for VS Code users the same way they work for you. If you have a lot of peers
 that use VS Code, this is a huge win, because you can maintain a debugging
 setup for your project(s) that work for everyone.
 
-Nonetheless for languages that are not convoluted (aka, not Javascript), a
+Nonetheless for languages that are not convoluted (aka, not JavaScript), a
 general-purpose DAP config can work. For example, you'll notice that my own
 config has a general-purpose config for python!

@@ -13,7 +13,6 @@
 call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 
 " general purpose
-Plug 'ThePrimeagen/harpoon'
 Plug 'arkav/lualine-lsp-progress'
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
@@ -43,13 +42,8 @@ Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'vmchale/just-vim'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'wuelnerdotexe/vim-astro'
-if executable('gh')
-    Plug 'ldelossa/litee.nvim'
-    Plug 'ldelossa/gh.nvim'
-endif
 
 " colorschemes
 Plug 'NLKNguyen/papercolor-theme'

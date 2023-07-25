@@ -11,6 +11,10 @@ posts](https://jackdevries.com/post/vimTutorial) just for you! The most
 important TL;DR is to start by learning the vim editing shortcuts by using a
 vim plugin for your current editor, so go do that now if you haven't already!
 
+## Forking
+
+Are you thinking of forking this config? See ./FORKING.md for a guide!
+
 ## Background
 
 Here are some highlights about myself and this config so that you can decide
@@ -48,15 +52,10 @@ other, why they're important to my workflow, etc.
 
 ## Setup
 
-> ⚠️ On startup, there will be a barrage of errors until you've completed all
-> these steps!
+> ⚠️ On startup, there will be a barrage of errors until you've completed each
+> of these steps!
 
-## `DAP.md`
-
-Some additional setup is required for debugging inside neovim. See
-[DAP.md](./DAP.md) for details.
-
-### Clone the Repo
+### Step 1: Clone this Repo
 
 Clone this whole repository into `~/.config/nvim`. This will only work if the
 folder is currently empty, so move any existing config into a different
@@ -67,22 +66,64 @@ mkdir -p $XDG_CONFIG_HOME/nvim
 git clone https://github.com/jdevries3133/nvim_config.git $XDG_CONFIG_HOME/nvim
 ```
 
-### vim-plugged
+I strongly recommend you also fork the repository on GitHub to make it easy to
+accept patches from me, as this config is a living codebase!
 
+### Step 2: Install the Package Manager, `vim-plugged`
 Install [vim-plugged](https://github.com/junegunn/vim-plug) according to their
-installation instructions. It's just a quick shell command for your machine.
+installation instructions. It's just a quick shell command to download a bit of
+vim script.
 
-Then, open neovim for the first time. You'll see a bunch of errors on initial
-startup, this is expected. Run the `:PlugInstall` to install all the plugins.
-After the process is complete, close and open neovim. Now, you should expect no
-errors. If there are still issues, try `:PlugInstall` a second time; I've
-noticed that there are sometimes race conditions with plugins that depend on
-each other being installed in the wrong order during initial setup, which is
-why you might need to install more than once to get everything into a healthy
-state. In the future, you can update plugins with `:PlugUpdate`, which you
-should do regularly. If you update and have an issue, pull from upstream; maybe
-I fixed it! If not, open an issue on the repo, I'd love to know about it and
-fix it!
+Then, open neovim for the first time. **You'll see a bunch of errors on initial
+startup, this is expected until plugins are installed.** Run `:PlugInstall` to
+install all the plugins. After the process is complete, close and open neovim.
+Now, you should expect no errors. Now, run `:PlugUpdate` on a regular basis
+(ideally every 1-2 weeks at minimum).
+
+The plugins I've chosen are pretty stable and drama-free but if you ever have
+an issue updating a plugin feel free to open an issue against this repo,
+because it's probably going to be a problem for both of us!
+
+### Step 3 (optional): Environment Variables
+
+Some secrets and configuration options can be provided through environment
+variables.
+
+#### `$DEV_DB_URL`, `$PROD_DB_URL`
+
+Connection strings for your "prod" and "dev" databases. Obviously, you might
+have 1 database, 100 databases, who knows... it's very simple to configure
+`datadbod.vim` for as many databases as you need; see `./lua/dadbod_conf.lua`.
+
+#### `$NVIM_USE_EMMET_LS`
+
+I have a love/hate relationship with Emmet language server. It's great if
+you're writing tons of markup. It's super annoying if you're working in a React
+codebase and also not creating a ton of UI, which is basically how most of my
+JSX time is spent at work. So, I have an environment variable to configure
+this.
+
+#### `$NEOVIM_LIGHT`
+
+When set, you'll get a light colorscheme. Sue me, I work outside sometimes!
+
+
+#### `$GIT_REPO_BASE_URL`
+
+This is used by my home-grown plugin. If you are using github or gitlab,
+`:Gopen` will open up the current file in your web browser, which I use many
+times every day to send a reference to part of the codebase to a colleague and
+it might be one of my favorite things in this whole config.
+
+It's a pretty naive plugin - it's sensitive to working directory, for example,
+and I could think of easy improvements, so take a look at how it's actually
+implemented before you try to use it, and feel free to submit upstream patches
+or extract it out into a first-class plugin if you make it better!
+
+## Overview
+
+Now that you're all setup, let's take a tour of the high-level items this
+config provides.
 
 ### LSP & Treesitter
 
@@ -115,36 +156,13 @@ to get the exact names of all the parsers that are available.
 Ensure you are using a terminal with TrueColor support. On macOS, the default
 "Terminal.app," does not. I prefer to use iTerm2 instead.
 
-## Environment Variables
 
-Some secrets and configuration options can be provided through environment
-variables.
+## `DAP.md`
 
-For the [vim-dadbod plugin](https://github.com/tpope/vim-dadbod), there are
-environment variables to provide connection strings for production and
-development databases. This is the paradigm I use at work, but ideally I'd
-probably prefer to make this more dynamic in the future.
+"Debugger Adapter Protocol" -- debug inside neovim!
 
-**`DEV_DB_URL`** is the connection string for your development database, which
-you can interact with `:DBUI` ()
-
-**`PROD_DB_URL`** is the connection string for your production database
-
-**`NVIM_USE_EMMET_LS`** toggles the emmet language server on or off. [Emmet
-abbreviations](https://docs.emmet.io/abbreviations/) are extraordinarily useful
-if you are writing a high volume of html, and extraordinarily annoying if not,
-since they'll also show up in React jsx/tsx completion suggestions.
-
-**`GIT_REPO_BASE_URL`** is used by my home-grown script. If you are using github
-or gitlab, `:Gopen` will open up the current file in your web browser, which I
-use many times every day to send a reference to part of the codebase to a
-colleague and it might be one of my favorite things in this whole config. If
-you pay attention, Github and Gitlab have url patterns where the relative path
-to the file is at the end, so if you just set the base url appropriately, this
-plugin will work for any project. Of course, if you move between projects you
-might need a shell hook to update this variable as needed. The script also
-doesn't look at the current git branch, which would be necessary for a robust
-implementation. If you add that feature, please submit a PR!
+Some additional setup is required for debugging inside neovim. See
+[DAP.md](./DAP.md) for details.
 
 ## Maintenance
 
