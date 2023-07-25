@@ -16,7 +16,6 @@ call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
 Plug 'arkav/lualine-lsp-progress'
 Plug 'dcampos/cmp-snippy'
 Plug 'dcampos/nvim-snippy'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
