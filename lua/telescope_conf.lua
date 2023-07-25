@@ -23,24 +23,25 @@ require('telescope').setup {
 }
 
 -- Note: the `fd` file-finder searches through stuff in `.git`, but acknowledges
--- `.gitignore` files. To make it be not-stupid inside git repos, just do:
+-- `.gitignore` files. To make it be not-stupid inside git repos, a handy
+-- hack is:
 --
 --     echo '*' > .git/.gitignore
 --
 
-local function set_mapping(mapping, telescope_command)
+local function telescope_shortcut(mapping, telescope_command)
   if not mapping then
     return
   end
   vim.cmd("nnoremap " .. mapping .. " <cmd>Telescope " .. telescope_command .. "<cr>")
 end
 
-set_mapping(shortcuts.telescope_find_files, 'find_files')
-set_mapping(shortcuts.telescope_live_grep, 'live_grep')
-set_mapping(shortcuts.telescope_buffers, 'buffers')
-set_mapping(shortcuts.telescope_jumplist, 'jumplist')
-set_mapping(shortcuts.telescope_git_commits, 'git_commits')
-set_mapping(shortcuts.telescope_git_branches, 'git_branches')
-set_mapping(shortcuts.telescope_lsp_diagnostics, 'diagnostics')
-set_mapping(shortcuts.telescope_colorscheme, 'colorscheme')
-set_mapping(shortcuts.telescope_git_status, 'git_status')
+telescope_shortcut(shortcuts.telescope_find_files, 'find_files')
+telescope_shortcut(shortcuts.telescope_live_grep, 'live_grep')
+telescope_shortcut(shortcuts.telescope_buffers, 'buffers')
+telescope_shortcut(shortcuts.telescope_jumplist, 'jumplist')
+telescope_shortcut(shortcuts.telescope_git_commits, 'git_commits')
+telescope_shortcut(shortcuts.telescope_git_branches, 'git_branches')
+telescope_shortcut(shortcuts.telescope_lsp_diagnostics, 'diagnostics')
+telescope_shortcut(shortcuts.telescope_colorscheme, 'colorscheme')
+telescope_shortcut(shortcuts.telescope_git_status, 'git_status')
