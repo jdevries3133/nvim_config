@@ -14,11 +14,12 @@ else
   vim.opt.background = "dark"
 end
 
+vim.o.termguicolors = true
+vim.opt.guicursor = "i:block"
 vim.opt.laststatus = 3
+vim.opt.mouse = nil
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
-vim.opt.mouse = nil
-vim.opt.guicursor = "i:block"
 
 apply_shortcut('nnoremap ' .. shortcuts.lsp_restart .. ' :LspRestart<CR>')
 apply_shortcut('nnoremap ' .. shortcuts.toggle_no_neck_pain  ..' :NoNeckPain<CR>')
