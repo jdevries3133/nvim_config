@@ -10,7 +10,7 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
+call plug#begin('$HOME/.config/nvim/plugged')
 
 " general purpose
 Plug 'arkav/lualine-lsp-progress'

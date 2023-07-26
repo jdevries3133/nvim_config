@@ -3,7 +3,7 @@
 
 -- ./plugins.vim contains the plugin list for vim-plug, a package manager for
 -- vim plugins
-vim.cmd("source $XDG_CONFIG_HOME/nvim/plugins.vim")
+vim.cmd("source $HOME/.config/nvim/plugins.vim")
 
 require("neovim_conf") ------------------- general purpose neovim-specific
 require("vim_config_adapter") ------------ sources stuff from vim config (~/.vim)

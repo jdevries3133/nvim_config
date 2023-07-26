@@ -60,16 +60,31 @@ other, why they're important to my workflow, etc.
 > ⚠️ On startup, there will be a barrage of errors until you've completed each
 > of these steps!
 
+Git and a C compiler are required system prerequisites.
+
 ### Step 1: Clone this Repo
 
-Clone this whole repository into `$XDG_CONFIG_HOME/.config/nvim`. It is
-important that you clone this repository into that exact directory, since it's
-where neovim config lives on your machine. On unix-like systems,
-`$XDG_CONFIG_HOME` is typically `~/.config`.
+Clone this whole repository into `$HOME/.config/nvim`. It is important that you
+clone this repository into that exact directory, since it's where neovim config
+lives on your machine.
+
+<details>
+<summary>Caveat</summary>
+
+Technically `$XDG_CONFIG_HOME/nvim` is where neovim config should be, which may
+vary in location, especially on windows, which I know quite little about. On
+unix-like systems, though, `$XDG_CONFIG_HOME` will be `$HOME/.config`.
+
+I am wishy-washy about this throughout; i.e, in [init.lua](./init.lua), you can
+see that the `plugins.vim` file is sourced. I do similar things in
+[plugins.vim](./plugins.vim) and [the vim adapter
+module](./lua/vim_config_adapter.lua)
+
+</details>
 
 ```bash
-mkdir -p $XDG_CONFIG_HOME/nvim
-git clone https://github.com/jdevries3133/nvim_config.git $XDG_CONFIG_HOME/nvim
+mkdir -p $HOME/.config/nvim
+git clone https://github.com/jdevries3133/nvim_config.git $HOME/.config/nvim
 ```
 
 I strongly recommend you also fork the repository on GitHub. Start your own git
