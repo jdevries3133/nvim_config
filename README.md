@@ -13,7 +13,8 @@ vim plugin for your current editor, so go do that now if you haven't already!
 
 ## Forking
 
-Are you thinking of forking this config? See ./FORKING.md for a guide!
+Are you thinking of forking this config? Check out [the forking
+guide!](./FORKING.md)
 
 ## Background
 
@@ -21,8 +22,8 @@ Here are some highlights about myself and this config so that you can decide
 whether my config is right for you:
 
 - I try to ["grok vi"](https://stackoverflow.com/a/1220118)
-  - I strive to use the things "included" with vim instead of building my own
-    hacks
+  - I strive to use the things "included" with vim, and never intentionally
+    overwrite built-in vim features with bad shortcuts
   - I understand what vim doesn't do, and use plugins as necessary to build out
     a rich development environment
 - I am a web programmer who also dabbles in systems a bit; there is good
@@ -34,15 +35,19 @@ whether my config is right for you:
 - I use this config all day every day at work - it's battle tested and
   continuously improving
 
-In sum, this isn't a quick slew of trendy plugins thrown together for a YouTube
-tutorial. It's a well-composed whole that works. Any bugs or rough spots are
-patched almost immediately because I'll see them, feel the pain, and fix it.
+This plugin is a thoughtfully assembled and well-composed whole that just works.
+Any bugs or rough spots are patched almost immediately because I'll see them,
+feel the pain, and fix it.
 
 As a downstream user, you'll get a config that is good and stays good, and
 there's more than enough information for you to extend it to your liking, and
 make it your own. In fact, you'll find that a majority of this code doesn't do
 anything too opinionated. Most of it is just the boring stuff that you'd tear
-your hair out trying to cobble together.
+your hair out trying to cobble together yourself.
+
+## `FORKING.md`
+
+This config is forkable by design! Look at [the forking guide.](./FORKING.md)
 
 ## `PLUGINS.md`
 
@@ -57,19 +62,22 @@ other, why they're important to my workflow, etc.
 
 ### Step 1: Clone this Repo
 
-Clone this whole repository into `~/.config/nvim`. This will only work if the
-folder is currently empty, so move any existing config into a different
-location for now.
+Clone this whole repository into `$XDG_CONFIG_HOME/.config/nvim`. It is
+important that you clone this repository into that exact directory, since it's
+where neovim config lives on your machine. On unix-like systems,
+`$XDG_CONFIG_HOME` is typically `~/.config`.
 
 ```bash
 mkdir -p $XDG_CONFIG_HOME/nvim
 git clone https://github.com/jdevries3133/nvim_config.git $XDG_CONFIG_HOME/nvim
 ```
 
-I strongly recommend you also fork the repository on GitHub to make it easy to
-accept patches from me, as this config is a living codebase!
+I strongly recommend you also fork the repository on GitHub. Start your own git
+history, and then it will also be easy to accept new patches from my upstream,
+or even to submit pull requests back to me!
 
 ### Step 2: Install the Package Manager, `vim-plugged`
+
 Install [vim-plugged](https://github.com/junegunn/vim-plug) according to their
 installation instructions. It's just a quick shell command to download a bit of
 vim script.
@@ -77,12 +85,11 @@ vim script.
 Then, open neovim for the first time. **You'll see a bunch of errors on initial
 startup, this is expected until plugins are installed.** Run `:PlugInstall` to
 install all the plugins. After the process is complete, close and open neovim.
-Now, you should expect no errors. Now, run `:PlugUpdate` on a regular basis
-(ideally every 1-2 weeks at minimum).
-
-The plugins I've chosen are pretty stable and drama-free but if you ever have
-an issue updating a plugin feel free to open an issue against this repo,
-because it's probably going to be a problem for both of us!
+Now, you should expect no errors. If neovim is still sad, running `:PlugInstall`
+again and restarting neovim is a good troubleshooting step. If you still have an
+issue, try `:checkhealth` and see if neovim is disappointed in your computer. If
+the cause of the issue remains unclear, open and issue or reach out to me, I'm
+happy to help if I can!
 
 ### Step 3 (optional): Environment Variables
 
@@ -92,8 +99,9 @@ variables.
 #### `$DEV_DB_URL`, `$PROD_DB_URL`
 
 Connection strings for your "prod" and "dev" databases. Obviously, you might
-have 1 database, 100 databases, who knows... it's very simple to configure
-`datadbod.vim` for as many databases as you need; see `./lua/dadbod_conf.lua`.
+have 1 database, 100 databases, who knows... it's very simple to break down this
+dichotomy and configure `dadbod.vim` for as many databases as you need; see
+`./lua/dadbod_conf.lua`.
 
 #### `$NVIM_USE_EMMET_LS`
 
@@ -120,58 +128,15 @@ and I could think of easy improvements, so take a look at how it's actually
 implemented before you try to use it, and feel free to submit upstream patches
 or extract it out into a first-class plugin if you make it better!
 
-## Overview
-
-Now that you're all setup, let's take a tour of the high-level items this
-config provides.
-
-### LSP & Treesitter
-
-LSP stands for language support server. It provides intelligent code completion
-suggestions, documentation on "hover" (pressing `K` in normal mode), etc. Run
-`:LspInstallInfo` to see which LSPs you have installed, and which ones are
-available. Install LSPs for the languages you use. There are more details in
-`./lua/lsp_conf.lua`.
-
-Treesitter parses languages to create an abstract syntax tree (AST). This
-provides perfect syntax highlighting. Per this config, the following languages
-are installed by default:
-
-- `c`
-- `vimscript`
-- `lua`
-- `rust`
-- `javascript`
-- `typescript`
-- `bash`
-- `git` (`.gitignore`, `GIT_COMMIT`, etc.)
-- `diff` ()
-
-You can add more for the languages you use by including them in the
-`ensure_installed` table inside `./lua/treesitter.lua`. View `:TSInstallInfo`
-to get the exact names of all the parsers that are available.
-
-## Colors
-
-Ensure you are using a terminal with TrueColor support. On macOS, the default
-"Terminal.app," does not. I prefer to use iTerm2 instead.
-
-
-## `DAP.md`
-
-"Debugger Adapter Protocol" -- debug inside neovim!
-
-Some additional setup is required for debugging inside neovim. See
-[DAP.md](./DAP.md) for details.
-
 ## Maintenance
 
-All of these manual plugin steps are generally followed by manual updates!
+On an ongoing basis, you'll need to keep things updated. These are the typical
+maintenance items:
 
 - Make sure your neovim version itself stays up to date.
 - Make sure you run `:PlugUpdate` to update all plugins often
-- `:LspInstallInfo` will tell you about any out-of-date language servers so you
-  can keep those updated
+- `:LspInstallInfo` will tell you about any out-of-date language servers and
+  facilitate updating them
 - `:TSUpdate` will update Treesitter parsers
 
 # Any Issues?
