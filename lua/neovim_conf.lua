@@ -4,7 +4,6 @@
 -- which are my neovim-specific ad-hoc config items.
 
 local shortcuts = require("shortcuts").my_custom_shortcuts
-local apply_shortcut = require("shortcuts").apply_shortcut
 
 if os.getenv('NEOVIM_LIGHT') == '1' then
   vim.g.colors_name = "catppuccin-latte"
@@ -21,8 +20,12 @@ vim.opt.mouse = nil
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 
-apply_shortcut('nnoremap ' .. shortcuts.lsp_restart .. ' :LspRestart<CR>')
-apply_shortcut('nnoremap ' .. shortcuts.toggle_no_neck_pain  ..' :NoNeckPain<CR>')
+if shortcuts.lsp_restart then
+  vim.cmd('nnoremap ' .. shortcuts.lsp_restart .. ' :LspRestart<CR>')
+end
+if shortcuts.toggle_no_neck_pain then
+  vim.cmd('nnoremap ' .. shortcuts.toggle_no_neck_pain .. ' :NoNeckPain<CR>')
+end
 
 -- Neovim comes with a default typescript indentation plugin:
 -- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
