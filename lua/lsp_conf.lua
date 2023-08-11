@@ -24,7 +24,7 @@ local apply_shortcut = require("shortcuts").apply_shortcut
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 apply_shortcut('n', shortcuts.lsp_diagnostic_goto_next, vim.diagnostic.goto_prev, opts)
-apply_shortcut('n', shortcuts.lsp_open_float, vim.diagnostic.goto_next, opts)
+apply_shortcut('n', shortcuts.lsp_open_float, vim.diagnostic.open_float, opts)
 apply_shortcut('n', shortcuts.lsp_diagnostic_set_loclist, vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
