@@ -159,3 +159,5 @@ TODOs
 Hm
 CORS
 unix
+HugePages
+kubelet
