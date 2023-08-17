@@ -9,7 +9,7 @@ if os.getenv('NEOVIM_LIGHT') == '1' then
   vim.g.colors_name = "catppuccin-latte"
   vim.opt.background = "light"
 else
-  vim.g.colors_name = "catppuccin-mocha"
+  vim.g.colors_name = "sonokai"
   vim.opt.background = "dark"
 end
 
