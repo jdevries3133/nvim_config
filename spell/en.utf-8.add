@@ -160,3 +160,5 @@ Hm
 CORS
 unix
 timebox
+HugePages
+kubelet
