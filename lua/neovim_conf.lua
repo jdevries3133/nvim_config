@@ -32,13 +32,18 @@ end
 -- for comments. It is apparently trying to do prosaic indentation where the
 -- first line of a paragraph is indented by 2 spaces. I don't know why anyone
 -- would want this and it makes it very difficult to write markdown in
--- typescript comments, so it is disabled
+-- typescript comments, so I'm disabling it. The default vim indentation
+-- behavior from the days of vi / C is just fine for Javascript and Typescript.
 vim.cmd [[
   augroup noindent
     autocmd Filetype javascript,javascriptreact,typescript,typescriptreact set indentexpr=
   augroup END
 ]]
 
+-- dadbod.vim (or dadbod-ui, I'm not sure) uses a filetype of 'mysql'.
+-- Vim-commentary can't figure out which type of comment it should use in this
+-- case, so we'll help it along by kindly asking it to comment lines out by
+-- prepending them with `-- `
 vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
 ]]
