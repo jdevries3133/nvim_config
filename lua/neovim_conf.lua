@@ -16,7 +16,6 @@ end
 vim.o.termguicolors = true
 vim.opt.guicursor = "i:block"
 vim.opt.laststatus = 3
-vim.opt.mouse = nil
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 
