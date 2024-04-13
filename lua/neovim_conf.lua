@@ -45,4 +45,5 @@ vim.cmd [[
 -- prepending them with `-- `
 vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
+  autocmd FileType sql setlocal commentstring=--\ %s
 ]]
