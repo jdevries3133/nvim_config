@@ -166,3 +166,6 @@ structs
 standup
 entrypoints
 excalidraw
+struct
+eBPF
+NIC
