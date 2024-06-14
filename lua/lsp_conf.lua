@@ -82,6 +82,15 @@ require('lspconfig')['pyright'].setup {
 }
 require('lspconfig')['tsserver'].setup {
   on_attach = on_attach,
+  -- These options will optimize tsserver for large codebases by limiting
+  -- the extent to which it scans across many modules. This can create
+  -- enormous sets of completion options in large codebases.
+  -- init_options = {
+  --   preferences = {
+  --     includeCompletionsForModuleExports = false,
+  --     includeCompletionsForImportStatements = false
+  --   }
+  -- }
 }
 require('lspconfig')['eslint'].setup {
   on_attach = on_attach,
@@ -144,10 +153,6 @@ require('lspconfig')['lua_ls'].setup {
   }
 }
 
-require('lspconfig')['tailwindcss'].setup {
-  on_attach = on_attach,
-}
-
 -- emmet language server is really annoying if I'm not vomitting a large volume
 -- of html (most projects) but very useful if I am (new projects, personal
 -- projects, etc.). So, I have this environment variable to turn it on or off.
@@ -162,13 +167,5 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('lspconfig').terraformls.setup{
-    on_attach = on_attach
-}
-
-require'lspconfig'.astro.setup{
-    on_attach = on_attach
-}
-
-require'lspconfig'.gopls.setup{
     on_attach = on_attach
 }
