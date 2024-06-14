@@ -163,6 +163,10 @@ various other plugins.
 This provides the status line at the bottom. It is highly-configurable, and
 configured in `./lua/statusline.lua`.
 
+## `nvim-neotest/nvim-nio`
+
+This is a dependency of `nvim-dap-ui`.
+
 ## `nvim-telescope/telescope.nvim`
 
 This is the "search for stuff in a popup," plugin. It does a lot; see
