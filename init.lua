@@ -5,15 +5,15 @@
 -- vim plugins
 vim.cmd("source $HOME/.config/nvim/plugins.vim")
 
-require("neovim_conf") ------------------- general purpose neovim-specific
-require("vim_config_adapter") ------------ sources stuff from vim config (~/.vim)
-require("lsp_conf") ---------------------- languages server protocol
-require("dap_conf") ---------------------- debugger adapter protocol
+require("catppuccin_conf") --------------- very configurable color scheme
 require("cmp_conf") ---------------------- neovim-cmp (completion suggestions)
-require("treesitter") -------------------- language parser; try :TSPlaygroundToggle!
+require("dadbod_conf") ------------------- SQL client
+require("dap_conf") ---------------------- debugger adapter protocol
 require("git_remote_open_file").setup() -- my own custom "gitlab file opener" plugin
 require("gitsigns_conf") ----------------- git decorations, like sidebar colors
-require("telescope_conf") ---------------- telescope is a pop-up search tool
+require("mason_conf") ------------------------- languages server protocol
+require("neovim_conf") ------------------- general purpose neovim-specific
 require("statusline") -------------------- status line at the bottom of the UI
-require("catppuccin_conf") --------------- very configurable color scheme
-require("dadbod_conf") ------------------- SQL client
+require("telescope_conf") ---------------- telescope is a pop-up search tool
+require("treesitter") -------------------- language parser; try :TSPlaygroundToggle!
+require("vim_config_adapter") ------------ sources stuff from vim config (~/.vim)

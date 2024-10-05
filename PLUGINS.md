@@ -147,12 +147,6 @@ DAP (debugger) server for Node.js. This is the same technology that is used
 under the hood by VS Code, so it works... well, I wouldn't say great, but
 exactly as good as VS Code!
 
-## `neovim/nvim-lspconfig`
-
-This plugin provides a lot of the boilerplate that would be needed to get
-various language support servers to work. You will see it used in
-`./lua/lsp_conf.lua` to bootstrap many language support servers.
-
 ## `nvim-lua/plenary.nvim`
 
 This provides a lua library for asynchronous coroutines. It's a dependency of
@@ -254,11 +248,13 @@ braces, etc. For example:
 | `(value)`     | `cs({`              | change surrounding `(` to `{`   | `{value}`   |
 | `'value'`     | `cs'"`              | change surrounding `'` to `"`   | `"value"`   |
 
-## `williamboman/nvim-lsp-installer`
+## `williamboman/mason.nvim`
 
-This is a package manager for language support servers. Open it up with
-`:LspInstallInfo`, it makes it very easy to get LSP servers installed and keep
-them up to date.
+Language server protocol (package manager).
+
+## `williamboman/mason-lspconfig.nvim`
+
+Language server protocol (configuration framework).
 
 ## `wuelnerdotexe/vim-astro`
 
