@@ -80,6 +80,55 @@ require("mason-lspconfig").setup_handlers {
   -- Next, you can provide a dedicated handler for specific servers.
   -- For example, a handler override for the `rust_analyzer`:
   ["rust_analyzer"] = function ()
-    require("rust-tools").setup {}
-  end
+    require("lspconfig")["rust_analyzer"].setup {
+      on_attach = on_attach,
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            features = {
+              -- Kind of annoying, but we need to hard-code the features that
+              -- rust-analyzer will acknowledge as enabled across all projects.
+              --
+              -- If this gets unsustainable, it seems doable to read from some
+              -- config file on startup per-project, but this is fine for now.
+              "enable_smtp_email",
+              "live_reload",
+              "use_stripe_test_instance",
+              "stripe"
+            }
+          }
+        }
+      }
+    }
+  end,
+  ["lua_ls"] = function ()
+    local runtime_path = vim.split(package.path, ';')
+    require("lspconfig")["lua_ls"].setup {
+      on_attach = on_attach,
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using 
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = runtime_path,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = { 'vim' },
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique
+          -- identifier
+          telemetry = {
+            enable = false,
+          },
+        },
+      }
+    }
+  end,
 }
