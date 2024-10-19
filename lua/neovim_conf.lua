@@ -6,10 +6,10 @@
 local shortcuts = require("shortcuts").my_custom_shortcuts
 
 if os.getenv('NEOVIM_LIGHT') == '1' then
-  vim.g.colors_name = "catppuccin-latte"
+  vim.cmd.colorscheme("catppuccin-latte")
   vim.opt.background = "light"
 else
-  vim.g.colors_name = "sonokai"
+  vim.cmd.colorscheme("catppuccin-frappe")
   vim.opt.background = "dark"
 end
 
