@@ -3,8 +3,8 @@
 
 -- ./plugins.vim contains the plugin list for vim-plug, a package manager for
 -- vim plugins
-vim.cmd("source $HOME/.config/nvim/plugins.vim")
 
+require("plugins") ----------------------- load plugins via vim-plug
 require("catppuccin_conf") --------------- very configurable color scheme
 require("cmp_conf") ---------------------- neovim-cmp (completion suggestions)
 require("dadbod_conf") ------------------- SQL client
