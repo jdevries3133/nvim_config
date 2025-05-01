@@ -34,6 +34,7 @@ M.my_custom_shortcuts = {
   dap_ui_close = '<space>C',
   dap_ui_open = '<space>O',
   dap_visual_mode_eval = '<space>v',
+  diagnostic_put_errors_into_quickfixlist = '<leader>e',
   lsp_diagnostic_goto_next = ']d',
   lsp_diagnostic_goto_prev = '[d',
   lsp_diagnostic_set_loclist = '<space>q',

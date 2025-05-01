@@ -19,7 +19,14 @@ local opts = { noremap = true, silent = true }
 apply_shortcut('n', shortcuts.lsp_diagnostic_goto_next, vim.diagnostic.goto_prev, opts)
 apply_shortcut('n', shortcuts.lsp_open_float, vim.diagnostic.open_float, opts)
 apply_shortcut('n', shortcuts.lsp_diagnostic_set_loclist, vim.diagnostic.setloclist, opts)
-
+apply_shortcut(
+  'n',
+  shortcuts.diagnostic_put_errors_into_quickfixlist,
+  function ()
+    vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
+  end,
+  { noremap = true, silent = true }
+)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
