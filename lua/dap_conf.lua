@@ -219,15 +219,15 @@ dap.configurations.cpp = dap.configurations.c
 -- I prefer to have the launch.json per-project, but this guy's catch-all
 -- debug setup is actually pretty generally useful, so I'll keep it around. I
 -- like how he prompts for the path to the executable..
--- dap.configurations.rust = {
---     {
---         type = 'codelldb',
---         request = 'launch',
---         program = function()
---             return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
---         end,
---         cwd = '${workspaceFolder}',
---         terminal = 'integrated',
---         sourceLanguages = { 'rust' }
---     }
--- }
+dap.configurations.rust = {
+    {
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd()..'/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        terminal = 'integrated',
+        sourceLanguages = { 'rust' }
+    }
+}
