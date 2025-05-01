@@ -85,17 +85,16 @@ require("mason-lspconfig").setup_handlers {
       settings = {
         ["rust-analyzer"] = {
           cargo = {
-            features = {
-              -- Kind of annoying, but we need to hard-code the features that
-              -- rust-analyzer will acknowledge as enabled across all projects.
-              --
-              -- If this gets unsustainable, it seems doable to read from some
-              -- config file on startup per-project, but this is fine for now.
-              "enable_smtp_email",
-              "live_reload",
-              "use_stripe_test_instance",
-              "stripe"
-            }
+            --features = {
+            --  -- Kind of annoying, but we need to hard-code the features that
+            --  -- rust-analyzer will acknowledge as enabled across all projects.
+            --  --
+            --  -- If this gets unsustainable, it seems doable to read from some
+            --  -- config file on startup per-project, but this is fine for now.
+            --  "list",
+            --  "features",
+            --  "here",
+            --}
           }
         }
       }
