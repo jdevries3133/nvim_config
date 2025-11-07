@@ -57,7 +57,8 @@ require('dap.ext.vscode').load_launchjs(
       "typescriptreact"
     },
     ["codelldb"] = {
-      "rust"
+      "rust",
+      "zig"
     }
   }
 )
@@ -219,7 +220,7 @@ dap.configurations.cpp = dap.configurations.c
 -- I prefer to have the launch.json per-project, but this guy's catch-all
 -- debug setup is actually pretty generally useful, so I'll keep it around. I
 -- like how he prompts for the path to the executable..
-dap.configurations.rust = {
+local lldb_catchall = {
     {
         type = 'codelldb',
         request = 'launch',
@@ -231,3 +232,5 @@ dap.configurations.rust = {
         sourceLanguages = { 'rust' }
     }
 }
+dap.configurations.rust = lldb_catchall;
+dap.configurations.zig = lldb_catchall;
