@@ -26,6 +26,10 @@ end
 if shortcuts.toggle_no_neck_pain then
   vim.cmd('nnoremap ' .. shortcuts.toggle_no_neck_pain .. ' :NoNeckPain<CR>')
 end
+if shortcuts.make_test then
+  vim.cmd('nnoremap ' .. shortcuts.make_test .. ' :make test<CR>')
+end
+
 
 -- Neovim comes with a default typescript indentation plugin:
 -- https://github.com/jason0x43/vim-js-indent. The plugin behaves super weirdly
