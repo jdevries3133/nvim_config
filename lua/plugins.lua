@@ -34,8 +34,8 @@ Plug('tpope/vim-dadbod')
 Plug('tpope/vim-fugitive')
 Plug('tpope/vim-sensible')
 Plug('tpope/vim-surround')
-Plug('williamboman/mason-lspconfig.nvim', { ['tag'] = 'v1.32.0' })
-Plug('williamboman/mason.nvim', { ['tag'] = 'v1.11.0' })
+Plug('williamboman/mason-lspconfig.nvim')
+Plug('williamboman/mason.nvim')
 Plug('wuelnerdotexe/vim-astro')
 
 -- colorschemes

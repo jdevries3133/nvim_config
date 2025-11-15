@@ -39,41 +39,21 @@ local on_attach = function(_, bufnr)
   apply_shortcut('n', shortcuts.lsp_format, vim.lsp.buf.format, opts)
 end
 
-require("mason-lspconfig").setup_handlers {
-  -- The first entry (without a key) will be the default handler
-  -- and will be called for each installed server that doesn't have
-  -- a dedicated handler.
-  function(server_name)  -- default handler (optional)
-    require("lspconfig")[server_name].setup {
-      on_attach = on_attach
-    }
-  end,
-  -- Next, you can provide a dedicated handler for specific servers.
-  -- For example, a handler override for the `rust_analyzer`:
-  ["rust_analyzer"] = function()
-    require("lspconfig")["rust_analyzer"].setup {
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+require('mason-lspconfig').setup_handlers({
+  function(server)
+    vim.lsp.config(server, {
       on_attach = on_attach,
-      settings = {
-        ["rust-analyzer"] = {
-          cargo = {
-            --features = {
-            --  -- Kind of annoying, but we need to hard-code the features that
-            --  -- rust-analyzer will acknowledge as enabled across all projects.
-            --  --
-            --  -- If this gets unsustainable, it seems doable to read from some
-            --  -- config file on startup per-project, but this is fine for now.
-            --  "list",
-            --  "features",
-            --  "here",
-            --}
-          }
-        }
-      }
-    }
+      capabilities = capabilities,
+      root_markets = { '.git' }
+    })
+    vim.lsp.enable(server)
   end,
   ["lua_ls"] = function()
     local runtime_path = vim.split(package.path, ';')
-    require("lspconfig")["lua_ls"].setup {
+    vim.lsp.config("lua_ls", {
       on_attach = on_attach,
       settings = {
         Lua = {
@@ -99,6 +79,29 @@ require("mason-lspconfig").setup_handlers {
           },
         },
       }
-    }
+    })
+    vim.lsp.enable("lua_ls")
   end,
-}
+  ["rust_analyzer"] = function()
+    vim.lsp.config("rust_analyzer", {
+      on_attach = on_attach,
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            --features = {
+            --  -- Kind of annoying, but we need to hard-code the features that
+            --  -- rust-analyzer will acknowledge as enabled across all projects.
+            --  --
+            --  -- If this gets unsustainable, it seems doable to read from some
+            --  -- config file on startup per-project, but this is fine for now.
+            --  "list",
+            --  "features",
+            --  "here",
+            --}
+          }
+        }
+      }
+    })
+    vim.lsp.enable("rust_analyzer")
+  end
+})
