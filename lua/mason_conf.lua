@@ -25,27 +25,27 @@ apply_shortcut(
   end,
   { noremap = true, silent = true }
 )
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
-  -- Enable completion triggered by <c-x><c-o> in insert mode
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('my.lsp.shortcuts', {}),
+  callback = function(args)
+    -- Enable completion triggered by <c-x><c-o> in insert mode
+    vim.api.nvim_buf_set_option(args.buf, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  apply_shortcut('n', shortcuts.lsp_goto_definition, vim.lsp.buf.definition, bufopts)
-  apply_shortcut('n', shortcuts.lsp_goto_references, vim.lsp.buf.references, bufopts)
-  apply_shortcut('n', shortcuts.lsp_hover, vim.lsp.buf.hover, bufopts)
-  apply_shortcut('n', shortcuts.lsp_rename, vim.lsp.buf.rename, bufopts)
-  apply_shortcut('n', shortcuts.lsp_format, vim.lsp.buf.format, opts)
-end
+    local bufopts = { noremap = true, silent = true, buffer = args.buf }
+    apply_shortcut('n', shortcuts.lsp_goto_definition, vim.lsp.buf.definition, bufopts)
+    apply_shortcut('n', shortcuts.lsp_goto_references, vim.lsp.buf.references, bufopts)
+    apply_shortcut('n', shortcuts.lsp_hover, vim.lsp.buf.hover, bufopts)
+    apply_shortcut('n', shortcuts.lsp_rename, vim.lsp.buf.rename, bufopts)
+    apply_shortcut('n', shortcuts.lsp_format, vim.lsp.buf.format, opts)
+  end
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-require('mason-lspconfig').setup_handlers({
+require('mason-lspconfig').setup({
   function(server)
     vim.lsp.config(server, {
-      on_attach = on_attach,
       capabilities = capabilities,
       root_markets = { '.git' }
     })
@@ -54,7 +54,6 @@ require('mason-lspconfig').setup_handlers({
   ["lua_ls"] = function()
     local runtime_path = vim.split(package.path, ';')
     vim.lsp.config("lua_ls", {
-      on_attach = on_attach,
       settings = {
         Lua = {
           runtime = {
@@ -84,7 +83,6 @@ require('mason-lspconfig').setup_handlers({
   end,
   ["rust_analyzer"] = function()
     vim.lsp.config("rust_analyzer", {
-      on_attach = on_attach,
       settings = {
         ["rust-analyzer"] = {
           cargo = {
