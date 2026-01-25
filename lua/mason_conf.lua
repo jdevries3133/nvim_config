@@ -103,3 +103,13 @@ require('mason-lspconfig').setup({
     vim.lsp.enable("rust_analyzer")
   end
 })
+
+-- Non-Mason language servers
+vim.lsp.config("zls", {
+  cmd = { 'zls' },
+  filetypes = { 'zig', 'zir' },
+  capabilities = capabilities,
+  root_markers = { '.git' },
+  workspace_required = false
+})
+vim.lsp.enable("zls")
