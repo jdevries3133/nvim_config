@@ -51,3 +51,7 @@ vim.cmd[[
   autocmd FileType mysql setlocal commentstring=--\ %s
   autocmd FileType sql setlocal commentstring=--\ %s
 ]]
+
+vim.cmd[[
+  autocmd TermOpen * setlocal number relativenumber
+]]
