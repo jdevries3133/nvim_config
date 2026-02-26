@@ -104,6 +104,14 @@ require('mason-lspconfig').setup({
   end
 })
 
+-- Auto-format on save for Zig
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.zig',
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
 -- Non-Mason language servers
 vim.lsp.config("zls", {
   cmd = { 'zls' },
