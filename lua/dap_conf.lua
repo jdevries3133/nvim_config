@@ -43,26 +43,6 @@ apply_shortcut('n', shortcuts.dap_ui_open, dapui.open, mapopts)
 apply_shortcut('n', shortcuts.dap_float_scopes, float_scopes, mapopts)
 apply_shortcut('v', shortcuts.dap_visual_mode_eval, dapui.eval, mapopts)
 
--- We will always try to load launch.json files if they're present; I find
--- this generally better than catchall configs (like I have above for python).
--- Most projects have too much stuff going on for a default config to work
--- well
-require('dap.ext.vscode').load_launchjs(
-  vim.fn.getcwd() .. '/.vscode/launch.json',
-  {
-    -- mapping of launch types to file names
-    ["pwa-node"] = {
-      "javascript",
-      "typescript",
-      "typescriptreact"
-    },
-    ["codelldb"] = {
-      "rust",
-      "zig"
-    }
-  }
-)
-
 --------------------------------- ui ------------------------------------------
 
 dapui.setup({
@@ -168,23 +148,6 @@ dap.configurations.python = {
     pythonPath = "python3"
   }
 }
-
-
---------------------------------- node ----------------------------------------
--- Clone `vscode-js-debug` and build it locally. Then, provide the path to
--- the build on your machine. I am using:
---
--- revision: 59abbf94a713ad8db1dd441b3287d0e7f97c3fca
--- repository: https://github.com/microsoft/vscode-js-debug.git
-
-require("dap-vscode-js").setup({
-  debugger_path = os.getenv("HOME") .. "/repos/vscode-js-debug",
-  -- which adapters to register in nvim-dap
-  adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
-  log_file_path = os.getenv("HOME") .. "/.cache/nvim/dap_vscode_js.log"
-})
-
-
 
 --------------------------------- rust (lldb) ---------------------------------
 
