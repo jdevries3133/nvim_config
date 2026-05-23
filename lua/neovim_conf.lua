@@ -9,7 +9,7 @@ if os.getenv('NEOVIM_LIGHT') == '1' then
   vim.cmd.colorscheme("catppuccin-latte")
   vim.opt.background = "light"
 else
-  vim.cmd.colorscheme("catppuccin-frappe")
+  vim.cmd.colorscheme("tokyonight-night")
   vim.opt.background = "dark"
 end
 
