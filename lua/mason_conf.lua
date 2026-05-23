@@ -112,6 +112,13 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.shtml',
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
 -- Non-Mason language servers
 vim.lsp.config("zls", {
   cmd = { 'zls' },
